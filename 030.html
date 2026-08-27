@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIV 670 | Products and Services in Engineering - PMS UFV</title>
+    
+    <!-- ESSENTIAL CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false });"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- ========================================================================= -->
+    <!-- CENTRAL RESOURCE DIRECTORY (EASY IDENTIFICATION AND QUICK EDITS)           -->
+    <!-- ========================================================================= -->
+    <script>
+        const COURSE_ASSETS = {
+            logos: {
+                ufv: "https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png",
+                pms: "https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png"
+            },
+            
+            slideBackgrounds: {
+                "0_0": "bg-geometric1.png",
+                "1_0": "bg-blocks1.png",
+                "1_1": "bg-blocks2.png",
+                "2_0": "bg-polymer1.png",
+                "2_1": "bg-polymer2.png",
+                "3_0": "bg-nature1.png",
+                "3_1": "bg-nature2.png",
+                "4_0": "bg-concrete1.png",
+                "5_0": "bg-geometric2.png",
+                "6_0": "bg-paint1.png",
+                "7_0": "bg-nature3.png",
+                "8_0": "bg-clay1.png",
+                "8_1": "bg-clay2.png",
+                "9_0": "bg-polymer3.png",
+                "10_0": "bg-blocks3.png"
+            },
+
+            externalLinks: {
+                presentationAccess: "https://jmfcarvalho.github.io/civ153/030.html",
+                googleFormsQuiz: "https://docs.google.com/forms/d/e/1FAIpQLSc_EXAMPLE_QUIZ_LINK/viewform",
+                weeklyAssignment: "https://docs.google.com/forms/d/e/1FAIpQLSc_EXAMPLE_ASSIGNMENT_LINK/viewform",
+                pmsPortal: "https://pms.ufv.br",
+                siconPortal: "http://www.sicon.ufv.br"
+            },
+
+            qrCodeGenerator: (url, color = "901812") => 
+                `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&color=${color}`
+        };
+    </script>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: STYLES & IMMUTABLE CSS VARIABLES                               -->
+    <!-- ========================================================================= -->
+    <style>
+        :root {
+            --pms-red: #901812;
+            --pms-gold: #D1A705;
+            --pms-dark: #333333;
+            --pms-bg: #F4F6F5;
+            --pms-card-light: rgba(255, 255, 255, 0.65);
+            --pms-card-dark: rgba(51, 51, 51, 0.70);
+            --pms-text-muted: #444444;
+
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'PT Sans Narrow', sans-serif;
+
+            --fluid-h1: clamp(2.4rem, 5.0vw, 4.2rem);
+            --fluid-h2: clamp(1.8rem, 3.8vw, 3.0rem);
+            --fluid-h3: clamp(1.35rem, 2.4vw, 1.9rem);
+            --fluid-body: clamp(1.05rem, 1.7vw, 1.4rem);
+            --fluid-meta: clamp(0.9rem, 1.3vw, 1.15rem);
+            --fluid-tag: clamp(0.85rem, 1.1vw, 1.05rem);
+        }
+
+        html, body {
+            width: 100vw; height: 100vh; overflow: hidden;
+            background-color: var(--pms-bg);
+            font-family: var(--font-body); color: var(--pms-dark);
+        }
+
+        .text-fluid-h1 { font-family: var(--font-title); font-size: var(--fluid-h1); font-weight: 900; color: var(--pms-red); line-height: 1.05; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: var(--font-title); font-size: var(--fluid-h2); font-weight: 800; color: var(--pms-red); line-height: 1.1; }
+        .text-fluid-h3 { font-family: var(--font-body); font-size: var(--fluid-h3); font-weight: 700; line-height: 1.2; }
+        .text-fluid-body { font-family: var(--font-body); font-size: var(--fluid-body); font-weight: 500; line-height: 1.35; }
+        .text-fluid-meta { font-family: var(--font-body); font-size: var(--fluid-meta); color: var(--pms-text-muted); font-weight: 600; line-height: 1.3; }
+        .text-fluid-tag { font-family: var(--font-body); font-size: var(--fluid-tag); font-weight: 700; }
+
+        .katex-display {
+            font-size: clamp(1.05rem, 1.9vw, 1.6rem) !important;
+            margin: 0.4rem 0 !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.2rem 0;
+        }
+        .katex { font-size: 1.05em; }
+
+        .card-borderless-glass {
+            border: none !important;
+            background-color: var(--pms-card-light);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-borderless-glass-dark {
+            border: none !important;
+            background-color: var(--pms-card-dark);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-borderless-glass:hover, .card-borderless-glass-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.10);
+        }
+
+        .bg-right-fade {
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: cover;
+            position: relative;
+        }
+        .bg-right-fade::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--pms-bg) 20%, rgba(244, 246, 245, 0.65) 50%, rgba(244, 246, 245, 0.15) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .slide-screen {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            opacity: 0; pointer-events: none; z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            overflow-y: auto;
+        }
+        .slide-screen > * { position: relative; z-index: 2; }
+        .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
+        .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
+        .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
+        .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
+        .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
+
+        .reveal-controls { position: fixed; bottom: 1.25rem; right: 1.5rem; width: 130px; height: 130px; z-index: 1000; }
+        .control-arrow {
+            position: absolute; width: 44px; height: 44px; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 50%; color: #A1A1A1; font-size: 1.3rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; opacity: 0.25; pointer-events: none;
+            transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+        .control-arrow.nav-up { top: 0; left: 43px; }
+        .control-arrow.nav-down { bottom: 0; left: 43px; }
+        .control-arrow.nav-left { top: 43px; left: 0; }
+        .control-arrow.nav-right { top: 43px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--pms-red); opacity: 1; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--pms-red); color: #FFFFFF; transform: scale(1.15); }
+    </style>
+</head>
+<body class="w-screen h-screen relative bg-[#F4F6F5]">
+
+    <!-- TOP PROGRESS BAR -->
+    <div class="fixed top-0 left-0 h-2 bg-[#D1A705] transition-all duration-500 z-[1000]" id="progressBar" style="width: 0%;"></div>
+
+    <!-- RESPONSIVE SLIDE INDICATOR -->
+    <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-8 text-fluid-meta font-bold text-[#333333] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md z-[1000] flex items-center space-x-3">
+        <span class="w-3 h-3 rounded-full bg-[#901812]"></span>
+        <span id="slideIndicator">Slide (0,0)</span>
+    </div>
+
+    <!-- TOUCH CONTROLS -->
+    <div class="reveal-controls">
+        <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-nav-right" onclick="moveInGrid(1, 0)" class="control-arrow nav-right" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: HTML BODY & SLIDE STRUCTURE                                     -->
+    <!-- ========================================================================= -->
+    <main class="w-full h-full relative">
+
+        <!-- SLIDE (0,0): TITLE COVER -->
+        <div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center gap-4">
+                <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
+                    <img id="img-logo-ufv-0-0" src="https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto">
+                    <div class="h-10 w-[1px] bg-[#DEDEDE]"></div>
+                    <span class="text-fluid-tag text-[#333333]">CIV 670</span>
+                </div>
+                <a id="link-pms-portal-0-0" href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+                    <img id="img-logo-pms-0-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-12 sm:h-16 w-auto">
+                </a>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-6">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="p-8 sm:p-12 rounded-3xl card-borderless-glass border-l-[16px] border-[#901812]">
+                        <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2">CIV 665 — INNOVATION & TECHNOLOGICAL ENTREPRENEURSHIP</span>
+                        <h1 class="text-fluid-h1 mb-4">PRODUCTS AND SERVICES IN ENGINEERING<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">Design, Servitization & Quality Systems</span></h1>
+                        <p class="text-fluid-body text-[#444444]">Theoretical Foundations, Product-Service Systems (PSS), Regulatory Frameworks, and Predictive Reliability.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white flex flex-col justify-between space-y-6">
+                    <div class="bg-white/85 backdrop-blur-md p-6 rounded-2xl text-center shadow-md">
+                        <img id="qr-presentation-cover-0-0" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fjmfcarvalho.github.io%2Fciv153%2F030.html&color=901812" alt="Slide Access QR Code" class="w-full max-w-[200px] sm:max-w-[260px] mx-auto rounded-lg">
+                        <span class="text-fluid-tag text-[#333333] font-bold mt-3 block">Follow On Smartphone (030.html)</span>
+                    </div>
+                    <div class="text-center space-y-1">
+                        <span class="text-fluid-tag text-[#D1A705] block">Course Instructor</span>
+                        <p class="text-fluid-body font-bold text-white">Prof. José Maria Franco de Carvalho</p>
+                        <p class="text-fluid-meta text-[#DEDEDE]">SICon / DEC — Universidade Federal de Viçosa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (1,0): DEFINITION AND SCOPE -->
+        <div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 01 — FOUNDATIONS</span>
+                    <h2 class="text-fluid-h2">Definition, Scope & Deliverables</h2>
+                </div>
+                <img id="img-logo-pms-1-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-cubes text-2xl"></i>
+                        <h3 class="text-fluid-h3 font-bold">Tangible Products</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Physical outcomes of engineering design and manufacturing (e.g., infrastructure, machines, materials, smart devices).</p>
+                    <ul class="text-fluid-meta space-y-2 text-[#555555]">
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Output-oriented deliverables</li>
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Physical lifecycle: production to disposal</li>
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Directly measurable and storable</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-hand-holding-hand text-2xl"></i>
+                        <h3 class="text-fluid-h3 font-bold">Intangible Services</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Activity-based offerings involving engineering expertise, support, monitoring, and specialized consulting.</p>
+                    <ul class="text-fluid-meta space-y-2 text-[#555555]">
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Process-oriented interaction</li>
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Value delivered continuously over time</li>
+                        <li><i class="fa-solid fa-check text-[#D1A705] mr-2"></i>Focus on availability and uptime</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-1">CONVERGENCE PARADIGM</span>
+                        <h3 class="text-fluid-h3 text-white mb-2">Product-Service Systems (PSS)</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Integrated solutions combining physical hardware with real-time value-added services.</p>
+                    </div>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
+                        Explore PSS Archetypes (↓) <i class="fa-solid fa-diagram-project ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (1,1): PSS ARCHETYPES EXPLORER (VERTICAL BRANCH) -->
+        <div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705]">INTERACTIVE TAXONOMY (BRANCH Y=1)</span>
+                    <h2 class="text-fluid-h2 text-[#333333]">Product-Service Systems (PSS) Breakdown</h2>
+                </div>
+                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                    <i class="fa-solid fa-arrow-up mr-2"></i> Return to Module 01
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-auto w-full py-4">
+                <div class="p-6 rounded-3xl card-borderless-glass space-y-3 cursor-pointer hover:border-l-8 hover:border-[#901812] transition-all" onclick="selectPSS_1_1(1)">
+                    <div class="text-[#901812] text-2xl font-bold">01. Product-Oriented</div>
+                    <h3 class="text-fluid-h3 text-[#333333]">Ownership with Support</h3>
+                    <p class="text-fluid-body text-[#444444]">Traditional sale of physical product with maintenance contracts, spare parts, and warranty agreements.</p>
+                    <span class="text-fluid-tag text-[#901812] block">e.g., Heavy Machinery + Maintenance SLA</span>
+                </div>
+
+                <div class="p-6 rounded-3xl card-borderless-glass space-y-3 cursor-pointer hover:border-l-8 hover:border-[#D1A705] transition-all" onclick="selectPSS_1_1(2)">
+                    <div class="text-[#D1A705] text-2xl font-bold">02. Use-Oriented</div>
+                    <h3 class="text-fluid-h3 text-[#333333]">Access over Ownership</h3>
+                    <p class="text-fluid-body text-[#444444]">Product ownership remains with provider; user purchases availability via leasing, renting, or sharing.</p>
+                    <span class="text-fluid-tag text-[#D1A705] block">e.g., Structural Sensor Network Leasing</span>
+                </div>
+
+                <div class="p-6 rounded-3xl card-borderless-glass-dark text-white space-y-3 cursor-pointer hover:border-l-8 hover:border-white transition-all" onclick="selectPSS_1_1(3)">
+                    <div class="text-[#D1A705] text-2xl font-bold">03. Result-Oriented</div>
+                    <h3 class="text-fluid-h3 text-white">Performance Contracts</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Client pays strictly for quantified outcomes or functional utility without asset ownership.</p>
+                    <span class="text-fluid-tag text-white block">e.g., Pay-per-m³ Concrete Pumped / Thermal Comfort Level</span>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/70 backdrop-blur-md text-fluid-meta text-center text-[#444444]">
+                <i class="fa-solid fa-circle-info text-[#901812] mr-2"></i> Reference: Tukker, A. (2004). <em>Eight types of product-service system: Eight ways to sustainability?</em>
+            </div>
+        </div>
+
+        <!-- SLIDE (2,0): LIFE CYCLE COSTING (LCC) THEORY & EQUATION BREAKDOWN -->
+        <div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 02A — ECONOMIC METHODOLOGY</span>
+                    <h2 class="text-fluid-h2">Life Cycle Costing (LCC)</h2>
+                </div>
+                <img id="img-logo-pms-2-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Discounted Cash Flow Formulation</h3>
+                    
+                    <div class="bg-white/80 backdrop-blur-md p-4 rounded-2xl text-center shadow-inner overflow-hidden">
+                        $$\text{LCC} = C_{\text{cap}} + \sum_{t=1}^{N} \frac{C_{\text{op}}(t) + C_{\text{maint}}(t)}{(1+r)^t} + \frac{C_{\text{disp}}}{(1+r)^N}$$
+                    </div>
+
+                    <div class="space-y-1.5 text-fluid-meta text-[#444444]">
+                        <div><strong class="text-[#901812]">$C_{\text{cap}}$ (CAPEX):</strong> Initial capital cost of design, engineering, materials, acquisition, and commissioning ($t=0$).</div>
+                        <div><strong class="text-[#901812]">$C_{\text{op}}(t)$ (OPEX):</strong> Annual operational expenses including energy, staffing, and consumables in year $t$.</div>
+                        <div><strong class="text-[#901812]">$C_{\text{maint}}(t)$ (Maintenance):</strong> Preventive maintenance, condition monitoring, component replacements, and unscheduled repairs in year $t$.</div>
+                        <div><strong class="text-[#901812]">$C_{\text{disp}}$ (Disposal/End-of-Life):</strong> Decommissioning, demolition, recycling logistics, minus net salvage value.</div>
+                        <div><strong class="text-[#901812]">$r$ & $N$:</strong> Real discount/hurdle rate ($r$) and overall analytical service life horizon in years ($N$).</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">VERTICAL BRANCH Y=1</span>
+                        <h3 class="text-fluid-h3 text-white mb-2">Interactive LCC Simulator</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Simulate trade-offs between high upfront CAPEX (durable design) and discounted OPEX/maintenance cash flows over time.</p>
+                    </div>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
+                        Launch LCC Calculator (Press ↓) <i class="fa-solid fa-calculator ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (2,1): LCC VIRTUAL LAB (BRANCH Y=1) -->
+        <div id="slide-2-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705]">VIRTUAL LAB (BRANCH Y=1)</span>
+                    <h2 class="text-fluid-h2 text-[#333333]">Life Cycle Costing (LCC) Simulator</h2>
+                </div>
+                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                    <i class="fa-solid fa-arrow-up mr-2"></i> Return to LCC Theory
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full items-center py-4">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Financial & Operational Parameters</h3>
+                    
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Initial CAPEX ($C_{\text{cap}}$):</span>
+                            <span id="lbl-capex-2-1" class="text-[#901812] font-bold">$100k</span>
+                        </label>
+                        <input type="range" id="input-capex-2-1" min="20" max="300" step="10" value="100" class="w-full accent-[#901812] h-4" oninput="calcularLCC_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Annual OPEX & Maintenance ($C_{\text{op}} + C_{\text{maint}}$):</span>
+                            <span id="lbl-opex-2-1" class="text-[#901812] font-bold">$15k/yr</span>
+                        </label>
+                        <input type="range" id="input-opex-2-1" min="2" max="50" step="1" value="15" class="w-full accent-[#901812] h-4" oninput="calcularLCC_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>End-of-Life Disposal Cost ($C_{\text{disp}}$):</span>
+                            <span id="lbl-disp-2-1" class="text-[#901812] font-bold">$10k</span>
+                        </label>
+                        <input type="range" id="input-disp-2-1" min="0" max="50" step="5" value="10" class="w-full accent-[#901812] h-4" oninput="calcularLCC_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Service Life ($N$ years):</span>
+                            <span id="lbl-life-2-1" class="text-[#901812] font-bold">15 yrs</span>
+                        </label>
+                        <input type="range" id="input-life-2-1" min="5" max="40" step="1" value="15" class="w-full accent-[#901812] h-4" oninput="calcularLCC_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Discount Rate ($r$):</span>
+                            <span id="lbl-rate-2-1" class="text-[#901812] font-bold">6.0%</span>
+                        </label>
+                        <input type="range" id="input-rate-2-1" min="1" max="15" step="0.5" value="6.0" class="w-full accent-[#901812] h-4" oninput="calcularLCC_2_1()">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">DISCOUNTED CASH-FLOW AUDIT</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                            <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Discounted OPEX (NPV)</span>
+                                <span id="res-npv-opex-2-1" class="text-fluid-h3 text-white font-mono">$145,683</span>
+                            </div>
+                            <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Discounted Decom. (NPV)</span>
+                                <span id="res-npv-disp-2-1" class="text-fluid-h3 text-white font-mono">$4,173</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md mt-4">
+                            <span class="text-fluid-meta text-[#DEDEDE] block">Total Life Cycle Cost ($\text{LCC}$)</span>
+                            <span id="res-lcc-total-2-1" class="text-fluid-h2 text-[#D1A705] font-mono">$249,856</span>
+                        </div>
+                    </div>
+                    <p class="text-fluid-meta text-[#DEDEDE]">
+                        <i class="fa-solid fa-chart-pie text-[#D1A705] mr-2"></i>
+                        Higher initial design standards ($C_{\text{cap}}$) mitigate cumulative lifecycle costs by attenuating annual operations and maintenance expenditures.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (3,0): LIFE CYCLE ASSESSMENT (LCA) THEORY & A1-C4 STAGES DEFINITION -->
+        <div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 02B — ENVIRONMENTAL METHODOLOGY</span>
+                    <h2 class="text-fluid-h2">Life Cycle Assessment (LCA - ISO 14040/44 & EN 15978)</h2>
+                </div>
+                <img id="img-logo-pms-3-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Environmental Impact Formulation (Global Warming Potential)</h3>
+                    
+                    <div class="bg-white/80 backdrop-blur-md p-4 rounded-2xl text-center shadow-inner overflow-hidden">
+                        $$\text{GWP}_{\text{total}} = \text{GWP}_{\text{A1-A3}} + \text{GWP}_{\text{A4-A5}} + \text{GWP}_{\text{B1-B7}} + \text{GWP}_{\text{C1-C4}} - \text{GWP}_{\text{Module D}}$$
+                    </div>
+
+                    <div class="space-y-1.5 text-fluid-meta text-[#444444]">
+                        <div><strong class="text-[#901812]">A1–A3 Product Stage (Cradle-to-Gate):</strong> A1 (Raw material extraction), A2 (Upstream transport), A3 (Manufacturing & refining of construction products).</div>
+                        <div><strong class="text-[#901812]">A4–A5 Construction Stage:</strong> A4 (Transport of materials/systems to site), A5 (On-site installation, erection, and assembly energy).</div>
+                        <div><strong class="text-[#901812]">B1–B7 Use Stage:</strong> B1 (Use), B2 (Maintenance), B3 (Repair), B4 (Replacement), B5 (Refurbishment), B6 (Operational energy use), B7 (Operational water use).</div>
+                        <div><strong class="text-[#901812]">C1–C4 End-of-Life Stage:</strong> C1 (Deconstruction/demolition), C2 (Transport to disposal), C3 (Waste processing for reuse), C4 (Final disposal/landfill).</div>
+                        <div><strong class="text-[#901812]">Module D (Beyond Boundary):</strong> Net environmental benefits and circular loads from reuse, recovery, and recycling potential.</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">VERTICAL BRANCH Y=1</span>
+                        <h3 class="text-fluid-h3 text-white mb-2">Interactive Carbon & LCA Lab</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Quantify Global Warming Potential (GWP) across lifecycle stages (A1–C4) and evaluate low-carbon binder substitutions.</p>
+                    </div>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
+                        Launch LCA Carbon Lab (Press ↓) <i class="fa-solid fa-leaf ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (3,1): LCA VIRTUAL LAB (BRANCH Y=1) -->
+        <div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705]">VIRTUAL LAB (BRANCH Y=1)</span>
+                    <h2 class="text-fluid-h2 text-[#333333]">Life Cycle Assessment (LCA) Carbon Simulator</h2>
+                </div>
+                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                    <i class="fa-solid fa-arrow-up mr-2"></i> Return to LCA Theory
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full items-center py-4">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Inventory & Boundary Parameters</h3>
+                    
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Material Volume / Mass ($m_{\text{mat}}$):</span>
+                            <span id="lbl-lca-mat-3-1" class="text-[#901812] font-bold">50 tons</span>
+                        </label>
+                        <input type="range" id="input-lca-mat-3-1" min="10" max="200" step="5" value="50" class="w-full accent-[#901812] h-4" oninput="calcularLCA_3_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Material Emission Factor ($\text{EF}_{\text{mat}}$):</span>
+                            <span id="lbl-lca-efmat-3-1" class="text-[#901812] font-bold">350 kg CO₂e/ton</span>
+                        </label>
+                        <input type="range" id="input-lca-efmat-3-1" min="50" max="900" step="25" value="350" class="w-full accent-[#901812] h-4" oninput="calcularLCA_3_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Logistics Distance ($d_{\text{trans}}$):</span>
+                            <span id="lbl-lca-dist-3-1" class="text-[#901812] font-bold">120 km</span>
+                        </label>
+                        <input type="range" id="input-lca-dist-3-1" min="10" max="1000" step="10" value="120" class="w-full accent-[#901812] h-4" oninput="calcularLCA_3_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Annual Operational Energy Demand:</span>
+                            <span id="lbl-lca-energy-3-1" class="text-[#901812] font-bold">8,000 kWh/yr</span>
+                        </label>
+                        <input type="range" id="input-lca-energy-3-1" min="1000" max="30000" step="1000" value="8000" class="w-full accent-[#901812] h-4" oninput="calcularLCA_3_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Circular Recycling Credit (Module D Offset):</span>
+                            <span id="lbl-lca-rec-3-1" class="text-[#901812] font-bold">20%</span>
+                        </label>
+                        <input type="range" id="input-lca-rec-3-1" min="0" max="60" step="5" value="20" class="w-full accent-[#901812] h-4" oninput="calcularLCA_3_1()">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">GLOBAL WARMING POTENTIAL (GWP) OUTPUT</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                            <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Embodied Carbon (A1–A4)</span>
+                                <span id="res-lca-embodied-3-1" class="text-fluid-h3 text-white font-mono">18.22 t CO₂e</span>
+                            </div>
+                            <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Operational Carbon (15y)</span>
+                                <span id="res-lca-operational-3-1" class="text-fluid-h3 text-white font-mono">18.00 t CO₂e</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md mt-4">
+                            <span class="text-fluid-meta text-[#DEDEDE] block">Net Carbon Footprint ($\text{GWP}_{\text{total}}$)</span>
+                            <span id="res-lca-total-3-1" class="text-fluid-h2 text-[#D1A705] font-mono">32.58 t CO₂e</span>
+                        </div>
+                    </div>
+                    <p class="text-fluid-meta text-[#DEDEDE]">
+                        <i class="fa-solid fa-recycle text-[#D1A705] mr-2"></i>
+                        Circular reuse and low-carbon cement replacement directly reduce embodied stages (A1–A3) and activate substantial Module D credits.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (4,0): VALUE PROPOSITION & USER-CENTERED DESIGN -->
+        <div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 03 — VALUE CREATION</span>
+                    <h2 class="text-fluid-h2">Value Proposition Canvas & User Needs</h2>
+                </div>
+                <img id="img-logo-pms-4-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider block">Customer Profile</span>
+                    <div class="space-y-3 text-fluid-body text-[#444444]">
+                        <div class="p-3 bg-white/75 rounded-xl">
+                            <strong>Customer Jobs:</strong> Core functional, social, and emotional tasks the client is trying to execute.
+                        </div>
+                        <div class="p-3 bg-white/75 rounded-xl">
+                            <strong>Pains:</strong> Risks, technical obstacles, failures, regulatory penalties, and high downtime costs.
+                        </div>
+                        <div class="p-3 bg-white/75 rounded-xl">
+                            <strong>Gains:</strong> Concrete positive outcomes, speed, durability, safety, and certified efficiency.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider block">Value Map (Engineering Solution)</span>
+                    <div class="space-y-3 text-fluid-body text-[#DEDEDE]">
+                        <div class="p-3 bg-white/10 rounded-xl">
+                            <strong class="text-white">Products & Services:</strong> Tangible structural systems, instrumentation, software, and expert consulting.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-xl">
+                            <strong class="text-[#D1A705]">Pain Relievers:</strong> Fault mitigation, real-time alerting, automated reporting, compliance assurance.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-xl">
+                            <strong class="text-[#D1A705]">Gain Creators:</strong> Lifecycle cost reduction, predictive structural health, optimized asset life.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (5,0): QUALITY, STANDARDS & REGULATORY FRAMEWORKS -->
+        <div id="slide-5-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 04 — NORMATIVE GOVERNANCE</span>
+                    <h2 class="text-fluid-h2">Standards, Technical Codes & SLAs</h2>
+                </div>
+                <img id="img-logo-pms-5-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-3">
+                    <div class="text-[#901812] text-3xl"><i class="fa-solid fa-award"></i></div>
+                    <h3 class="text-fluid-h3 font-bold text-[#333333]">Quality Management</h3>
+                    <ul class="text-fluid-meta space-y-2 text-[#555555]">
+                        <li><strong>ISO 9001:</strong> Process control, QA/QC, and continuous improvement.</li>
+                        <li><strong>ISO 14001:</strong> Environmental management and emissions control.</li>
+                        <li><strong>ISO/IEC 15288:</strong> System lifecycle processes (concept to retirement).</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-3">
+                    <div class="text-[#901812] text-3xl"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <h3 class="text-fluid-h3 font-bold text-[#333333]">Engineering Codes</h3>
+                    <ul class="text-fluid-meta space-y-2 text-[#555555]">
+                        <li><strong>ABNT / Eurocodes / AISC / ASME:</strong> Mandatory technical constraints.</li>
+                        <li>Ensures structural safety, interoperability, and durability under limit states.</li>
+                        <li>Mitigates legal liability and technical failures.</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-3">
+                    <div class="text-[#D1A705] text-3xl"><i class="fa-solid fa-file-contract"></i></div>
+                    <h3 class="text-fluid-h3 font-bold text-white">Service Level Agreements</h3>
+                    <ul class="text-fluid-meta space-y-2 text-[#DEDEDE]">
+                        <li><strong class="text-[#D1A705]">Uptime & Availability:</strong> Quantitative commitment (e.g., 99.9% system availability).</li>
+                        <li><strong class="text-[#D1A705]">Response Time (MTTR):</strong> Maximum allowable time to repair faults.</li>
+                        <li><strong class="text-[#D1A705]">Performance Metrics:</strong> Continuous auditing and client transparency.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (6,0): DIGITAL TRANSFORMATION & INDUSTRY 4.0 -->
+        <div id="slide-6-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 05 — TECHNOLOGICAL INTEGRATION</span>
+                    <h2 class="text-fluid-h2">Industry 4.0, IP & Technology Readiness</h2>
+                </div>
+                <img id="img-logo-pms-6-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Smart Connected Systems</h3>
+                    <p class="text-fluid-body text-[#444444]">Integration of IoT sensors, cloud computing, digital twins, and cyber-physical infrastructure.</p>
+                    <div class="grid grid-cols-2 gap-3 text-fluid-meta">
+                        <div class="p-3 bg-white/80 rounded-xl"><strong>Self-Diagnosis:</strong> Embedded sensor anomaly detection.</div>
+                        <div class="p-3 bg-white/80 rounded-xl"><strong>Digital Twins:</strong> Real-time numerical model synchronization.</div>
+                        <div class="p-3 bg-white/80 rounded-xl"><strong>Patents:</strong> Technical process and hardware protection.</div>
+                        <div class="p-3 bg-white/80 rounded-xl"><strong>Trade Secrets:</strong> Proprietary algorithms and formulations.</div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4">
+                    <h3 class="text-fluid-h3 text-[#D1A705] border-b border-white/10 pb-2">TRL Scale (Technology Readiness Levels)</h3>
+                    <div class="space-y-2 text-fluid-meta text-[#DEDEDE]">
+                        <div class="flex justify-between items-center p-2 bg-white/10 rounded-lg">
+                            <span>TRL 1–3: Fundamental Principles & Proof of Concept</span>
+                            <span class="text-[#D1A705] font-bold">Research</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-white/10 rounded-lg">
+                            <span>TRL 4–6: Component Validation & Lab/Relevant Prototyping</span>
+                            <span class="text-[#D1A705] font-bold">Development</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 bg-white/10 rounded-lg">
+                            <span>TRL 7–9: System Demonstration to Fully Operational Deployment</span>
+                            <span class="text-[#D1A705] font-bold">Commercial</span>
+                        </div>
+                    </div>
+                    <p class="text-fluid-meta text-[#A1A1A1]">De-risks technological innovation through sequential stage-gate validation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (7,0): SUSTAINABILITY, SOCIAL RESPONSIBILITY & ETHICS -->
+        <div id="slide-7-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 06 — RESPONSIBLE PRACTICE</span>
+                    <h2 class="text-fluid-h2">Eco-Design, Social Innovation & Ethics</h2>
+                </div>
+                <img id="img-logo-pms-7-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-3">
+                    <div class="text-[#901812] text-2xl font-bold"><i class="fa-solid fa-leaf mr-2"></i>Eco-Design & SDGs</div>
+                    <p class="text-fluid-body text-[#444444]">Minimizing environmental impacts across the full lifecycle without compromising technical performance.</p>
+                    <div class="text-fluid-meta text-[#555555] space-y-1">
+                        <div><strong>SDG 9:</strong> Industry, Innovation & Infrastructure</div>
+                        <div><strong>SDG 12:</strong> Responsible Consumption & Production</div>
+                        <div><strong>SDG 13:</strong> Climate Action</div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-3">
+                    <div class="text-[#901812] text-2xl font-bold"><i class="fa-solid fa-people-roof mr-2"></i>Social Innovation</div>
+                    <p class="text-fluid-body text-[#444444]">Developing engineering systems that explicitly resolve social inequalities and community challenges.</p>
+                    <ul class="text-fluid-meta text-[#555555] space-y-1">
+                        <li>• Low-cost sustainable housing</li>
+                        <li>• Decentralized water and sanitation</li>
+                        <li>• Community co-design & local empowerment</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-3">
+                    <div class="text-[#D1A705] text-2xl font-bold"><i class="fa-solid fa-shield-halved mr-2"></i>Engineering Ethics</div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Rigorous technical honesty, public safety assurance, and eliminating planned obsolescence.</p>
+                    <ul class="text-fluid-meta text-[#DEDEDE] space-y-1">
+                        <li>• Transparency in environmental impact claims</li>
+                        <li>• Refusal of unsafe design compromises</li>
+                        <li>• Data privacy in smart connected assets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (8,0): RISK, RELIABILITY & MAINTAINABILITY -->
+        <div id="slide-8-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 07 — RELIABILITY ENGINEERING</span>
+                    <h2 class="text-fluid-h2">Risk Assessment, FMEA & Maintenance</h2>
+                </div>
+                <img id="img-logo-pms-8-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333]">Failure Modes and Effects Analysis (FMEA)</h3>
+                    <p class="text-fluid-body text-[#444444]">Quantitative methodology to prioritize engineering failure modes via the Risk Priority Number:</p>
+                    <div class="bg-white/75 backdrop-blur-md p-4 rounded-2xl text-center shadow-inner overflow-hidden">
+                        $$\text{RPN} = \text{Severity (S)} \times \text{Occurrence (O)} \times \text{Detection (D)}$$
+                    </div>
+                    <p class="text-fluid-meta text-[#555555]">Where $S, O, D \in [1, 10]$. High RPN items mandate immediate structural or procedural redesign.</p>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">VIRTUAL RELIABILITY LAB</span>
+                        <h3 class="text-fluid-h3 text-white mb-2">Interactive RPN Evaluator</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Simulate multi-variable failure risks and evaluate maintenance strategy transitions.</p>
+                    </div>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
+                        Launch FMEA Lab (↓) <i class="fa-solid fa-triangle-exclamation ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (8,1): FMEA LAB (VERTICAL BRANCH) -->
+        <div id="slide-8-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705]">VIRTUAL LAB (BRANCH Y=1)</span>
+                    <h2 class="text-fluid-h2 text-[#333333]">FMEA Risk Priority Number (RPN) Simulator</h2>
+                </div>
+                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                    <i class="fa-solid fa-arrow-up mr-2"></i> Return to Reliability
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full items-center py-4">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Risk Factor Sliders</h3>
+                    
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Severity ($S$): Impact on system/user safety</span>
+                            <span id="lbl-fmea-s-8-1" class="text-[#901812] font-bold">8</span>
+                        </label>
+                        <input type="range" id="input-fmea-s-8-1" min="1" max="10" step="1" value="8" class="w-full accent-[#901812] h-4" oninput="calcularFMEA_8_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Occurrence ($O$): Frequency of failure cause</span>
+                            <span id="lbl-fmea-o-8-1" class="text-[#901812] font-bold">6</span>
+                        </label>
+                        <input type="range" id="input-fmea-o-8-1" min="1" max="10" step="1" value="6" class="w-full accent-[#901812] h-4" oninput="calcularFMEA_8_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta block flex justify-between">
+                            <span>Detection ($D$): Failure to detect before release</span>
+                            <span id="lbl-fmea-d-8-1" class="text-[#901812] font-bold">5</span>
+                        </label>
+                        <input type="range" id="input-fmea-d-8-1" min="1" max="10" step="1" value="5" class="w-full accent-[#901812] h-4" oninput="calcularFMEA_8_1()">
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">CRITICALITY CLASSIFICATION</span>
+                        <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md text-center">
+                            <span class="text-fluid-meta text-[#DEDEDE] block">Calculated RPN</span>
+                            <span id="res-rpn-8-1" class="text-fluid-h1 text-[#D1A705] font-mono">240</span>
+                            <span id="res-risk-level-8-1" class="text-fluid-tag font-bold uppercase block mt-2 text-[#901812] bg-white/90 py-1.5 px-4 rounded-full mx-auto max-w-[200px]">HIGH RISK LEVEL</span>
+                        </div>
+                    </div>
+                    <p class="text-fluid-meta text-[#DEDEDE]">
+                        <i class="fa-solid fa-wrench text-[#D1A705] mr-2"></i>
+                        Action Required: Implement sensor-based predictive maintenance and redundant backup lines.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (9,0): SERVITIZATION & STAKEHOLDER CO-CREATION -->
+        <div id="slide-9-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">MODULE 08 — SERVITIZATION STRATEGY</span>
+                    <h2 class="text-fluid-h2">Business Models & Stakeholder Co-Creation</h2>
+                </div>
+                <img id="img-logo-pms-9-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Servitization & Value Capture</h3>
+                    <p class="text-fluid-body text-[#444444]">Transforming one-off transactional sales into long-term recurring service contracts.</p>
+                    <ul class="text-fluid-meta space-y-2 text-[#555555]">
+                        <li><i class="fa-solid fa-circle-check text-[#901812] mr-2"></i><strong>Subscription Models:</strong> Continuous software & sensor analytics.</li>
+                        <li><i class="fa-solid fa-circle-check text-[#901812] mr-2"></i><strong>Product-as-a-Service (PaaS):</strong> Zero initial client CAPEX.</li>
+                        <li><i class="fa-solid fa-circle-check text-[#901812] mr-2"></i><strong>Pay-per-use:</strong> Revenue tied directly to system output.</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4">
+                    <h3 class="text-fluid-h3 text-[#D1A705] border-b border-white/10 pb-2">Stakeholder Co-Creation</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Actively engaging operators, regulators, and end-users throughout the iterative design cycle.</p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-xl"><strong>Shared Understanding:</strong> Uncovering latent constraints early.</div>
+                        <div class="p-3 bg-white/10 rounded-xl"><strong>Higher Adoption:</strong> Eliminating usability friction and resistance.</div>
+                        <div class="p-3 bg-white/10 rounded-xl"><strong>Long-term Trust:</strong> Sustained client engagement and continuous feedback.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (10,0): REFERENCES & PROBLEM SET -->
+        <div id="slide-10-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">CLOSING MODULE</span>
+                    <h2 class="text-fluid-h2">References & Problem Set Assignment</h2>
+                </div>
+                <img id="img-logo-pms-10-0" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-3">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Key Bibliographic References</h3>
+                    <ul class="space-y-3 text-fluid-meta text-[#444444]">
+                        <li><i class="fa-solid fa-book text-[#901812] mr-2"></i><strong>Ulrich & Eppinger</strong> (2020). <em>Product Design and Development</em>. McGraw-Hill.</li>
+                        <li><i class="fa-solid fa-book text-[#901812] mr-2"></i><strong>Pahl, Beitz et al.</strong> (2007). <em>Engineering Design: A Systematic Approach</em>. Springer.</li>
+                        <li><i class="fa-solid fa-book text-[#901812] mr-2"></i><strong>Tukker, A.</strong> (2004). Eight types of product-service system. <em>Bus. Strat. Env.</em></li>
+                        <li><i class="fa-solid fa-book text-[#901812] mr-2"></i><strong>Porter & Heppelmann</strong> (2014). Smart, Connected Products. <em>HBR</em>.</li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white text-center space-y-4">
+                    <span class="text-fluid-tag text-[#D1A705] block">EVALUATION ASSIGNMENT</span>
+                    <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl max-w-[240px] sm:max-w-[280px] mx-auto shadow-lg">
+                        <img id="qr-assignment-forms-10-0" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://docs.google.com/forms/d/e/1FAIpQLSeUy6uJ3_-5e4DEF3v0EhBXMGW7QC3b9TDic1ElQTE0SRlfeg/viewform?usp=header&color=901812" alt="Weekly Assignment QR Code" class="w-full h-auto rounded-lg">
+                    </div>
+                    <h3 class="text-fluid-h3 text-white mb-1">Submit Problem</h3>
+                    <a id="btn-assignment-direct-10-0" href="https://docs.google.com/forms/d/e/1FAIpQLSeUy6uJ3_-5e4DEF3v0EhBXMGW7QC3b9TDic1ElQTE0SRlfeg/viewform?usp=header" target="_blank" class="inline-flex items-center space-x-2 text-fluid-body font-bold text-[#D1A705] hover:underline pt-2">
+                        <span>Open Assignment Form</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: JAVASCRIPT LOGIC, ANIMATIONS & INTERACTIVITY                   -->
+    <!-- ========================================================================= -->
+    <script>
+        const slideGrid = { 
+            '0,0': 'slide-0-0',
+            '1,0': 'slide-1-0',
+            '1,1': 'slide-1-1',
+            '2,0': 'slide-2-0',
+            '2,1': 'slide-2-1',
+            '3,0': 'slide-3-0',
+            '3,1': 'slide-3-1',
+            '4,0': 'slide-4-0',
+            '5,0': 'slide-5-0',
+            '6,0': 'slide-6-0',
+            '7,0': 'slide-7-0',
+            '8,0': 'slide-8-0',
+            '8,1': 'slide-8-1',
+            '9,0': 'slide-9-0',
+            '10,0': 'slide-10-0'
+        };
+
+        let currentX = 0, currentY = 0;
+
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
+        function initializeAssets() {
+            // Set Logos across all dynamically matching elements
+            document.querySelectorAll('[id^="img-logo-ufv-"]').forEach(el => {
+                if (el) el.src = COURSE_ASSETS.logos.ufv;
+            });
+            document.querySelectorAll('[id^="img-logo-pms-"]').forEach(el => {
+                if (el) el.src = COURSE_ASSETS.logos.pms;
+            });
+
+            const linkPortal00 = document.getElementById('link-pms-portal-0-0');
+            if (linkPortal00) linkPortal00.href = COURSE_ASSETS.externalLinks.pmsPortal;
+
+            // Background Assignment
+            Object.keys(slideGrid).forEach(key => {
+                const bgKey = key.replace(',', '_');
+                const slideEl = document.getElementById(slideGrid[key]);
+                const bgUrl = COURSE_ASSETS.slideBackgrounds[bgKey];
+
+                if (slideEl) {
+                    if (bgUrl && bgUrl.trim() !== "") {
+                        slideEl.style.backgroundImage = `url('${bgUrl}')`;
+                        slideEl.classList.add('bg-right-fade');
+                    } else {
+                        slideEl.style.backgroundImage = 'none';
+                        slideEl.classList.remove('bg-right-fade');
+                    }
+                }
+            });
+
+            // Set QR Codes and Direct Links
+            const qrCover00 = document.getElementById('qr-presentation-cover-0-0');
+            if (qrCover00) qrCover00.src = COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.presentationAccess);
+
+            const qrAssign100 = document.getElementById('qr-assignment-forms-10-0');
+            if (qrAssign100) qrAssign100.src = COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.weeklyAssignment);
+
+            const btnAssign100 = document.getElementById('btn-assignment-direct-10-0');
+            if (btnAssign100) btnAssign100.href = COURSE_ASSETS.externalLinks.weeklyAssignment;
+
+            const qrSicon110 = document.getElementById('qr-sicon-portal-11-0');
+            if (qrSicon110) qrSicon110.src = COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.siconPortal);
+        }
+
+        function updateUI() {
+            const keysHorizontal = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const totalH = keysHorizontal.length;
+            document.getElementById('progressBar').style.width = `${(currentX / Math.max(totalH - 1, 1)) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX}, ${currentY})`;
+            
+            const arrows = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in arrows) {
+                const el = document.getElementById(`btn-nav-${d}`);
+                if (el) el.classList.toggle('nav-enabled', hasSlide(currentX + arrows[d][0], currentY + arrows[d][1]));
+            }
+        }
+
+        function moveInGrid(dx, dy) {
+            const nx = currentX + dx, ny = currentY + dy;
+            if (hasSlide(nx, ny)) {
+                const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
+                const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
+                cur.classList.remove('slide-active');
+                
+                if (dx > 0) cur.classList.add('slide-hidden-left');
+                else if (dx < 0) cur.classList.add('slide-hidden-right');
+                else if (dy > 0) cur.classList.add('slide-hidden-down');
+                else if (dy < 0) cur.classList.add('slide-hidden-up');
+
+                nxt.classList.remove('slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.add('slide-active');
+                currentX = nx; currentY = ny;
+                updateUI();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
+            else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
+            else if (e.key === 'ArrowUp') moveInGrid(0, -1);
+            else if (e.key === 'ArrowDown') moveInGrid(0, 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAssets();
+            updateUI();
+            if (document.getElementById('input-capex-2-1')) calcularLCC_2_1();
+            if (document.getElementById('input-lca-mat-3-1')) calcularLCA_3_1();
+            if (document.getElementById('input-fmea-s-8-1')) calcularFMEA_8_1();
+        });
+
+        // =====================================================================
+        // LAB INTERACTIVITY FUNCTIONS
+        // =====================================================================
+        function selectPSS_1_1(type) {
+            const descriptions = {
+                1: "Product-Oriented: The customer buys the physical system. Value is added via preventive maintenance contracts, installation, and spare parts supply.",
+                2: "Use-Oriented: The asset stays on the provider balance sheet. The client pays for machine hours, sensor fleet access, or long-term operational leases.",
+                3: "Result-Oriented: No product is bought. The provider delivers guaranteed outcomes (e.g., cubic meters of treated wastewater, structured uptime, load capacity)."
+            };
+            alert(descriptions[type]);
+        }
+
+        function calcularLCC_2_1() {
+            const capex = parseFloat(document.getElementById('input-capex-2-1').value) * 1000;
+            const opex = parseFloat(document.getElementById('input-opex-2-1').value) * 1000;
+            const disp = parseFloat(document.getElementById('input-disp-2-1').value) * 1000;
+            const N = parseInt(document.getElementById('input-life-2-1').value);
+            const r = parseFloat(document.getElementById('input-rate-2-1').value) / 100;
+
+            document.getElementById('lbl-capex-2-1').innerText = `$${(capex/1000).toFixed(0)}k`;
+            document.getElementById('lbl-opex-2-1').innerText = `$${(opex/1000).toFixed(0)}k/yr`;
+            document.getElementById('lbl-disp-2-1').innerText = `$${(disp/1000).toFixed(0)}k`;
+            document.getElementById('lbl-life-2-1').innerText = `${N} yrs`;
+            document.getElementById('lbl-rate-2-1').innerText = `${(r*100).toFixed(1)}%`;
+
+            let npvOpex = 0;
+            if (r > 0) {
+                npvOpex = opex * ((1 - Math.pow(1 + r, -N)) / r);
+            } else {
+                npvOpex = opex * N;
+            }
+
+            const npvDisp = disp / Math.pow(1 + r, N);
+            const totalLCC = capex + npvOpex + npvDisp;
+
+            document.getElementById('res-npv-opex-2-1').innerText = `$${Math.round(npvOpex).toLocaleString()}`;
+            document.getElementById('res-npv-disp-2-1').innerText = `$${Math.round(npvDisp).toLocaleString()}`;
+            document.getElementById('res-lcc-total-2-1').innerText = `$${Math.round(totalLCC).toLocaleString()}`;
+        }
+
+        function calcularLCA_3_1() {
+            const matMass = parseFloat(document.getElementById('input-lca-mat-3-1').value);
+            const efMat = parseFloat(document.getElementById('input-lca-efmat-3-1').value);
+            const dist = parseFloat(document.getElementById('input-lca-dist-3-1').value);
+            const energyAnnual = parseFloat(document.getElementById('input-lca-energy-3-1').value);
+            const recRate = parseFloat(document.getElementById('input-lca-rec-3-1').value) / 100;
+
+            document.getElementById('lbl-lca-mat-3-1').innerText = `${matMass} tons`;
+            document.getElementById('lbl-lca-efmat-3-1').innerText = `${efMat} kg CO₂e/ton`;
+            document.getElementById('lbl-lca-dist-3-1').innerText = `${dist} km`;
+            document.getElementById('lbl-lca-energy-3-1').innerText = `${energyAnnual.toLocaleString()} kWh/yr`;
+            document.getElementById('lbl-lca-rec-3-1').innerText = `${(recRate * 100).toFixed(0)}%`;
+
+            const efTrans = 0.12;
+            const efGrid = 0.15;
+            const serviceLife = 15;
+
+            const a1a3EmbodiedKg = matMass * efMat;
+            const a4TransKg = matMass * dist * efTrans;
+            const embodiedTotalTons = (a1a3EmbodiedKg + a4TransKg) / 1000;
+
+            const b1b7OperationalTons = (energyAnnual * serviceLife * efGrid) / 1000;
+            const moduleDCreditTons = embodiedTotalTons * recRate;
+
+            const totalGwpTons = embodiedTotalTons + b1b7OperationalTons - moduleDCreditTons;
+
+            document.getElementById('res-lca-embodied-3-1').innerText = `${embodiedTotalTons.toFixed(2)} t CO₂e`;
+            document.getElementById('res-lca-operational-3-1').innerText = `${b1b7OperationalTons.toFixed(2)} t CO₂e`;
+            document.getElementById('res-lca-total-3-1').innerText = `${totalGwpTons.toFixed(2)} t CO₂e`;
+        }
+        
+        function calcularFMEA_8_1() {
+            const S = parseInt(document.getElementById('input-fmea-s-8-1').value);
+            const O = parseInt(document.getElementById('input-fmea-o-8-1').value);
+            const D = parseInt(document.getElementById('input-fmea-d-8-1').value);
+
+            document.getElementById('lbl-fmea-s-8-1').innerText = S;
+            document.getElementById('lbl-fmea-o-8-1').innerText = O;
+            document.getElementById('lbl-fmea-d-8-1').innerText = D;
+
+            const rpn = S * O * D;
+            const rpnEl = document.getElementById('res-rpn-8-1');
+            const levelEl = document.getElementById('res-risk-level-8-1');
+
+            rpnEl.innerText = rpn;
+
+            if (rpn >= 200) {
+                levelEl.innerText = "CRITICAL / HIGH RISK";
+                levelEl.className = "text-fluid-tag font-bold uppercase block mt-2 text-white bg-[#901812] py-1.5 px-4 rounded-full mx-auto max-w-[220px]";
+            } else if (rpn >= 100) {
+                levelEl.innerText = "MODERATE RISK";
+                levelEl.className = "text-fluid-tag font-bold uppercase block mt-2 text-[#333333] bg-[#D1A705] py-1.5 px-4 rounded-full mx-auto max-w-[200px]";
+            } else {
+                levelEl.innerText = "LOW / ACCEPTABLE RISK";
+                levelEl.className = "text-fluid-tag font-bold uppercase block mt-2 text-white bg-green-700 py-1.5 px-4 rounded-full mx-auto max-w-[200px]";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIV 670 | Module 010 - PMS UFV</title>
+    
+    <!-- ESSENTIAL CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false });"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- ========================================================================= -->
+    <!-- CENTRAL RESOURCE DIRECTORY                                                 -->
+    <!-- ========================================================================= -->
+    <script>
+        const COURSE_ASSETS = {
+            logos: {
+                ufv: "https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png",
+                pms: "https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png"
+            },
+            
+            slideBackgrounds: {
+                "0_0": "bg-geometric1.png",
+                "1_0": "bg-blocks1.png",
+                "2_0": "bg-concrete1.png",
+                "3_0": "bg-[#F4F6F5]",
+                "3_1": "bg-polymer1.png",
+                "4_0": "bg-geometric2.png",
+                "5_0": "bg-clay1.png"
+            },
+
+            externalLinks: {
+                sharedDrive: "https://drive.google.com/open?id=1lk2dcMJCYRIH672xxkG2vDPFvih__Urr&usp=drive_fs",
+                pmsPortal: "https://pms.ufv.br"
+            },
+
+            qrCodeGenerator: (url, color = "901812") => 
+                `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&color=${color}`
+        };
+    </script>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 1: STYLES & IMMUTABLE CSS VARIABLES                               -->
+    <!-- ========================================================================= -->
+    <style>
+        :root {
+            --pms-red: #901812;
+            --pms-gold: #D1A705;
+            --pms-dark: #333333;
+            --pms-bg: #F4F6F5;
+            --pms-card-light: rgba(255, 255, 255, 0.65);
+            --pms-card-dark: rgba(51, 51, 51, 0.70);
+            --pms-text-muted: #444444;
+
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'PT Sans Narrow', sans-serif;
+
+            --fluid-h1: clamp(2.8rem, 6.0vw, 5.0rem);
+            --fluid-h2: clamp(2.2rem, 4.5vw, 3.5rem);
+            --fluid-h3: clamp(1.7rem, 3.2vw, 2.4rem);
+            --fluid-body: clamp(1.3rem, 2.2vw, 1.75rem);
+            --fluid-meta: clamp(1.1rem, 1.6vw, 1.45rem);
+            --fluid-tag: clamp(1.0rem, 1.4vw, 1.25rem);
+        }
+
+        html, body {
+            width: 100vw; height: 100vh; overflow: hidden;
+            background-color: var(--pms-bg);
+            font-family: var(--font-body); color: var(--pms-dark);
+        }
+
+        .text-fluid-h1 { font-family: var(--font-title); font-size: var(--fluid-h1); font-weight: 900; color: var(--pms-red); line-height: 1.05; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: var(--font-title); font-size: var(--fluid-h2); font-weight: 800; color: var(--pms-red); line-height: 1.1; }
+        .text-fluid-h3 { font-family: var(--font-body); font-size: var(--fluid-h3); font-weight: 700; line-height: 1.2; }
+        .text-fluid-body { font-family: var(--font-body); font-size: var(--fluid-body); font-weight: 500; line-height: 1.4; }
+        .text-fluid-meta { font-family: var(--font-body); font-size: var(--fluid-meta); color: var(--pms-text-muted); font-weight: 600; }
+        .text-fluid-tag { font-family: var(--font-body); font-size: var(--fluid-tag); font-weight: 700; }
+
+        .katex-display {
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem) !important;
+            margin: 1rem 0 !important;
+        }
+        .katex { font-size: 1.15em; }
+
+        .card-borderless-glass {
+            border: none !important;
+            background-color: var(--pms-card-light);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-borderless-glass-dark {
+            border: none !important;
+            background-color: var(--pms-card-dark);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-borderless-glass:hover, .card-borderless-glass-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.10);
+        }
+
+        .bg-right-fade {
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: cover;
+            position: relative;
+        }
+        .bg-right-fade::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, var(--pms-bg) 20%, rgba(244, 246, 245, 0.65) 50%, rgba(244, 246, 245, 0.15) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .slide-screen {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            opacity: 0; pointer-events: none; z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            overflow-y: auto;
+        }
+        .slide-screen > * { position: relative; z-index: 2; }
+        .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
+        .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
+        .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
+        .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
+        .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
+
+        .reveal-controls { position: fixed; bottom: 1.25rem; right: 1.5rem; width: 130px; height: 130px; z-index: 1000; }
+        .control-arrow {
+            position: absolute; width: 44px; height: 44px; background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 50%; color: #A1A1A1; font-size: 1.3rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; opacity: 0.25; pointer-events: none;
+            transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        }
+        .control-arrow.nav-up { top: 0; left: 43px; }
+        .control-arrow.nav-down { bottom: 0; left: 43px; }
+        .control-arrow.nav-left { top: 43px; left: 0; }
+        .control-arrow.nav-right { top: 43px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--pms-red); opacity: 1; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--pms-red); color: #FFFFFF; transform: scale(1.15); }
+    </style>
+</head>
+<body class="w-screen h-screen relative bg-[#F4F6F5]">
+
+    <div class="fixed top-0 left-0 h-2 bg-[#D1A705] transition-all duration-500 z-[1000]" id="progressBar" style="width: 0%;"></div>
+
+    <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-8 text-fluid-meta font-bold text-[#333333] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md z-[1000] flex items-center space-x-3">
+        <span class="w-3 h-3 rounded-full bg-[#901812]"></span>
+        <span id="slideIndicator">Slide (0,0)</span>
+    </div>
+
+    <div class="reveal-controls">
+        <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-nav-right" onclick="moveInGrid(1, 0)" class="control-arrow nav-right" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: HTML BODY & SLIDE STRUCTURE                                   -->
+    <!-- ========================================================================= -->
+    <main class="w-full h-full relative">
+
+        <!-- SLIDE (0,0): TITLE COVER -->
+        <div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center gap-4">
+                <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
+                    <img id="img-logo-ufv-0-0" alt="UFV Logo" class="h-10 sm:h-12 w-auto">
+                    <div class="h-10 w-[1px] bg-[#DEDEDE]"></div>
+                    <span class="text-fluid-tag text-[#333333]">CIV 670</span>
+                </div>
+                <a id="link-pms-portal-0-0" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+                    <img id="img-logo-pms-0-0" alt="PMS Logo" class="h-12 sm:h-16 w-auto">
+                </a>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-6">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="p-8 sm:p-12 rounded-3xl card-borderless-glass border-l-[16px] border-[#901812]">
+                        <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2">GRADUATE PROGRAM IN CIVIL ENGINEERING — 2026/2</span>
+                        <h1 class="text-fluid-h1 mb-4">TECHNOLOGY ENTREPRENEURSHIP<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">Introduction & Innovation Contexts</span></h1>
+                        <p class="text-fluid-body text-[#444444]">Translating Engineering Research into Technological Products, Startups, and Market Impact.</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white flex flex-col justify-between space-y-6">
+                    <div class="bg-white/85 backdrop-blur-md p-6 rounded-2xl text-center shadow-md">
+                        <img id="qr-drive-0-0" alt="Shared Folder QR Code" class="w-full max-w-[220px] sm:max-w-[280px] lg:max-w-[320px] mx-auto rounded-lg">
+                        <a id="btn-drive-0-0" target="_blank" class="text-fluid-tag text-[#901812] hover:text-[#D1A705] font-bold mt-3 block transition-colors">
+                            <i class="fa-solid fa-folder-open mr-2"></i> Access Shared Drive
+                        </a>
+                    </div>
+                    <div class="text-center space-y-1">
+                        <span class="text-fluid-tag text-[#D1A705] block">Course Instructor</span>
+                        <p class="text-fluid-body font-bold text-white">Prof. José Maria Franco de Carvalho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (1,0): INTERNATIONAL CONTEXT & POLICIES -->
+        <div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">GLOBAL PERSPECTIVES</span>
+                    <h2 class="text-fluid-h2">International Innovation Context</h2>
+                </div>
+                <img id="img-logo-pms-1-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 my-auto w-full py-4">
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-[#901812] fa-diagram-project text-2xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333]">Triple & Quadruple Helix</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">
+                        Etzkowitz & Leydesdorff framework integrating <strong>University, Industry, and Government</strong>. Extended to Quadruple/Quintuple Helices incorporating civil society and environmental sustainability.
+                    </p>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-globe text-2xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333]">Policy Frameworks</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">
+                        <strong>OECD Compendium</strong> & <strong>UNCTAD Framework</strong> provide actionable benchmarks. Japanese university venture ecosystems lower barriers for spin-offs and pitch integration.
+                    </p>
+                </div>
+
+                <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-building-columns text-2xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333]">TTOs & Equity Models</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">
+                        Technology Transfer Offices manage IP and licensing. UK university equity caps (~16%) lower entry barriers for deep-tech academic spin-outs (e.g., Riverlane, SETsquared).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (2,0): BRAZILIAN CONTEXT & CAPES EVALUATION -->
+        <div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">NATIONAL ECOSYSTEM</span>
+                    <h2 class="text-fluid-h2">Brazilian Context & CAPES Metrics</h2>
+                </div>
+                <img id="img-logo-pms-2-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-5">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">National Innovation System (Law 10,973/04)</h3>
+                    <ul class="space-y-4 text-fluid-body text-[#444444]">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check-circle text-[#901812] mt-1"></i>
+                            <span><strong>NITs (Technology Transfer Offices):</strong> Mandatory implementation within ICTs to manage IP and licensing (e.g., NIT-UFV).</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check-circle text-[#901812] mt-1"></i>
+                            <span><strong>Innovation Habitats:</strong> Integration with Science Parks (centev / tecnoPARQ) and incubators.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-check-circle text-[#901812] mt-1"></i>
+                            <span><strong>CAPES Technical Output Recognition:</strong> Valuation of patents, software registrations, spin-offs, and technological products alongside traditional papers.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">LOCAL IMPACT AT UFV</span>
+                        <h3 class="text-fluid-h3 text-white mb-3">tecnoPARQ & NIT-UFV</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">
+                            Connecting graduate research directly with regional economic growth, spin-off creation, and high-level technical absorption into industry.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-white/10 rounded-2xl backdrop-blur-md border-l-4 border-[#D1A705]">
+                        <span class="text-fluid-meta text-white font-bold block">Academic Asset Value</span>
+                        <span class="text-fluid-body text-[#DEDEDE]">Technological products generate competitive differentiation for research careers and private ventures.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (3,0): COURSE STRUCTURE & PROGRAM SCHEDULE -->
+        <div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">SYLLABUS & ROADMAP</span>
+                    <h2 class="text-fluid-h2">CIV 670 Program Structure</h2>
+                </div>
+                <img id="img-logo-pms-3-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-2 items-center">
+                <div class="lg:col-span-8 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4 max-h-[60vh] overflow-y-auto">
+                    <h3 class="text-fluid-h3 text-[#333333]">Key Course Modules</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-fluid-body text-[#444444]">
+                        <div class="p-4 bg-white/60 rounded-2xl shadow-sm">
+                            <span class="text-fluid-tag text-[#901812] block">Module 1</span>
+                            <strong>Innovation Contexts:</strong> Int., National & CAPES Frameworks
+                        </div>
+                        <div class="p-4 bg-white/60 rounded-2xl shadow-sm">
+                            <span class="text-fluid-tag text-[#901812] block">Module 2</span>
+                            <strong>Tech Entrepreneurship:</strong> Products, Value Prop, IPR & Pitching
+                        </div>
+                        <div class="p-4 bg-white/60 rounded-2xl shadow-sm">
+                            <span class="text-fluid-tag text-[#901812] block">Module 3</span>
+                            <strong>Viability Analysis:</strong> Market Research, Tech-Econ & Regulatory
+                        </div>
+                        <div class="p-4 bg-white/60 rounded-2xl shadow-sm">
+                            <span class="text-fluid-tag text-[#901812] block">Module 4</span>
+                            <strong>Sustainable Design:</strong> Prototyping, Testing, LCA & Eco-labeling
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">CALENDAR EXPLORER</span>
+                        <h3 class="text-fluid-h3 text-white mb-3">Semester Schedule</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Explore class dates, SIA academic events, and scheduled technical visits (CENTEV/PMS).</p>
+                    </div>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
+                        View Schedule Table (Press ↓) <i class="fa-solid fa-calendar-days ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (3,1): DETAILED SCHEDULE TABLE (VERTICAL BRANCH) -->
+        <div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705]">SCHEDULE DETAIL (BRANCH Y=1)</span>
+                    <h2 class="text-fluid-h2 text-[#333333]">Chronological Class Roadmap</h2>
+                </div>
+                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                    <i class="fa-solid fa-arrow-up mr-2"></i> Return to Modules
+                </button>
+            </header>
+
+            <div class="p-6 sm:p-8 rounded-3xl card-borderless-glass my-auto w-full max-h-[65vh] overflow-y-auto">
+                <table class="w-full text-left text-fluid-body border-collapse">
+                    <thead>
+                        <tr class="border-b-2 border-[#901812] text-[#901812]">
+                            <th class="p-3">Code</th>
+                            <th class="p-3">Date</th>
+                            <th class="p-3">Description / Topic</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-black/10 text-[#444444]">
+                        <tr><td class="p-3 font-bold">010</td><td class="p-3">Aug 13</td><td class="p-3">Course Overview & Structural Dynamics</td></tr>
+                        <tr><td class="p-3 font-bold">020</td><td class="p-3">Aug 20</td><td class="p-3">Innovation Contexts: Global, National & CAPES Framework</td></tr>
+                        <tr><td class="p-3 font-bold">030</td><td class="p-3">Aug 27</td><td class="p-3">Products, Services & Market Opportunities</td></tr>
+                        <tr><td class="p-3 font-bold">040</td><td class="p-3">Sep 03</td><td class="p-3">Business Models & Competition Analysis</td></tr>
+                        <tr><td class="p-3 font-bold">050</td><td class="p-3">Sep 10</td><td class="p-3">Financing & Intellectual Property Rights (IPR)</td></tr>
+                        <tr><td class="p-3 font-bold">060</td><td class="p-3">Sep 17</td><td class="p-3">Business Planning, Pitching & SDGs</td></tr>
+                        <tr><td class="p-3 font-bold">070</td><td class="p-3">Sep 24</td><td class="p-3">Market Assessment & Customer Development</td></tr>
+                        <tr><td class="p-3 font-bold">080</td><td class="p-3">Oct 01</td><td class="p-3">Technical, Economic & Legal Viability</td></tr>
+                        <tr><td class="p-3 font-bold">090</td><td class="p-3">Oct 08</td><td class="p-3">Design Principles & User Pain Points</td></tr>
+                        <tr class="bg-black/5"><td class="p-3 font-bold" colspan="2">Oct 15 / Oct 22</td><td class="p-3">NO CLASS — Recess / Academic Integration Symposium (SIA)</td></tr>
+                        <tr><td class="p-3 font-bold">100</td><td class="p-3">Oct 29</td><td class="p-3">Prototyping, Eco-efficiency, LCA & Eco-Labeling</td></tr>
+                        <tr><td class="p-3 font-bold">110</td><td class="p-3">Nov 05</td><td class="p-3">Start-up Exploration & Incubation</td></tr>
+                        <tr><td class="p-3 font-bold">120/130</td><td class="p-3">Nov 12/19</td><td class="p-3">Technical Visits: CENTEV/TECNOPARQ & PMS</td></tr>
+                        <tr><td class="p-3 font-bold">140/150</td><td class="p-3">Nov 26 / Dec 03</td><td class="p-3">Didactic Guidance & Seminars Defense</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE (4,0): EVALUATION SYSTEM -->
+        <div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">ASSESSMENT METHODOLOGY</span>
+                    <h2 class="text-fluid-h2">Evaluation System & Grading</h2>
+                </div>
+                <img id="img-logo-pms-4-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-6">
+                    <h3 class="text-fluid-h3 text-[#333333]">Grading Distribution (100 Points Total)</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-5 bg-white/70 rounded-2xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="text-fluid-h3 text-[#901812] block">Quizzes, Reports & Pitches (QZ)</span>
+                                <span class="text-fluid-meta text-[#444444]">Continuous assessment, partial submissions, and short reports.</span>
+                            </div>
+                            <span class="text-fluid-h1 text-[#333333] font-mono ml-4">65<span class="text-fluid-meta">pts</span></span>
+                        </div>
+
+                        <div class="p-5 bg-white/70 rounded-2xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="text-fluid-h3 text-[#901812] block">Final Business Plan (FP)</span>
+                                <span class="text-fluid-meta text-[#444444]">Consolidated project defense & innovation paper (groups of 2-3).</span>
+                            </div>
+                            <span class="text-fluid-h1 text-[#333333] font-mono ml-4">35<span class="text-fluid-meta">pts</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4">
+                    <span class="text-fluid-tag text-[#D1A705] block">PROJECT EXPECTATIONS</span>
+                    <h3 class="text-fluid-h3 text-white">Business Plan Focus</h3>
+                    <ul class="space-y-3 text-fluid-body text-[#DEDEDE]">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-lightbulb text-[#D1A705] mt-1"></i>
+                            <span>Based on ongoing research or related technological topic.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-gear text-[#D1A705] mt-1"></i>
+                            <span>Applies to software, materials, devices, or innovative processes.</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-bullseye text-[#D1A705] mt-1"></i>
+                            <span>Integrates market, technical, economic, and SDG viability metrics.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE (5,0): SHARED DRIVE ACCESS & CLOSING -->
+        <div id="slide-5-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+            <header class="w-full flex justify-between items-center mb-4">
+                <div>
+                    <span class="text-fluid-tag text-[#901812]">RESOURCES & NEXT STEPS</span>
+                    <h2 class="text-fluid-h2">Course Repository & Shared Folder</h2>
+                </div>
+                <img id="img-logo-pms-5-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-center">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                    <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Course Policies & Integrity</h3>
+                    <ul class="space-y-4 text-fluid-body text-[#444444]">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-shield-halved text-[#901812] mt-1"></i>
+                            <span><strong>IP Protection (Law 9,610/98):</strong> Course materials are proprietary to UFV and the professor. Redistribution is strictly prohibited.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-user-check text-[#901812] mt-1"></i>
+                            <span><strong>Attendance Requirement:</strong> Minimum 75% attendance mandatory per PPGEC/UFV regulations.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white text-center space-y-4">
+                    <span class="text-fluid-tag text-[#D1A705] block">GOOGLE DRIVE SHARED REPOSITORY</span>
+                    <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl max-w-[260px] sm:max-w-[320px] lg:max-w-[360px] mx-auto shadow-lg">
+                        <img id="qr-drive-5-0" alt="Shared Drive QR Code" class="w-full h-auto rounded-lg">
+                    </div>
+                    <a id="btn-drive-5-0" target="_blank" class="w-full py-4 px-8 bg-[#901812] text-white font-bold rounded-2xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-3">
+                        <i class="fa-solid fa-folder-open text-2xl text-[#D1A705]"></i>
+                        <span>Open Shared Drive Folder</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-lg ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: JAVASCRIPT LOGIC & NAVIGATION                                  -->
+    <!-- ========================================================================= -->
+    <script>
+        const slideGrid = { 
+            '0,0': 'slide-0-0',
+            '1,0': 'slide-1-0',
+            '2,0': 'slide-2-0',
+            '3,0': 'slide-3-0',
+            '3,1': 'slide-3-1',
+            '4,0': 'slide-4-0',
+            '5,0': 'slide-5-0'
+        };
+
+        let currentX = 0, currentY = 0;
+
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
+        function initializeAssets() {
+            const logoUfv00 = document.getElementById('img-logo-ufv-0-0');
+            if (logoUfv00) logoUfv00.src = COURSE_ASSETS.logos.ufv;
+
+            const logoPms00 = document.getElementById('img-logo-pms-0-0');
+            if (logoPms00) logoPms00.src = COURSE_ASSETS.logos.pms;
+
+            const logoPms10 = document.getElementById('img-logo-pms-1-0');
+            if (logoPms10) logoPms10.src = COURSE_ASSETS.logos.pms;
+
+            const logoPms20 = document.getElementById('img-logo-pms-2-0');
+            if (logoPms20) logoPms20.src = COURSE_ASSETS.logos.pms;
+
+            const logoPms30 = document.getElementById('img-logo-pms-3-0');
+            if (logoPms30) logoPms30.src = COURSE_ASSETS.logos.pms;
+
+            const logoPms40 = document.getElementById('img-logo-pms-4-0');
+            if (logoPms40) logoPms40.src = COURSE_ASSETS.logos.pms;
+
+            const logoPms50 = document.getElementById('img-logo-pms-5-0');
+            if (logoPms50) logoPms50.src = COURSE_ASSETS.logos.pms;
+
+            const linkPortal00 = document.getElementById('link-pms-portal-0-0');
+            if (linkPortal00) linkPortal00.href = COURSE_ASSETS.externalLinks.pmsPortal;
+
+            Object.keys(slideGrid).forEach(key => {
+                const bgKey = key.replace(',', '_');
+                const slideEl = document.getElementById(slideGrid[key]);
+                const bgUrl = COURSE_ASSETS.slideBackgrounds[bgKey];
+
+                if (slideEl) {
+                    if (bgUrl && bgUrl.trim() !== "" && !bgUrl.startsWith("bg-[#")) {
+                        slideEl.style.backgroundImage = `url('${bgUrl}')`;
+                        slideEl.classList.add('bg-right-fade');
+                    } else {
+                        slideEl.style.backgroundImage = 'none';
+                        slideEl.classList.remove('bg-right-fade');
+                    }
+                }
+            });
+
+            const qrDrive00 = document.getElementById('qr-drive-0-0');
+            if (qrDrive00) qrDrive00.src = COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.sharedDrive);
+
+            const btnDrive00 = document.getElementById('btn-drive-0-0');
+            if (btnDrive00) btnDrive00.href = COURSE_ASSETS.externalLinks.sharedDrive;
+
+            const qrDrive50 = document.getElementById('qr-drive-5-0');
+            if (qrDrive50) qrDrive50.src = COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.sharedDrive);
+
+            const btnDrive50 = document.getElementById('btn-drive-5-0');
+            if (btnDrive50) btnDrive50.href = COURSE_ASSETS.externalLinks.sharedDrive;
+        }
+
+        function updateUI() {
+            const keysHorizontal = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const totalH = keysHorizontal.length;
+            document.getElementById('progressBar').style.width = `${(currentX / Math.max(totalH - 1, 1)) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX}, ${currentY})`;
+            
+            const arrows = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in arrows) {
+                const el = document.getElementById(`btn-nav-${d}`);
+                if (el) el.classList.toggle('nav-enabled', hasSlide(currentX + arrows[d][0], currentY + arrows[d][1]));
+            }
+        }
+
+        function moveInGrid(dx, dy) {
+            const nx = currentX + dx, ny = currentY + dy;
+            if (hasSlide(nx, ny)) {
+                const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
+                const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
+                cur.classList.remove('slide-active');
+                
+                if (dx > 0) cur.classList.add('slide-hidden-left');
+                else if (dx < 0) cur.classList.add('slide-hidden-right');
+                else if (dy > 0) cur.classList.add('slide-hidden-down');
+                else if (dy < 0) cur.classList.add('slide-hidden-up');
+
+                nxt.classList.remove('slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.add('slide-active');
+                currentX = nx; currentY = ny;
+                updateUI();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
+            else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
+            else if (e.key === 'ArrowUp') moveInGrid(0, -1);
+            else if (e.key === 'ArrowDown') moveInGrid(0, 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAssets();
+            updateUI();
+        });
+    </script>
+</body>
+</html>
