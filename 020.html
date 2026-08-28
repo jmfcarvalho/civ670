@@ -14,155 +14,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- ========================================================================= -->
-    <!-- CENTRAL RESOURCE DIRECTORY (PMS & CIV 670 ASSETS)                         -->
-    <!-- ========================================================================= -->
-    <script>
-        const COURSE_ASSETS = {
-            logos: {
-                ufv: "https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png",
-                pms: "https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png"
-            },
-            slideBackgrounds: {
-                "0_0": "bg-geometric1.png",
-                "1_0": "bg-geometric2.png",
-                "1_1": "bg-blocks1.png",
-                "2_0": "bg-concrete1.png",
-                "2_1": "bg-polymer1.png",
-                "3_0": "bg-clay1.png",
-                "3_1": "bg-nature1.png",
-                "4_0": "bg-geometric2.png"
-            },
-            externalLinks: {
-                presentationAccess: "https://jmfcarvalho.github.io/civ670/020.html",
-                weeklyAssignment: "https://docs.google.com/forms/d/e/1FAIpQLSen21g7EdQby0TKu2Z8r6RjgT3dnlh9ADxuODYPkm4esqnWrA/viewform?usp=publish-editor",
-                pmsPortal: "https://pms.ufv.br"
-            },
-            qrCodeGenerator: (url, color = "901812") => 
-                `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}&color=${color}`
-        };
-    </script>
-
-    <!-- ========================================================================= -->
-    <!-- SECTION 1: STYLES & IMMUTABLE CSS VARIABLES                              -->
-    <!-- ========================================================================= -->
     <style>
         :root {
-            --pms-red: #901812;
-            --pms-gold: #D1A705;
-            --pms-dark: #333333;
-            --pms-bg: #F4F6F5;
-            --pms-card-light: rgba(255, 255, 255, 0.65);
-            --pms-card-dark: rgba(51, 51, 51, 0.70);
-            --pms-text-muted: #444444;
+            /* Preset PMS */
+            --color-primary: #901812;
+            --color-secondary: #D1A705;
+            --color-dark: #333333;
+            --color-bg: #F4F6F5;
+            --bg-shade-left: rgba(244,246,245,0.96);
+            --bg-shade-mid: rgba(244,246,245,0.70);
+            --bg-shade-right: rgba(244,246,245,0.15);
+            --card-light: rgba(255, 255, 255, 0.72);
+            --card-dark: rgba(51, 51, 51, 0.78);
 
-            --font-title: 'Montserrat', sans-serif;
-            --font-body: 'PT Sans Narrow', sans-serif;
-
-            --fluid-h1: clamp(2.4rem, 5.0vw, 4.2rem);
-            --fluid-h2: clamp(1.9rem, 3.8vw, 3.0rem);
-            --fluid-h3: clamp(1.4rem, 2.6vw, 2.0rem);
-            --fluid-body: clamp(1.15rem, 1.8vw, 1.5rem);
-            --fluid-meta: clamp(0.95rem, 1.4vw, 1.25rem);
-            --fluid-tag: clamp(0.9rem, 1.2vw, 1.1rem);
-        }
-
-        html, body {
-            width: 100vw; height: 100vh; overflow: hidden;
-            background-color: var(--pms-bg);
-            font-family: var(--font-body); color: var(--pms-dark);
+            /* Tipografia Super-Ampliada (Calibração Nativa 110%) */
+            --fluid-h1: clamp(2.8rem, 6.2vw, 5.5rem);
+            --fluid-h2: clamp(2.2rem, 4.6vw, 4.0rem);
+            --fluid-h3: clamp(1.75rem, 3.2vw, 2.8rem);
+            --fluid-body: clamp(1.35rem, 2.2vw, 1.95rem);
+            --fluid-meta: clamp(1.15rem, 1.6vw, 1.55rem);
+            --fluid-tag: clamp(1.05rem, 1.4vw, 1.35rem);
         }
 
-        .text-fluid-h1 { font-family: var(--font-title); font-size: var(--fluid-h1); font-weight: 900; color: var(--pms-red); line-height: 1.05; letter-spacing: -0.02em; }
-        .text-fluid-h2 { font-family: var(--font-title); font-size: var(--fluid-h2); font-weight: 800; color: var(--pms-red); line-height: 1.1; }
-        .text-fluid-h3 { font-family: var(--font-body); font-size: var(--fluid-h3); font-weight: 700; line-height: 1.2; }
-        .text-fluid-body { font-family: var(--font-body); font-size: var(--fluid-body); font-weight: 500; line-height: 1.35; }
-        .text-fluid-meta { font-family: var(--font-body); font-size: var(--fluid-meta); color: var(--pms-text-muted); font-weight: 600; }
-        .text-fluid-tag { font-family: var(--font-body); font-size: var(--fluid-tag); font-weight: 700; }
-
-        .katex-display {
-            font-size: clamp(1.4rem, 2.8vw, 2.2rem) !important;
-            margin: 0.8rem 0 !important;
-        }
-        .katex { font-size: 1.1em; }
-
-        .card-borderless-glass {
-            border: none !important;
-            background-color: var(--pms-card-light);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-borderless-glass-dark {
-            border: none !important;
-            background-color: var(--pms-card-dark);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-borderless-glass:hover, .card-borderless-glass-dark:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.10);
+        html, body { 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: var(--color-bg); 
+            font-family: 'PT Sans Narrow', sans-serif; 
+            color: var(--color-dark); 
         }
 
-        .bg-right-fade {
-            background-repeat: no-repeat;
-            background-position: right center;
-            background-size: cover;
-            position: relative;
-        }
-        .bg-right-fade::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, var(--pms-bg) 20%, rgba(244, 246, 245, 0.65) 50%, rgba(244, 246, 245, 0.15) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
+        .text-fluid-h1 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h1); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h2); font-weight: 800; line-height: 1.15; }
+        .text-fluid-h3 { font-size: var(--fluid-h3); font-weight: 700; line-height: 1.25; }
+        .text-fluid-body { font-size: var(--fluid-body); font-weight: 500; line-height: 1.45; }
+        .text-fluid-meta { font-size: var(--fluid-meta); font-weight: 600; }
+        .text-fluid-tag { font-size: var(--fluid-tag); font-weight: 700; letter-spacing: 0.04em; }
+
+        .katex-display { font-size: clamp(2.2rem, 4.5vw, 3.8rem) !important; margin: 1.2rem 0 !important; }
+        .katex { font-size: 1.15em; }
 
         .slide-screen {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
-            opacity: 0; pointer-events: none; z-index: 0;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0;
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
             overflow-y: auto;
         }
-        .slide-screen > * { position: relative; z-index: 2; }
         .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
         .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
         .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
         .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
         .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
 
-        .reveal-controls { position: fixed; bottom: 1.25rem; right: 1.5rem; width: 130px; height: 130px; z-index: 1000; }
-        .control-arrow {
-            position: absolute; width: 44px; height: 44px; background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 50%; color: #A1A1A1; font-size: 1.3rem; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; opacity: 0.25; pointer-events: none;
-            transition: all 0.25s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+        .card-glass { 
+            border: none !important; 
+            background-color: var(--card-light); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            box-shadow: 0 12px 36px rgba(0,0,0,0.06); 
         }
-        .control-arrow.nav-up { top: 0; left: 43px; }
-        .control-arrow.nav-down { bottom: 0; left: 43px; }
-        .control-arrow.nav-left { top: 43px; left: 0; }
-        .control-arrow.nav-right { top: 43px; right: 0; }
-        .control-arrow.nav-enabled { color: var(--pms-red); opacity: 1; pointer-events: auto; }
-        .control-arrow.nav-enabled:hover { background: var(--pms-red); color: #FFFFFF; transform: scale(1.15); }
+        .card-glass-dark { 
+            border: none !important; 
+            background-color: var(--card-dark); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            color: white; 
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18); 
+        }
+
+        /* Controles Ultra-Discretos de Navegação */
+        .reveal-controls { 
+            position: fixed; 
+            bottom: 1.25rem; 
+            right: 1.25rem; 
+            width: 110px; 
+            height: 110px; 
+            z-index: 1000; 
+            pointer-events: none; 
+        }
+        .control-arrow {
+            position: absolute; 
+            width: 38px; 
+            height: 38px; 
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(6px); 
+            border-radius: 50%; 
+            color: #888888; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0.15; 
+            pointer-events: none;
+            transition: all 0.2s ease; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            font-size: 0.95rem;
+        }
+        .control-arrow.nav-up { top: 0; left: 36px; }
+        .control-arrow.nav-down { bottom: 0; left: 36px; }
+        .control-arrow.nav-left { top: 36px; left: 0; }
+        .control-arrow.nav-right { top: 36px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--color-primary); opacity: 0.65; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--color-primary); color: #FFF; opacity: 1; transform: scale(1.1); }
     </style>
 </head>
-<body class="w-screen h-screen relative bg-[#F4F6F5]">
+<body class="w-screen h-screen relative">
 
-    <!-- TOP PROGRESS BAR -->
-    <div class="fixed top-0 left-0 h-2 bg-[#D1A705] transition-all duration-500 z-[1000]" id="progressBar" style="width: 0%;"></div>
+    <div class="fixed top-0 left-0 h-1.5 bg-[var(--color-secondary)] transition-all duration-300 z-[1000]" id="progressBar" style="width: 0%;"></div>
 
-    <!-- SLIDE INDICATOR -->
-    <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-8 text-fluid-meta font-bold text-[#333333] bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-md z-[1000] flex items-center space-x-3">
-        <span class="w-3 h-3 rounded-full bg-[#901812]"></span>
-        <span id="slideIndicator">Slide (0,0)</span>
+    <div class="fixed bottom-3 left-3 text-[0.75rem] sm:text-[0.85rem] font-bold text-[var(--color-dark)] bg-white/60 backdrop-blur-md px-3 py-1 rounded-full shadow-sm z-[1000] flex items-center space-x-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--color-primary)]"></span>
+        <span id="slideIndicator">Slide (0,0) | 1 of 5</span>
     </div>
 
-    <!-- TOUCH CONTROLS -->
     <div class="reveal-controls">
         <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
         <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
@@ -170,37 +141,34 @@
         <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
     </div>
 
-    <!-- ========================================================================= -->
-    <!-- SECTION 2: SLIDE PRESENTATION CONTENT                                     -->
-    <!-- ========================================================================= -->
-    <main class="w-full h-full relative">
+    <main class="w-full h-full relative" id="slideDeck">
 
         <!-- SLIDE (0,0): COVER & ROADMAP -->
-        <div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center gap-4">
                 <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
-                    <img id="img-logo-ufv-0-0" alt="UFV Logo" class="h-10 sm:h-12 w-auto">
-                    <div class="h-10 w-[1px] bg-[#DEDEDE]"></div>
+                    <img src="Logo UFV oficial horizontal.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto">
+                    <div class="h-10 w-[1px] bg-black/10"></div>
                     <span class="text-fluid-tag text-[#333333]">CIV 670 • PMS / UFV</span>
                 </div>
-                <a id="link-pms-portal-0-0" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
-                    <img id="img-logo-pms-0-0" alt="PMS Logo" class="h-12 sm:h-16 w-auto">
+                <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+                    <img src="pms.png" alt="PMS Logo" class="h-12 sm:h-16 w-auto">
                 </a>
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-6">
                 <div class="lg:col-span-7 space-y-4">
-                    <div class="p-8 sm:p-10 rounded-3xl card-borderless-glass border-l-[16px] border-[#901812]">
-                        <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2">LECTURE 020 — FUNDAMENTALS</span>
-                        <h1 class="text-fluid-h1 mb-2">INNOVATION & TECH ENTREPRENEURSHIP<span class="block text-fluid-h2 text-[#333333] font-bold mt-1">Foundations, Global Frameworks & Impact</span></h1>
+                    <div class="p-8 sm:p-12 rounded-3xl card-glass border-l-[16px] border-[#901812]">
+                        <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2 font-bold">LECTURE 020 — FUNDAMENTALS</span>
+                        <h1 class="text-fluid-h1 mb-3 text-[#901812]">INNOVATION & TECH ENTREPRENEURSHIP<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">Foundations, Global Frameworks & Impact</span></h1>
                         <p class="text-fluid-body text-[#444444]">Translating Engineering Research into Applied Technologies, Market Assets, and Spin-Offs.</p>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white flex flex-col justify-between space-y-4">
-                    <div class="bg-white/85 backdrop-blur-md p-5 rounded-2xl text-center shadow-md">
-                        <img id="qr-presentation-cover-0-0" alt="Slide Access QR Code" class="w-full max-w-[200px] sm:max-w-[240px] mx-auto rounded-lg">
-                        <span class="text-fluid-tag text-[#333333] font-bold mt-2 block">Follow Presentation Online</span>
+                <div class="lg:col-span-5 p-6 sm:p-10 rounded-3xl card-glass-dark text-white flex flex-col justify-between space-y-6">
+                    <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl text-center shadow-md">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fjmfcarvalho.github.io%2Fciv670%2F020.html&color=901812" alt="Slide Access QR Code" class="w-full max-w-[220px] sm:max-w-[260px] mx-auto rounded-lg">
+                        <span class="text-fluid-tag text-[#333333] font-bold mt-3 block">Follow Presentation Online</span>
                     </div>
                     <div class="text-center space-y-1">
                         <span class="text-fluid-tag text-[#D1A705] block">Course Coordination</span>
@@ -211,192 +179,321 @@
         </div>
 
         <!-- SLIDE (1,0): THE TRIPLE HELIX & GLOBAL INNOVATION ECOSYSTEM -->
-        <div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#901812]">GLOBAL INNOVATION FRAMEWORKS</span>
-                    <h2 class="text-fluid-h2">The Triple Helix & Ecosystem Evolution</h2>
+                    <h2 class="text-fluid-h2 text-[#901812]">The Triple Helix & Ecosystem Evolution</h2>
                 </div>
-                <img id="img-logo-pms-1-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+                <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-2 items-stretch">
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
-                    <h3 class="text-fluid-h3 text-[#333333]">Institutional Interactions (Etzkowitz & Leydesdorff)</h3>
-                    <p class="text-fluid-body text-[#444444]">The <strong>Triple Helix model</strong> conceptualizes the non-linear synergy among Academia, Industry, and Government to foster knowledge capitalization, technology transfer, and hybrid infrastructure.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-fluid-h3 text-[#333333]">Institutional Interactions & Theoretical Transitions</h3>
+                        <p class="text-fluid-body text-[#444444]">Innovation ecosystems evolve from linear pipelines to multi-helical frameworks of knowledge co-production, economic capitalization, and socio-ecological sustainability.</p>
+                    </div>
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                        <div class="p-4 rounded-2xl bg-white/70 shadow-sm border-t-4 border-[#901812]">
-                            <span class="text-fluid-tag text-[#901812] block">Triple Helix</span>
-                            <p class="text-fluid-meta mt-1 text-[#333333]">Core interaction: University - Industry - State.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <!-- Card 1: Triple Helix -->
+                        <div class="p-5 rounded-2xl bg-white/80 shadow-sm border-t-4 border-[#901812] flex flex-col justify-between space-y-3">
+                            <div>
+                                <span class="text-fluid-tag text-[#901812] block font-bold">Triple Helix</span>
+                                <p class="text-fluid-meta mt-1 text-[#333333] leading-snug">Non-linear triad: Academia - Industry - Government.</p>
+                            </div>
+                            <button onclick="document.getElementById('modal-helix-triple-1-0').showModal()" class="w-full py-3 px-3 bg-[#901812]/10 hover:bg-[#901812] text-[#901812] hover:text-white font-bold rounded-xl transition-colors text-fluid-tag flex items-center justify-center space-x-2 min-h-[44px]">
+                                <i class="fa-solid fa-diagram-project"></i>
+                                <span>Foundations</span>
+                            </button>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/70 shadow-sm border-t-4 border-[#D1A705]">
-                            <span class="text-fluid-tag text-[#D1A705] block">Quadruple Helix</span>
-                            <p class="text-fluid-meta mt-1 text-[#333333]">Integrates Civil Society, media, and culture-based innovation.</p>
+
+                        <!-- Card 2: Quadruple Helix -->
+                        <div class="p-5 rounded-2xl bg-white/80 shadow-sm border-t-4 border-[#D1A705] flex flex-col justify-between space-y-3">
+                            <div>
+                                <span class="text-fluid-tag text-[#D1A705] block font-bold">Quadruple Helix</span>
+                                <p class="text-fluid-meta mt-1 text-[#333333] leading-snug">Integrates Civil Society, culture, and user-centric innovation.</p>
+                            </div>
+                            <button onclick="document.getElementById('modal-helix-quad-1-0').showModal()" class="w-full py-3 px-3 bg-[#D1A705]/15 hover:bg-[#D1A705] text-[#333333] font-bold rounded-xl transition-colors text-fluid-tag flex items-center justify-center space-x-2 min-h-[44px]">
+                                <i class="fa-solid fa-users-viewfinder"></i>
+                                <span>Foundations</span>
+                            </button>
                         </div>
-                        <div class="p-4 rounded-2xl bg-white/70 shadow-sm border-t-4 border-[#333333]">
-                            <span class="text-fluid-tag text-[#333333] block">Quintuple Helix</span>
-                            <p class="text-fluid-meta mt-1 text-[#333333]">Incorporates Natural Environments and socio-ecological transitions.</p>
+
+                        <!-- Card 3: Quintuple Helix -->
+                        <div class="p-5 rounded-2xl bg-white/80 shadow-sm border-t-4 border-[#333333] flex flex-col justify-between space-y-3">
+                            <div>
+                                <span class="text-fluid-tag text-[#333333] block font-bold">Quintuple Helix</span>
+                                <p class="text-fluid-meta mt-1 text-[#333333] leading-snug">Incorporates Natural Environments and socio-ecological transitions.</p>
+                            </div>
+                            <button onclick="document.getElementById('modal-helix-quint-1-0').showModal()" class="w-full py-3 px-3 bg-[#333333]/10 hover:bg-[#333333] text-[#333333] hover:text-white font-bold rounded-xl transition-colors text-fluid-tag flex items-center justify-center space-x-2 min-h-[44px]">
+                                <i class="fa-solid fa-leaf"></i>
+                                <span>Foundations</span>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
                     <div>
-                        <span class="text-fluid-tag text-[#D1A705] block mb-1">INTERACTIVE BENCHMARK</span>
-                        <h3 class="text-fluid-h3 text-white mb-2">Ecosystem Configuration Matrix</h3>
-                        <p class="text-fluid-body text-[#DEDEDE]">Access the interactive model simulator below to evaluate institutional balance and friction points.</p>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">INTERACTIVE BENCHMARK</span>
+                        <h3 class="text-fluid-h3 text-white mb-3">Ecosystem Configuration Matrix</h3>
+                        <p class="text-fluid-body text-[#DEDEDE]">Access the mathematical helix simulator to evaluate institutional coupling, system balance, and transfer bottlenecks.</p>
                     </div>
-                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
-                        Launch Helix Simulator (Press ↓) <i class="fa-solid fa-arrows-split-up-and-left ml-2"></i>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                        <span>Launch Helix Simulator (Press ↓)</span>
+                        <i class="fa-solid fa-arrows-split-up-and-left text-lg"></i>
                     </button>
                 </div>
             </div>
+
+            <!-- MODALS COM IMAGENS INTEGRAIS VIA OBJECT-CONTAIN -->
+            <dialog id="modal-helix-triple-1-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-4xl w-full shadow-2xl border border-white/15">
+                <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-5">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] font-bold block">FOUNDATIONAL INSTITUTIONAL MODEL</span>
+                        <h3 class="text-fluid-h2 text-white font-bold">Triple Helix Framework</h3>
+                    </div>
+                    <button onclick="document.getElementById('modal-helix-triple-1-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4 text-fluid-body text-[#DEDEDE] leading-relaxed">
+                        <p>Formulated by <strong>Henry Etzkowitz</strong> and <strong>Loet Leydesdorff</strong> (2000), this framework analyzes non-linear dynamics where Academia, Industry, and Government adopt hybrid capabilities.</p>
+                        <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812]">
+                            <strong class="text-white block">Core Dimensions:</strong>
+                            Evolution of entrepreneurial universities, collaborative R&D, and regulatory seed support.
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 bg-white/5 p-4 rounded-2xl border border-white/10 text-center flex flex-col items-center">
+                        <img src="triple-helix-diagram.png" alt="Triple Helix Diagram" class="w-full max-h-[48vh] object-contain rounded-xl shadow-md mb-2" onerror="this.src='https://via.placeholder.com/400x300?text=Triple+Helix+Diagram'">
+                        <span class="text-fluid-meta font-bold text-[#DEDEDE]">Triadic Interactions & Institutional Overlaps</span>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="modal-helix-quad-1-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-4xl w-full shadow-2xl border border-white/15">
+                <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-5">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] font-bold block">USER-CENTRIC EXPANSION</span>
+                        <h3 class="text-fluid-h2 text-white font-bold">Quadruple Helix Framework</h3>
+                    </div>
+                    <button onclick="document.getElementById('modal-helix-quad-1-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4 text-fluid-body text-[#DEDEDE] leading-relaxed">
+                        <p>Conceptualized by <strong>Carayannis & Campbell</strong> (2009), introducing "Civil Society and Culture" as a fourth pillar.</p>
+                        <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                            <strong class="text-[#D1A705] block">Operating Mechanism:</strong>
+                            Living labs, Open Innovation 2.0, and social validation to spur societal legitimacy.
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 bg-white/5 p-4 rounded-2xl border border-white/10 text-center flex flex-col items-center">
+                        <img src="quadruple-helix-diagram.png" alt="Quadruple Helix Diagram" class="w-full max-h-[48vh] object-contain rounded-xl shadow-md mb-2" onerror="this.src='https://via.placeholder.com/400x300?text=Quadruple+Helix+Diagram'">
+                        <span class="text-fluid-meta font-bold text-[#DEDEDE]">Civil Society & Cultural Dimension Integration</span>
+                    </div>
+                </div>
+            </dialog>
+
+            <dialog id="modal-helix-quint-1-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-4xl w-full shadow-2xl border border-white/15">
+                <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-5">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] font-bold block">SOCIO-ECOLOGICAL TRANSITION</span>
+                        <h3 class="text-fluid-h2 text-white font-bold">Quintuple Helix Framework</h3>
+                    </div>
+                    <button onclick="document.getElementById('modal-helix-quint-1-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-6 space-y-4 text-fluid-body text-[#DEDEDE] leading-relaxed">
+                        <p>Developed by <strong>Carayannis et al.</strong> (2012), embedding the "Natural Environment" as an active boundary condition.</p>
+                        <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-white">
+                            <strong class="text-white block">Strategic Focus:</strong>
+                            Climate change solutions, circular economy matrices, and ecological resilience.
+                        </div>
+                    </div>
+                    <div class="md:col-span-6 bg-white/5 p-4 rounded-2xl border border-white/10 text-center flex flex-col items-center">
+                        <img src="quintuple-helix-diagram.png" alt="Quintuple Helix Diagram" class="w-full max-h-[48vh] object-contain rounded-xl shadow-md mb-2" onerror="this.src='https://via.placeholder.com/400x300?text=Quintuple+Helix+Diagram'">
+                        <span class="text-fluid-meta font-bold text-[#DEDEDE]">Natural Ecosystems as Drivers of Innovation</span>
+                    </div>
+                </div>
+            </dialog>
         </div>
 
         <!-- SLIDE (1,1): INTERACTIVE HELIX MATRIX SIMULATOR (VERTICAL BRANCH) -->
-        <div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#D1A705]">INTERACTIVE LAB (BRANCH Y=1)</span>
                     <h2 class="text-fluid-h2 text-[#333333]">Triple Helix Coupling Index</h2>
                 </div>
-                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px]">
                     <i class="fa-solid fa-arrow-up mr-2"></i> Return to Theory
                 </button>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-center py-4">
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass space-y-5">
                     <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Institutional Coupling Weights</h3>
                     
                     <div class="space-y-2">
-                        <label class="text-fluid-meta block flex justify-between">
+                        <label class="text-fluid-body block flex justify-between">
                             <span>Academia Intensity ($W_A$):</span>
                             <span id="lbl-academia-1-1" class="text-[#901812] font-bold">70%</span>
                         </label>
-                        <input type="range" id="input-academia-1-1" min="10" max="100" value="70" class="w-full accent-[#901812] h-4" oninput="calcularIndiceEcosistema_1_1()">
+                        <input type="range" id="input-academia-1-1" min="10" max="100" value="70" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularIndiceEcosistema_1_1()">
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-fluid-meta block flex justify-between">
+                        <label class="text-fluid-body block flex justify-between">
                             <span>Industry Co-development ($W_I$):</span>
                             <span id="lbl-industria-1-1" class="text-[#901812] font-bold">40%</span>
                         </label>
-                        <input type="range" id="input-industria-1-1" min="10" max="100" value="40" class="w-full accent-[#901812] h-4" oninput="calcularIndiceEcosistema_1_1()">
+                        <input type="range" id="input-industria-1-1" min="10" max="100" value="40" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularIndiceEcosistema_1_1()">
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-fluid-meta block flex justify-between">
+                        <label class="text-fluid-body block flex justify-between">
                             <span>Government Policy & Legal Safety ($W_G$):</span>
                             <span id="lbl-governo-1-1" class="text-[#901812] font-bold">50%</span>
                         </label>
-                        <input type="range" id="input-governo-1-1" min="10" max="100" value="50" class="w-full accent-[#901812] h-4" oninput="calcularIndiceEcosistema_1_1()">
+                        <input type="range" id="input-governo-1-1" min="10" max="100" value="50" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularIndiceEcosistema_1_1()">
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
                     <div>
                         <span class="text-fluid-tag text-[#D1A705] block mb-2">ECOSYSTEM EFFICIENCY PREDICTION</span>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
                                 <span class="text-fluid-meta text-[#DEDEDE] block">Innovation Synergy Index ($I_{syn}$)</span>
-                                <span id="res-sinergia-1-1" class="text-fluid-h3 text-white font-mono">0.53</span>
+                                <span id="res-sinergia-1-1" class="text-fluid-h2 text-white font-mono">0.52</span>
                             </div>
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
-                                <span class="text-fluid-meta text-[#DEDEDE] block">Technology Transfer Likelihood</span>
-                                <span id="res-transferencia-1-1" class="text-fluid-h2 text-[#D1A705] font-mono">Moderate</span>
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Transfer Likelihood</span>
+                                <span id="res-transferencia-1-1" class="text-fluid-h3 text-[#D1A705] font-bold">Moderate Transfer</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-body text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
                         <i class="fa-solid fa-chart-line text-[#D1A705] text-xl"></i>
                         <span>Balanced helix contributions maximize applied patents, corporate licenses, and spin-off survivability.</span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                function calcularIndiceEcosistema_1_1() {
+                    const a = parseFloat(document.getElementById('input-academia-1-1').value);
+                    const i = parseFloat(document.getElementById('input-industria-1-1').value);
+                    const g = parseFloat(document.getElementById('input-governo-1-1').value);
+
+                    document.getElementById('lbl-academia-1-1').innerText = `${a}%`;
+                    document.getElementById('lbl-industria-1-1').innerText = `${i}%`;
+                    document.getElementById('lbl-governo-1-1').innerText = `${g}%`;
+
+                    const synergy = Math.cbrt((a/100) * (i/100) * (g/100));
+                    document.getElementById('res-sinergia-1-1').innerText = synergy.toFixed(2);
+
+                    let status = "Low Friction";
+                    if (synergy > 0.70) status = "Optimal Transfer";
+                    else if (synergy > 0.45) status = "Moderate Transfer";
+                    else status = "Ecosystem Bottleneck";
+
+                    document.getElementById('res-transferencia-1-1').innerText = status;
+                }
+            </script>
         </div>
 
         <!-- SLIDE (2,0): INTERNATIONAL BENCHMARKS & VENTURE ECOSYSTEMS -->
-        <div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-concrete1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#901812]">INTERNATIONAL BENCHMARKS</span>
-                    <h2 class="text-fluid-h2">Global Policies, TTO Models & Deep-Tech</h2>
+                    <h2 class="text-fluid-h2 text-[#901812]">Global Policies, TTO Models & Deep-Tech</h2>
                 </div>
-                <img id="img-logo-pms-2-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+                <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-auto w-full py-2">
-                <div class="p-6 rounded-3xl card-borderless-glass space-y-3">
-                    <div class="flex items-center space-x-3 text-[#901812]">
-                        <i class="fa-solid fa-earth-americas text-2xl"></i>
-                        <h3 class="text-fluid-h3 text-[#333333]">Multilateral Frameworks</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+                <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                            <i class="fa-solid fa-earth-americas text-3xl"></i>
+                            <h3 class="text-fluid-h3 text-[#333333]">Multilateral Frameworks</h3>
+                        </div>
+                        <p class="text-fluid-body text-[#444444]"><strong>OECD & UNCTAD</strong> guidelines offer policy design and indicators for emerging economies.</p>
                     </div>
-                    <p class="text-fluid-body text-[#444444]"><strong>OECD & UNCTAD</strong> guidelines offer policy design and indicators for emerging economies.</p>
                     <p class="text-fluid-meta text-[#555555]">U.S. GIST initiative mentors innovators in 135+ economies; MIT GSW expands annual deep-tech workshops globally.</p>
                 </div>
 
-                <div class="p-6 rounded-3xl card-borderless-glass space-y-3">
-                    <div class="flex items-center space-x-3 text-[#901812]">
-                        <i class="fa-solid fa-building-columns text-2xl"></i>
-                        <h3 class="text-fluid-h3 text-[#333333]">TTOs & University Equity</h3>
+                <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                            <i class="fa-solid fa-building-columns text-3xl"></i>
+                            <h3 class="text-fluid-h3 text-[#333333]">TTOs & University Equity</h3>
+                        </div>
+                        <p class="text-fluid-body text-[#444444]">Technology Transfer Offices manage IP, licensing, and academic spin-offs.</p>
                     </div>
-                    <p class="text-fluid-body text-[#444444]">Technology Transfer Offices manage IP, licensing, and academic spin-offs.</p>
                     <p class="text-fluid-meta text-[#555555]">UK policy shift: lowering university spin-out equity to ~16% significantly reduces founder friction and spurs VC capital entry.</p>
                 </div>
 
-                <div class="p-6 rounded-3xl card-borderless-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
-                            <i class="fa-solid fa-microchip text-2xl"></i>
+                            <i class="fa-solid fa-microchip text-3xl"></i>
                             <h3 class="text-fluid-h3 text-white">Deep-Tech Case Study</h3>
                         </div>
-                        <p class="text-fluid-body text-[#DEDEDE]"><strong>Riverlane</strong> (Cambridge quantum computing) & <strong>LSET</strong> (London AI/Cyber) showcase the impact of co-located science hubs.</p>
+                        <p class="text-fluid-body text-[#DEDEDE]"><strong>Riverlane</strong> (Cambridge quantum computing) & <strong>LSET</strong> (London AI) showcase the power of science hubs.</p>
                     </div>
-                    <button onclick="moveInGrid(0, 1)" class="w-full py-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag shadow-md min-h-[48px]">
-                        Compare Spin-off Equity (Press ↓) <i class="fa-solid fa-scale-balanced ml-2"></i>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2">
+                        <span>Compare Spin-off Equity (Press ↓)</span>
+                        <i class="fa-solid fa-scale-balanced text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- SLIDE (2,1): TTO EQUITY IMPACT CALCULATOR (VERTICAL BRANCH) -->
-        <div id="slide-2-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-2-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-polymer1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#D1A705]">INTERACTIVE LAB (BRANCH Y=1)</span>
                     <h2 class="text-fluid-h2 text-[#333333]">University Spin-off Equity Model</h2>
                 </div>
-                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px]">
                     <i class="fa-solid fa-arrow-up mr-2"></i> Return to Theory
                 </button>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-center py-4">
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass space-y-5">
                     <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Cap Table Assumptions</h3>
                     
                     <div class="space-y-2">
-                        <label class="text-fluid-meta block flex justify-between">
+                        <label class="text-fluid-body block flex justify-between">
                             <span>University Stake ($E_u$):</span>
                             <span id="lbl-eq-univ-2-1" class="text-[#901812] font-bold">16%</span>
                         </label>
-                        <input type="range" id="input-eq-univ-2-1" min="5" max="50" step="1" value="16" class="w-full accent-[#901812] h-4" oninput="calcularCapTable_2_1()">
+                        <input type="range" id="input-eq-univ-2-1" min="5" max="50" step="1" value="16" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularCapTable_2_1()">
                     </div>
 
                     <div class="space-y-2">
-                        <label class="text-fluid-meta block flex justify-between">
+                        <label class="text-fluid-body block flex justify-between">
                             <span>Seed Funding ($V_{pre}$):</span>
                             <span id="lbl-val-pre-2-1" class="text-[#901812] font-bold">$2,000,000</span>
                         </label>
-                        <input type="range" id="input-val-pre-2-1" min="500000" max="10000000" step="250000" value="2000000" class="w-full accent-[#901812] h-4" oninput="calcularCapTable_2_1()">
+                        <input type="range" id="input-val-pre-2-1" min="500000" max="10000000" step="250000" value="2000000" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularCapTable_2_1()">
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
                     <div>
-                        <span class="text-fluid-tag text-[#D1A705] block mb-2">FOUNDER INCENTIVE & INVESTABILITY METRIC</span>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">FOUNDER INCENTIVE & INVESTABILITY</span>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
                                 <span class="text-fluid-meta text-[#DEDEDE] block">Founders Retained Equity</span>
@@ -404,152 +501,192 @@
                             </div>
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
                                 <span class="text-fluid-meta text-[#DEDEDE] block">Venture Investability Status</span>
-                                <span id="res-status-invest-2-1" class="text-fluid-h3 text-[#D1A705] font-mono">Highly Attractive</span>
+                                <span id="res-status-invest-2-1" class="text-fluid-h3 text-[#D1A705] font-bold">Highly Attractive</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-body text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
                         <i class="fa-solid fa-circle-info text-[#D1A705] text-xl"></i>
                         <span>Lower initial university dilution ($< 20\%$) correlates with higher Series A institutional round closures.</span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                function calcularCapTable_2_1() {
+                    const u = parseFloat(document.getElementById('input-eq-univ-2-1').value);
+                    const v = parseFloat(document.getElementById('input-val-pre-2-1').value);
+
+                    document.getElementById('lbl-eq-univ-2-1').innerText = `${u}%`;
+                    document.getElementById('lbl-val-pre-2-1').innerText = `$${v.toLocaleString()}`;
+
+                    const foundersEquity = (100 - u).toFixed(1);
+                    document.getElementById('res-eq-founders-2-1').innerText = `${foundersEquity}%`;
+
+                    let investability = "Highly Attractive (Best Practice)";
+                    if (u > 30) investability = "Severe Dilution Risk";
+                    else if (u > 20) investability = "Acceptable / Moderate";
+
+                    document.getElementById('res-status-invest-2-1').innerText = investability;
+                }
+            </script>
         </div>
 
         <!-- SLIDE (3,0): BRAZILIAN CONTEXT, CAPES FRAMEWORK & NIT/CENTEV -->
-        <div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-clay1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#901812]">BRAZILIAN INNOVATION ECOSYSTEM</span>
-                    <h2 class="text-fluid-h2">National Innovation System & CAPES Criteria</h2>
+                    <h2 class="text-fluid-h2 text-[#901812]">National Innovation System & CAPES Criteria</h2>
                 </div>
-                <img id="img-logo-pms-3-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+                <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
             </header>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto w-full py-2 items-stretch">
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
-                    <h3 class="text-fluid-h3 text-[#333333]">Institutional Architecture & Legal Basis</h3>
-                    <p class="text-fluid-body text-[#444444]">The <strong>Brazilian Innovation Law (2004/2016)</strong> mandated the creation of <strong>NITs</strong> (Technological Innovation Centers) within Science & Technology Institutions (ICTs).</p>
-                    
-                    <ul class="space-y-3 text-fluid-body text-[#444444]">
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-check text-[#901812] mt-1"></i>
-                            <span><strong>UFV tecnoPARQ (CENTEV):</strong> Science park driving regional acceleration, incubation, and spin-off soft-landing.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-check text-[#901812] mt-1"></i>
-                            <span><strong>CAPES Evaluation Paradigm:</strong> Priority shift towards Technical-Technological Products (registered software, patents, prototypes, standards, and startups).</span>
-                        </li>
-                    </ul>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-fluid-h3 text-[#333333]">Institutional Architecture & Legal Basis</h3>
+                        <p class="text-fluid-body text-[#444444]">The <strong>Brazilian Innovation Law (2004/2016)</strong> mandated the creation of <strong>NITs</strong> (Technological Innovation Centers) within Science & Technology Institutions (ICTs).</p>
+                        
+                        <ul class="space-y-3 text-fluid-body text-[#444444]">
+                            <li class="flex items-start space-x-3">
+                                <i class="fa-solid fa-check text-[#901812] mt-1"></i>
+                                <span><strong>UFV tecnoPARQ (CENTEV):</strong> Science park driving regional acceleration, incubation, and spin-off soft-landing.</span>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <i class="fa-solid fa-check text-[#901812] mt-1"></i>
+                                <span><strong>CAPES Evaluation Paradigm:</strong> Priority shift towards Technical-Technological Products (registered software, patents, prototypes, standards, and startups).</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
                     <div>
-                        <span class="text-fluid-tag text-[#D1A705] block mb-1">CAPES OUTPUT CLASSIFIER</span>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">CAPES OUTPUT CLASSIFIER</span>
                         <h3 class="text-fluid-h3 text-white mb-2">Technical Production Scorer</h3>
                         <p class="text-fluid-body text-[#DEDEDE]">Quantify the impact weight of engineering artifacts according to CAPES evaluation area sheets.</p>
                     </div>
-                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px]">
-                        Calculate Production Score (Press ↓) <i class="fa-solid fa-award ml-2"></i>
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                        <span>Calculate Production Score (Press ↓)</span>
+                        <i class="fa-solid fa-award text-lg"></i>
                     </button>
                 </div>
             </div>
         </div>
 
         <!-- SLIDE (3,1): CAPES TECHNICAL PRODUCT MATRIX (VERTICAL BRANCH) -->
-        <div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-nature1.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#D1A705]">INTERACTIVE LAB (BRANCH Y=1)</span>
                     <h2 class="text-fluid-h2 text-[#333333]">CAPES Technological Production Scorer</h2>
                 </div>
-                <button onclick="moveInGrid(0, -1)" class="px-5 py-3 bg-white/75 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[48px]">
+                <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px]">
                     <i class="fa-solid fa-arrow-up mr-2"></i> Return to Theory
                 </button>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-center py-4">
-                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-4">
                     <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Academic Technical Outputs</h3>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-1">
-                            <label class="text-fluid-meta block">Patents Granted ($N_p$):</label>
-                            <input type="number" id="input-patentes-3-1" min="0" max="10" value="1" class="w-full p-2.5 rounded-xl border border-black/15 font-mono" oninput="calcularCapesScore_3_1()">
+                            <label class="text-fluid-meta font-bold block">Patents Granted ($N_p$):</label>
+                            <input type="number" id="input-patentes-3-1" min="0" max="10" value="1" class="w-full p-3 rounded-xl border border-black/15 font-mono text-fluid-body" oninput="calcularCapesScore_3_1()">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-fluid-meta block">Registered Software ($N_s$):</label>
-                            <input type="number" id="input-software-3-1" min="0" max="10" value="2" class="w-full p-2.5 rounded-xl border border-black/15 font-mono" oninput="calcularCapesScore_3_1()">
+                            <label class="text-fluid-meta font-bold block">Registered Software ($N_s$):</label>
+                            <input type="number" id="input-software-3-1" min="0" max="10" value="2" class="w-full p-3 rounded-xl border border-black/15 font-mono text-fluid-body" oninput="calcularCapesScore_3_1()">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-fluid-meta block">Academic Spin-offs ($N_{so}$):</label>
-                            <input type="number" id="input-spinoff-3-1" min="0" max="10" value="1" class="w-full p-2.5 rounded-xl border border-black/15 font-mono" oninput="calcularCapesScore_3_1()">
+                            <label class="text-fluid-meta font-bold block">Academic Spin-offs ($N_{so}$):</label>
+                            <input type="number" id="input-spinoff-3-1" min="0" max="10" value="1" class="w-full p-3 rounded-xl border border-black/15 font-mono text-fluid-body" oninput="calcularCapesScore_3_1()">
                         </div>
                         <div class="space-y-1">
-                            <label class="text-fluid-meta block">Technical Norms/Processes ($N_t$):</label>
-                            <input type="number" id="input-normas-3-1" min="0" max="10" value="3" class="w-full p-2.5 rounded-xl border border-black/15 font-mono" oninput="calcularCapesScore_3_1()">
+                            <label class="text-fluid-meta font-bold block">Technical Norms ($N_t$):</label>
+                            <input type="number" id="input-normas-3-1" min="0" max="10" value="3" class="w-full p-3 rounded-xl border border-black/15 font-mono text-fluid-body" oninput="calcularCapesScore_3_1()">
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white space-y-6 flex flex-col justify-between">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
                     <div>
-                        <span class="text-fluid-tag text-[#D1A705] block mb-2">GRADUATE PROGRAM IMPACT RATING</span>
+                        <span class="text-fluid-tag text-[#D1A705] block mb-2">GRADUATE PROGRAM IMPACT</span>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
-                                <span class="text-fluid-meta text-[#DEDEDE] block">Productivity Points</span>
+                                <span class="text-fluid-meta text-[#DEDEDE] block">Productivity Score</span>
                                 <span id="res-score-capes-3-1" class="text-fluid-h2 text-white font-mono">130 pts</span>
                             </div>
                             <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
                                 <span class="text-fluid-meta text-[#DEDEDE] block">Evaluation Tier</span>
-                                <span id="res-nivel-capes-3-1" class="text-fluid-h3 text-[#D1A705] font-mono">High Impact (Tier A)</span>
+                                <span id="res-nivel-capes-3-1" class="text-fluid-h3 text-[#D1A705] font-bold">Tier A (High Impact)</span>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                    <div class="p-4 bg-white/5 rounded-2xl text-fluid-body text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
                         <i class="fa-solid fa-graduation-cap text-[#D1A705] text-xl"></i>
-                        <span>Technological indicators directly augment institutional maturity scores during quadriennal CAPES cycles.</span>
+                        <span>Technological indicators directly augment institutional scores during quadriennal CAPES cycles.</span>
                     </div>
                 </div>
             </div>
+
+            <script>
+                function calcularCapesScore_3_1() {
+                    const p = parseInt(document.getElementById('input-patentes-3-1').value) || 0;
+                    const s = parseInt(document.getElementById('input-software-3-1').value) || 0;
+                    const so = parseInt(document.getElementById('input-spinoff-3-1').value) || 0;
+                    const n = parseInt(document.getElementById('input-normas-3-1').value) || 0;
+
+                    const score = (p * 40) + (s * 25) + (so * 50) + (n * 15);
+                    document.getElementById('res-score-capes-3-1').innerText = `${score} pts`;
+
+                    let tier = "Tier C (Initial)";
+                    if (score >= 120) tier = "Tier A (High Impact)";
+                    else if (score >= 60) tier = "Tier B (Consolidated)";
+
+                    document.getElementById('res-nivel-capes-3-1').innerText = tier;
+                }
+            </script>
         </div>
 
         <!-- SLIDE (4,0): REFERENCES & SYNCHRONOUS WEEKLY REPORT FORM -->
-        <div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12">
+        <div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
             <header class="w-full flex justify-between items-center mb-4">
                 <div>
                     <span class="text-fluid-tag text-[#901812]">SYNCHRONOUS SUBMISSION</span>
-                    <h2 class="text-fluid-h2">References & Weekly Report</h2>
+                    <h2 class="text-fluid-h2 text-[#901812]">References & Weekly Report</h2>
                 </div>
-                <img id="img-logo-pms-4-0" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
+                <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto">
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full py-4 items-center">
-                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass space-y-4">
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-4">
                     <h3 class="text-fluid-h3 text-[#333333] border-b border-black/10 pb-2">Academic & Policy References</h3>
                     <ul class="space-y-3 text-fluid-body text-[#444444]">
                         <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-book text-[#901812] mt-1"></i>
-                            <span><strong>Etzkowitz, H. & Leydesdorff, L.</strong> (2000). <em>The dynamics of innovation: from National Systems and "Mode 2" to a Triple Helix of university-industry-government relations</em>. Research Policy, 29(2), 109-123.</span>
+                            <i class="fa-solid fa-book text-[#901812] mt-1.5"></i>
+                            <span><strong>Etzkowitz, H. & Leydesdorff, L.</strong> (2000). <em>The dynamics of innovation: from National Systems to a Triple Helix</em>. Research Policy.</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-file-lines text-[#901812] mt-1"></i>
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1.5"></i>
                             <span><strong>OECD</strong> (2023). <em>International Compendium of Entrepreneurship Policies</em>. OECD Publishing.</span>
                         </li>
                         <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-building-flag text-[#901812] mt-1"></i>
-                            <span><strong>CAPES</strong> (2024). <em>Documento de Área: Engenharias / Produção Técnica e Tecnológica</em>. Ministério da Educação do Brasil.</span>
+                            <i class="fa-solid fa-building-flag text-[#901812] mt-1.5"></i>
+                            <span><strong>CAPES</strong> (2024). <em>Documento de Área: Engenharias / Produção Técnica e Tecnológica</em>. MEC Brasil.</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-borderless-glass-dark text-white text-center space-y-4">
-                    <span class="text-fluid-tag text-[#D1A705] block">SUBMIT WEEKLY REPORT</span>
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white text-center space-y-5">
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold">SUBMIT WEEKLY REPORT</span>
                     <div class="bg-white/90 backdrop-blur-md p-5 rounded-2xl max-w-[240px] sm:max-w-[280px] mx-auto shadow-lg">
-                        <img id="qr-assignment-forms-4-0" alt="Weekly Assignment QR Code" class="w-full h-auto rounded-lg">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSen21g7EdQby0TKu2Z8r6RjgT3dnlh9ADxuODYPkm4esqnWrA%2Fviewform%3Fusp%3Dpublish-editor&color=901812" alt="Weekly Assignment QR Code" class="w-full h-auto rounded-lg">
                     </div>
                     <div>
-                        <a id="btn-assignment-direct-4-0" target="_blank" class="w-full py-3.5 px-6 bg-[#901812] text-white font-bold rounded-2xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-body shadow-md inline-flex items-center justify-center space-x-3 min-h-[52px]">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSen21g7EdQby0TKu2Z8r6RjgT3dnlh9ADxuODYPkm4esqnWrA/viewform?usp=publish-editor" target="_blank" class="w-full py-4 px-6 bg-[#901812] text-white font-bold rounded-2xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-body shadow-md inline-flex items-center justify-center space-x-3 min-h-[56px]">
                             <i class="fa-solid fa-pen-to-square text-[#D1A705]"></i>
                             <span>Open Weekly Submission Form</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1"></i>
@@ -561,167 +698,76 @@
 
     </main>
 
-    <!-- ========================================================================= -->
-    <!-- SECTION 3: JAVASCRIPT NAVIGATION & SIMULATION LOGIC                       -->
-    <!-- ========================================================================= -->
+    <!-- AUTOMATIC NAVIGATION ENGINE -->
     <script>
-        const slideGrid = { 
-            '0,0': 'slide-0-0',
-            '1,0': 'slide-1-0',
-            '1,1': 'slide-1-1',
-            '2,0': 'slide-2-0',
-            '2,1': 'slide-2-1',
-            '3,0': 'slide-3-0',
-            '3,1': 'slide-3-1',
-            '4,0': 'slide-4-0'
-        };
-
         let currentX = 0, currentY = 0;
+        let slideGrid = {};
 
-        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
-
-        function initializeAssets() {
-            const setSrc = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
-            const setHref = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
-
-            setSrc('img-logo-ufv-0-0', COURSE_ASSETS.logos.ufv);
-            setSrc('img-logo-pms-0-0', COURSE_ASSETS.logos.pms);
-            setSrc('img-logo-pms-1-0', COURSE_ASSETS.logos.pms);
-            setSrc('img-logo-pms-2-0', COURSE_ASSETS.logos.pms);
-            setSrc('img-logo-pms-3-0', COURSE_ASSETS.logos.pms);
-            setSrc('img-logo-pms-4-0', COURSE_ASSETS.logos.pms);
-
-            setHref('link-pms-portal-0-0', COURSE_ASSETS.externalLinks.pmsPortal);
-            setSrc('qr-presentation-cover-0-0', COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.presentationAccess));
-            setSrc('qr-assignment-forms-4-0', COURSE_ASSETS.qrCodeGenerator(COURSE_ASSETS.externalLinks.weeklyAssignment));
-            setHref('btn-assignment-direct-4-0', COURSE_ASSETS.externalLinks.weeklyAssignment);
-
-            Object.keys(slideGrid).forEach(key => {
-                const bgKey = key.replace(',', '_');
-                const slideEl = document.getElementById(slideGrid[key]);
-                const bgUrl = COURSE_ASSETS.slideBackgrounds[bgKey];
-
-                if (slideEl) {
-                    if (bgUrl && bgUrl.trim() !== "") {
-                        slideEl.style.backgroundImage = `url('${bgUrl}')`;
-                        slideEl.classList.add('bg-right-fade');
-                    } else {
-                        slideEl.style.backgroundImage = 'none';
-                        slideEl.classList.remove('bg-right-fade');
-                    }
-                }
+        function updateSlideGrid() {
+            slideGrid = {};
+            document.querySelectorAll('[id^="slide-"]').forEach(slide => {
+                const parts = slide.id.replace('slide-', '').split('-');
+                if (parts.length === 2) slideGrid[`${parts[0]},${parts[1]}`] = slide.id;
             });
         }
 
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
         function updateUI() {
-            const keysHorizontal = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
-            const totalH = keysHorizontal.length;
-            document.getElementById('progressBar').style.width = `${(currentX / Math.max(totalH - 1, 1)) * 100}%`;
-            document.getElementById('slideIndicator').innerText = `Slide (${currentX}, ${currentY})`;
+            updateSlideGrid();
+            const keysH = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const maxH = Math.max(...keysH.map(k => parseInt(k.split(',')[0])), 0);
+            const totalMainSlides = keysH.length;
             
-            const arrows = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
-            for (let d in arrows) {
-                const el = document.getElementById(`btn-nav-${d}`);
-                if (el) el.classList.toggle('nav-enabled', hasSlide(currentX + arrows[d][0], currentY + arrows[d][1]));
+            document.getElementById('progressBar').style.width = `${maxH === 0 ? 100 : (currentX / maxH) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX},${currentY}) | ${currentX + 1} of ${totalMainSlides}`;
+
+            const dirs = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in dirs) {
+                const btn = document.getElementById(`btn-nav-${d}`);
+                if (btn) btn.classList.toggle('nav-enabled', hasSlide(currentX + dirs[d][0], currentY + dirs[d][1]));
             }
         }
 
         function moveInGrid(dx, dy) {
+            updateSlideGrid();
             const nx = currentX + dx, ny = currentY + dy;
             if (hasSlide(nx, ny)) {
                 const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
                 const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
-                cur.classList.remove('slide-active');
                 
+                // 1. Remove estados anteriores sem apagar as classes de layout (flex, justify-between, etc.)
+                cur.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+
+                // 2. Aplica transição de saída no slide atual
                 if (dx > 0) cur.classList.add('slide-hidden-left');
                 else if (dx < 0) cur.classList.add('slide-hidden-right');
                 else if (dy > 0) cur.classList.add('slide-hidden-down');
                 else if (dy < 0) cur.classList.add('slide-hidden-up');
 
-                nxt.classList.remove('slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                // 3. Ativa o novo slide mantendo seu alinhamento vertical intacto
                 nxt.classList.add('slide-active');
+
                 currentX = nx; currentY = ny;
                 updateUI();
+                if (window.renderMathInElement) renderMathInElement(nxt);
             }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (['INPUT','TEXTAREA','DIALOG'].includes(document.activeElement.tagName)) return;
             if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
             else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
             else if (e.key === 'ArrowUp') moveInGrid(0, -1);
             else if (e.key === 'ArrowDown') moveInGrid(0, 1);
         });
 
-        // =====================================================================
-        // SLIDE 1,1: TRIPLE HELIX SYNERGY LAB FUNCTION
-        // =====================================================================
-        function calcularIndiceEcosistema_1_1() {
-            const a = parseFloat(document.getElementById('input-academia-1-1').value);
-            const i = parseFloat(document.getElementById('input-industria-1-1').value);
-            const g = parseFloat(document.getElementById('input-governo-1-1').value);
-
-            document.getElementById('lbl-academia-1-1').innerText = `${a}%`;
-            document.getElementById('lbl-industria-1-1').innerText = `${i}%`;
-            document.getElementById('lbl-governo-1-1').innerText = `${g}%`;
-
-            const synergy = Math.cbrt((a/100) * (i/100) * (g/100));
-            document.getElementById('res-sinergia-1-1').innerText = synergy.toFixed(2);
-
-            let status = "Low Friction";
-            if (synergy > 0.70) status = "Optimal Transfer";
-            else if (synergy > 0.45) status = "Moderate Transfer";
-            else status = "Ecosystem Bottleneck";
-
-            document.getElementById('res-transferencia-1-1').innerText = status;
-        }
-
-        // =====================================================================
-        // SLIDE 2,1: CAP TABLE EQUITY LAB FUNCTION
-        // =====================================================================
-        function calcularCapTable_2_1() {
-            const u = parseFloat(document.getElementById('input-eq-univ-2-1').value);
-            const v = parseFloat(document.getElementById('input-val-pre-2-1').value);
-
-            document.getElementById('lbl-eq-univ-2-1').innerText = `${u}%`;
-            document.getElementById('lbl-val-pre-2-1').innerText = `$${v.toLocaleString()}`;
-
-            const foundersEquity = (100 - u).toFixed(1);
-            document.getElementById('res-eq-founders-2-1').innerText = `${foundersEquity}%`;
-
-            let investability = "Highly Attractive";
-            if (u > 30) investability = "Severe Dilution Risk";
-            else if (u > 20) investability = "Acceptable / Moderate";
-            else investability = "Highly Attractive (Global Best Practice)";
-
-            document.getElementById('res-status-invest-2-1').innerText = investability;
-        }
-
-        // =====================================================================
-        // SLIDE 3,1: CAPES SCORE LAB FUNCTION
-        // =====================================================================
-        function calcularCapesScore_3_1() {
-            const p = parseInt(document.getElementById('input-patentes-3-1').value) || 0;
-            const s = parseInt(document.getElementById('input-software-3-1').value) || 0;
-            const so = parseInt(document.getElementById('input-spinoff-3-1').value) || 0;
-            const n = parseInt(document.getElementById('input-normas-3-1').value) || 0;
-
-            const score = (p * 40) + (s * 25) + (so * 50) + (n * 15);
-            document.getElementById('res-score-capes-3-1').innerText = `${score} pts`;
-
-            let tier = "Tier C (Initial)";
-            if (score >= 120) tier = "High Impact (Tier A)";
-            else if (score >= 60) tier = "Consolidated (Tier B)";
-
-            document.getElementById('res-nivel-capes-3-1').innerText = tier;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeAssets();
-            updateUI();
-            calcularIndiceEcosistema_1_1();
-            calcularCapTable_2_1();
-            calcularCapesScore_3_1();
+        document.addEventListener('DOMContentLoaded', () => { 
+            updateUI(); 
+            if (typeof calcularIndiceEcosistema_1_1 === 'function') calcularIndiceEcosistema_1_1();
+            if (typeof calcularCapTable_2_1 === 'function') calcularCapTable_2_1();
+            if (typeof calcularCapesScore_3_1 === 'function') calcularCapesScore_3_1();
         });
     </script>
 </body>
