@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIV 670 | Business Models & Strategy - PMS UFV</title>
+    
+    <!-- ESSENTIAL CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false });"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Preset PMS */
+            --color-primary: #901812;
+            --color-secondary: #D1A705;
+            --color-dark: #333333;
+            --color-bg: #F4F6F5;
+            --bg-shade-left: rgba(244,246,245,0.96);
+            --bg-shade-mid: rgba(244,246,245,0.70);
+            --bg-shade-right: rgba(244,246,245,0.15);
+            --card-light: rgba(255, 255, 255, 0.58);
+            --card-dark: rgba(51, 51, 51, 0.65);
+
+            /* Tipografia Super-Ampliada (Calibração Nativa Full HD / 4k) */
+            --fluid-h1: clamp(2.8rem, 6.2vw, 5.5rem);
+            --fluid-h2: clamp(2.2rem, 4.6vw, 4.0rem);
+            --fluid-h3: clamp(1.75rem, 3.2vw, 2.8rem);
+            --fluid-body: clamp(1.35rem, 2.2vw, 1.95rem);
+            --fluid-meta: clamp(1.15rem, 1.6vw, 1.55rem);
+            --fluid-tag: clamp(1.05rem, 1.4vw, 1.35rem);
+        }
+
+        html, body { 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: var(--color-bg); 
+            font-family: 'PT Sans Narrow', sans-serif; 
+            color: var(--color-dark); 
+        }
+
+        .text-fluid-h1 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h1); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h2); font-weight: 800; line-height: 1.15; }
+        .text-fluid-h3 { font-size: var(--fluid-h3); font-weight: 700; line-height: 1.25; }
+        .text-fluid-body { font-size: var(--fluid-body); font-weight: 500; line-height: 1.45; }
+        .text-fluid-meta { font-size: var(--fluid-meta); font-weight: 600; }
+        .text-fluid-tag { font-size: var(--fluid-tag); font-weight: 700; letter-spacing: 0.04em; }
+
+        .katex-display { font-size: clamp(2.2rem, 4.5vw, 3.8rem) !important; margin: 1.2rem 0 !important; }
+        .katex { font-size: 1.15em; }
+
+        .slide-screen {
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0;
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
+        .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
+        .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
+        .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
+        .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
+
+        .slide-screen::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide-screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide-screen::-webkit-scrollbar-thumb {
+            background: rgba(144, 24, 18, 0.25);
+            border-radius: 9999px;
+        }
+        .slide-screen::-webkit-scrollbar-thumb:hover {
+            background: rgba(144, 24, 18, 0.65);
+        }
+
+        .card-glass { 
+            border: none !important; 
+            background-color: var(--card-light); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+        .card-glass-dark { 
+            border: none !important; 
+            background-color: var(--card-dark); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            color: white; 
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+
+        .card-glass:hover {
+            transform: translateY(-4px);
+            background-color: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-glass-dark:hover {
+            transform: translateY(-4px);
+            background-color: rgba(51, 51, 51, 0.78);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+        }
+
+        .reveal-controls { 
+            position: fixed; 
+            bottom: 1.25rem; 
+            right: 1.25rem; 
+            width: 110px; 
+            height: 110px; 
+            z-index: 1000; 
+            pointer-events: none; 
+        }
+        .control-arrow {
+            position: absolute; 
+            width: 38px; 
+            height: 38px; 
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(6px); 
+            border-radius: 50%; 
+            color: #888888; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0.15; 
+            pointer-events: none;
+            transition: all 0.2s ease; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            font-size: 0.95rem;
+        }
+        .control-arrow.nav-up { top: 0; left: 36px; }
+        .control-arrow.nav-down { bottom: 0; left: 36px; }
+        .control-arrow.nav-left { top: 36px; left: 0; }
+        .control-arrow.nav-right { top: 36px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--color-primary); opacity: 0.65; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--color-primary); color: #FFF; opacity: 1; transform: scale(1.1); }
+    </style>
+</head>
+<body class="w-screen h-screen relative">
+
+    <div class="fixed top-0 left-0 h-2 bg-[var(--color-secondary)] transition-all duration-300 z-[1000]" id="progressBar" style="width: 0%;"></div>
+
+    <div class="fixed bottom-3 left-3 text-[0.80rem] sm:text-[0.90rem] font-bold text-[var(--color-dark)] bg-white/70 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm z-[1000] flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]"></span>
+        <span id="slideIndicator">Slide (0,0) | 1 of 5</span>
+    </div>
+
+    <div class="reveal-controls">
+        <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-nav-right" onclick="moveInGrid(1, 0)" class="control-arrow nav-right" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <main class="w-full h-full relative" id="slideDeck">
+
+        
+        
+<!-- SLIDE (0,0): TITLE & COURSE COVER (AULA 060) -->
+<div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0">
+        <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
+            <img src="Logo UFV oficial horizontal.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png'">
+            <div class="h-10 w-[1px] bg-black/10"></div>
+            <span class="text-fluid-tag text-[#333333]">CIV 670 • PMS / UFV</span>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-12 sm:h-16 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-4">
+        <div class="lg:col-span-7 space-y-4">
+            <div class="p-8 sm:p-12 rounded-3xl card-glass border-l-[16px] border-[#901812]">
+                <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2 font-bold uppercase">CIV 670 — INNOVATION & TECHNOLOGICAL ENTREPRENEURSHIP</span>
+                <h1 class="text-fluid-h1 mb-3 text-[#901812]">INTELLECTUAL PROPERTY RIGHTS<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">Patents, Trademarks, Trade Secrets & Licensing Strategy</span></h1>
+                <p class="text-fluid-body text-[#444444]">Strategic legal frameworks and asset valorization in engineering: managing patents, trade secrets (Law 9.279/96), trademarks, industrial designs, international filing routes (PCT/INPI), and technology transfer.</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 p-6 sm:p-10 rounded-3xl card-glass-dark text-white flex flex-col justify-between space-y-6">
+            <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl text-center shadow-md">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fjmfcarvalho.github.io%2Fciv670%2F060.html&color=901812" alt="Lesson 060 Mobile Sync QR Code" class="w-full max-w-[200px] sm:max-w-[240px] mx-auto rounded-lg">
+                <span class="text-fluid-tag text-[#333333] font-bold mt-3 block">Follow On Smartphone</span>
+            </div>
+            <div class="text-center space-y-1">
+                <span class="text-fluid-tag text-[#D1A705] block font-bold">Course Instructor</span>
+                <p class="text-fluid-body font-bold text-white">Prof. José Maria Franco de Carvalho</p>
+                <p class="text-fluid-meta text-[#DEDEDE]">SICon / DEC — Universidade Federal de Viçosa</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Intellectual Property Rights (IPR)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Deep-Dive | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Next Module</span>
+    </footer>
+</div>
+
+
+
+<!-- SLIDE (1,0): INNOVATION AS AN INTANGIBLE ASSET -->
+<div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center mb-4 flex-shrink-0">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 01 — ASSET CLASSIFICATION</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Innovation as an Intangible Asset</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+        <!-- Card 1: Tangible vs Intangible -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#901812] transition-all" onclick="document.getElementById('modal-asset-1-0-1').showModal()">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-[#901812]">
+                    <i class="fa-solid fa-layer-group text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Tangible vs Intangible</h3>
+                </div>
+                <p class="text-fluid-body text-[#444444]">Physical production hardware vs non-monetary assets without physical substance: proprietary knowledge, algorithms, and registered IP.</p>
+            </div>
+            <div class="pt-3 border-t border-black/10">
+                <span class="text-fluid-tag text-[#901812] font-bold block">Over 80% of Enterprise Value</span>
+                <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for corporate valuation shifts</span>
+            </div>
+        </div>
+
+        <!-- Card 2: Strategic Drivers -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#D1A705] transition-all" onclick="document.getElementById('modal-asset-1-0-2').showModal()">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-[#D1A705]">
+                    <i class="fa-solid fa-chart-line text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Tech Entrepreneurship</h3>
+                </div>
+                <p class="text-fluid-body text-[#444444]">Knowledge-intensive firms leverage intellectual assets to construct competitive moats, prevent imitation, and accelerate venture valuation.</p>
+            </div>
+            <div class="pt-3 border-t border-black/10">
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">Apple, Tesla, Google, Nubank</span>
+                <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for moat architecture</span>
+            </div>
+        </div>
+
+        <!-- Card 3: Valuation Lab Hook -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">VERTICAL BRANCH Y=1</span>
+                <h3 class="text-fluid-h3 text-white font-bold mb-3">Intangible Asset Valuation</h3>
+                <p class="text-fluid-body text-[#DEDEDE]">Simulate the economic premium commanded by proprietary IP over baseline tangible production assets.</p>
+            </div>
+            <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                <span>Launch Valuation Lab (Press ↓)</span>
+                <i class="fa-solid fa-calculator text-lg"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (1,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Valuation Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for IPR Matrix</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-asset-1-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">MACROECONOMIC TRANSITION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">The Dominance of Intangibles</h3>
+            </div>
+            <button onclick="document.getElementById('modal-asset-1-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>In 1975, tangible assets (real estate, industrial machinery, inventory) comprised more than 80% of the S&P 500 market value. By 2020, this allocation reversed completely: over 84% to 90% of total market equity is comprised of intangible capital.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812]">
+                <strong class="text-white block mb-1">Engineering Takeaway:</strong>
+                Capital expenditure in physical plants (CAPEX) exhibits linear scaling and rapid depreciation, whereas proprietary engineering designs, patents, and software yield increasing marginal returns at near-zero replication cost.
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-asset-1-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">COMPETITIVE POSITIONING</span>
+                <h3 class="text-fluid-h2 text-white font-bold">IP as a Defensive Moat</h3>
+            </div>
+            <button onclick="document.getElementById('modal-asset-1-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Technological differentiation is fleeting unless legally protected. Without formal IP barriers, incumbents can easily reverse-engineer and out-scale emerging startups via superior distribution networks.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                <strong class="text-[#D1A705] block mb-1">Core Startup Asset Classes:</strong>
+                Trade secrets for unpatentable analytical workflows, patents for structural/material formulations, registered trademarks for brand equity, and industrial design registrations for user interface ergonomics.
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (1,1): VIRTUAL LAB: INTANGIBLE ASSET VALUATION (BRANCH Y=1) -->
+<div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center mb-4 flex-shrink-0">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold tracking-wider uppercase">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#333333]">Enterprise Value & Intangible Premium Simulator</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 01</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-center py-4">
+        <!-- Painel de Entradas / Parâmetros -->
+        <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-4">
+            <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2">Asset Valuation Drivers</h3>
+
+            <div class="space-y-1">
+                <label class="text-fluid-meta font-bold block flex justify-between">
+                    <span>Physical Tangible Capital ($C_{\text{tan}}$):</span>
+                    <span id="lbl-val-tangible-1-1" class="text-[#901812] font-bold">$2.0M</span>
+                </label>
+                <input type="range" id="input-val-tangible-1-1" min="0.5" max="10.0" step="0.5" value="2.0" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularValuation_1_1()">
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-fluid-meta font-bold block flex justify-between">
+                    <span>Baseline Tangible Return Rate ($r_{\text{tan}}$):</span>
+                    <span id="lbl-val-rtan-1-1" class="text-[#901812] font-bold">10.0%</span>
+                </label>
+                <input type="range" id="input-val-rtan-1-1" min="5.0" max="25.0" step="0.5" value="10.0" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularValuation_1_1()">
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-fluid-meta font-bold block flex justify-between">
+                    <span>Annual Net Operating Cash Flow ($CF_{\text{total}}$):</span>
+                    <span id="lbl-val-cf-1-1" class="text-[#901812] font-bold">$1.20M/yr</span>
+                </label>
+                <input type="range" id="input-val-cf-1-1" min="0.3" max="5.0" step="0.1" value="1.2" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularValuation_1_1()">
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-fluid-meta font-bold block flex justify-between">
+                    <span>IP Capitalization Discount Rate ($WACC$):</span>
+                    <span id="lbl-val-wacc-1-1" class="text-[#901812] font-bold">12.0%</span>
+                </label>
+                <input type="range" id="input-val-wacc-1-1" min="6.0" max="22.0" step="0.5" value="12.0" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularValuation_1_1()">
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-fluid-meta font-bold block flex justify-between">
+                    <span>IP Economic Horizon ($n$ years):</span>
+                    <span id="lbl-val-years-1-1" class="text-[#901812] font-bold">10 yrs</span>
+                </label>
+                <input type="range" id="input-val-years-1-1" min="3" max="20" step="1" value="10" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularValuation_1_1()">
+            </div>
+        </div>
+
+        <!-- Painel de Saídas Numéricas e Proporções -->
+        <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">EXCESS EARNINGS METHOD (MEEM)</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                    <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Excess IP Cash Flow ($CF_{\text{IP}}$)</span>
+                        <span id="res-val-cfip-1-1" class="text-fluid-h3 text-white font-mono">$1.00M/yr</span>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Intangible Equity (NPV)</span>
+                        <span id="res-val-npvip-1-1" class="text-fluid-h3 text-white font-mono">$5.65M</span>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md mt-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-fluid-meta text-[#DEDEDE]">Total Enterprise Value ($V_{\text{total}}$)</span>
+                        <span id="res-val-ratio-1-1" class="text-fluid-tag text-[#D1A705] font-bold">73.9% Intangible</span>
+                    </div>
+                    <span id="res-val-total-1-1" class="text-fluid-h2 text-[#D1A705] font-mono">$7.65M</span>
+                </div>
+            </div>
+            <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                <i class="fa-solid fa-lightbulb text-[#D1A705] text-xl"></i>
+                <span>When earnings exceed conventional capital charges ($C_{\text{tan}} \times r_{\text{tan}}$), residual cash flows capitalize into intangible goodwill, patents, and technical defensibility.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (1,1)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> to IPR Taxonomy</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (1,1) -->
+    <script>
+        function calcularValuation_1_1() {
+            const cTan = parseFloat(document.getElementById('input-val-tangible-1-1').value) * 1000000;
+            const rTan = parseFloat(document.getElementById('input-val-rtan-1-1').value) / 100;
+            const cfTotal = parseFloat(document.getElementById('input-val-cf-1-1').value) * 1000000;
+            const wacc = parseFloat(document.getElementById('input-val-wacc-1-1').value) / 100;
+            const n = parseInt(document.getElementById('input-val-years-1-1').value);
+
+            document.getElementById('lbl-val-tangible-1-1').innerText = `$${(cTan / 1000000).toFixed(1)}M`;
+            document.getElementById('lbl-val-rtan-1-1').innerText = `${(rTan * 100).toFixed(1)}%`;
+            document.getElementById('lbl-val-cf-1-1').innerText = `$${(cfTotal / 1000000).toFixed(2)}M/yr`;
+            document.getElementById('lbl-val-wacc-1-1').innerText = `${(wacc * 100).toFixed(1)}%`;
+            document.getElementById('lbl-val-years-1-1').innerText = `${n} yrs`;
+
+            const capitalCharge = cTan * rTan;
+            const cfIP = Math.max(0, cfTotal - capitalCharge);
+
+            let npvIP = 0;
+            if (wacc > 0) {
+                npvIP = cfIP * ((1 - Math.pow(1 + wacc, -n)) / wacc);
+            } else {
+                npvIP = cfIP * n;
+            }
+
+            const totalEV = cTan + npvIP;
+            const intangibleRatio = totalEV > 0 ? (npvIP / totalEV) * 100 : 0;
+
+            document.getElementById('res-val-cfip-1-1').innerText = `$${(cfIP / 1000000).toFixed(2)}M/yr`;
+            document.getElementById('res-val-npvip-1-1').innerText = `$${(npvIP / 1000000).toFixed(2)}M`;
+            document.getElementById('res-val-total-1-1').innerText = `$${(totalEV / 1000000).toFixed(2)}M`;
+            document.getElementById('res-val-ratio-1-1').innerText = `${intangibleRatio.toFixed(1)}% Intangible`;
+        }
+
+        if (document.getElementById('input-val-tangible-1-1')) calcularValuation_1_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (2,0): IPR TAXONOMY MATRIX & LEGAL FRAMEWORK -->
+<div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 02 — LEGAL REGIMES</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Intellectual Property Rights Taxonomy</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full items-stretch">
+            <!-- Card 1: Industrial Property (Patents & Designs) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#901812] transition-all" onclick="document.getElementById('modal-tax-2-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-gears text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Industrial Property</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Protects functional technical solutions and ornamental aesthetics. Encompasses invention patents (20 years) and industrial designs (up to 25 years).</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">INPI / USPTO / EPO Examination</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for statutory regimes</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Distinctive Signs & Copyrights -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#D1A705] transition-all" onclick="document.getElementById('modal-tax-2-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-trademark text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Signs & Copyrights</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Trademarks protect commercial origin and brand equity (renewable 10-year terms). Copyright guards source code and literary/artistic expressions (Life + 70 yrs).</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">Brand Moats & Source Protection</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for term comparison</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Non-Registered Know-How (Trade Secrets) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-white transition-all" onclick="document.getElementById('modal-tax-2-0-3').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-user-secret text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-white font-bold">Trade Secrets</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Confidential technical formulas, data pipelines, and internal algorithms. No registration office exists; legal enforcement relies strictly on active secrecy measures and NDAs.</p>
+                </div>
+                <div class="pt-3 border-t border-white/15">
+                    <span class="text-fluid-tag text-white font-bold block">Indefinite Duration (Secrecy Dependent)</span>
+                    <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for full comparative matrix</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (2,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 01 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Patents</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-tax-2-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">STATUTORY PROTECTION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Industrial Property Overview</h3>
+            </div>
+            <button onclick="document.getElementById('modal-tax-2-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Industrial Property protects actionable technical and aesthetic innovation. Patents grant temporary commercial exclusivity in exchange for full public disclosure of the technical invention.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812]">
+                <strong class="text-white block mb-1">Key Legal Distinctions:</strong>
+                <ul class="list-disc list-inside space-y-1 text-fluid-meta">
+                    <li><strong>Invention Patent (PI):</strong> 20-year term from filing date; requires absolute novelty, inventive step, and industrial application.</li>
+                    <li><strong>Utility Model (MU):</strong> 15-year term; protects practical modifications resulting in functional improvement.</li>
+                    <li><strong>Industrial Design (DI):</strong> Up to 25 years (renewable in 5-year intervals); strictly protects new ornamental shapes or visual configurations.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-tax-2-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">DISTINCTIVE SIGNS & EXPRESSIONS</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Trademarks vs Copyrights</h3>
+            </div>
+            <button onclick="document.getElementById('modal-tax-2-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                    <strong class="text-[#D1A705] block mb-1">Trademarks:</strong>
+                    Valid for 10-year periods, renewable indefinitely upon commercial proof. Prevents competitor deception and establishes legal ownership over brand reputation, product names, and visual identifiers.
+                </div>
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-white">
+                    <strong class="text-white block mb-1">Copyrights (Law 9.610/98):</strong>
+                    Protects the original expression of authors (text, architectural blueprints, software code). Duration lasts for the life of the author plus 70 years. Software has a specific term (50 years from Jan 1st following creation).
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-tax-2-0-3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-4xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">COMPARATIVE REGULATORY MATRIX</span>
+                <h3 class="text-fluid-h2 text-white font-bold">IPR Framework Comparison</h3>
+            </div>
+            <button onclick="document.getElementById('modal-tax-2-0-3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="overflow-x-auto my-2">
+            <table class="w-full text-left border-collapse text-fluid-meta">
+                <thead>
+                    <tr class="border-b border-white/20 text-[#D1A705]">
+                        <th class="py-2.5 px-3">Type</th>
+                        <th class="py-2.5 px-3">Subject Matter</th>
+                        <th class="py-2.5 px-3">Statutory Duration</th>
+                        <th class="py-2.5 px-3">Registration Authority</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-white/10 text-[#DEDEDE]">
+                    <tr>
+                        <td class="py-2.5 px-3 font-bold text-white">Patent</td>
+                        <td class="py-2.5 px-3">Invention / Process</td>
+                        <td class="py-2.5 px-3">20 years</td>
+                        <td class="py-2.5 px-3">INPI / USPTO / EPO</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 px-3 font-bold text-white">Trademark</td>
+                        <td class="py-2.5 px-3">Sign / Logo / Brand</td>
+                        <td class="py-2.5 px-3">Renewable every 10 yrs</td>
+                        <td class="py-2.5 px-3">INPI / WIPO</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 px-3 font-bold text-white">Industrial Design</td>
+                        <td class="py-2.5 px-3">Visual / Ornamental appearance</td>
+                        <td class="py-2.5 px-3">Up to 25 yrs</td>
+                        <td class="py-2.5 px-3">INPI / National Offices</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 px-3 font-bold text-white">Copyright</td>
+                        <td class="py-2.5 px-3">Artistic / Literary / Software</td>
+                        <td class="py-2.5 px-3">Life + 70 yrs</td>
+                        <td class="py-2.5 px-3">National Library / INPI (Software)</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 px-3 font-bold text-white">Trade Secret</td>
+                        <td class="py-2.5 px-3">Confidential Know-How / Data</td>
+                        <td class="py-2.5 px-3">Indefinite (while secret)</td>
+                        <td class="py-2.5 px-3">None (NDAs & Security Audits)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (3,0): PATENTS: CRITERIA, EXCLUSIVE RIGHTS & PROSECUTION -->
+<div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 03 — INDUSTRIAL PROPERTY</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Patents: Legal Exclusivity & Technical Disclosure</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Statutory Patentability Criteria -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#901812] transition-all" onclick="document.getElementById('modal-pat-3-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-stamp text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Patentability Triad</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Protection covers technical inventions and processes. Requires absolute novelty, inventive step (non-obviousness), and industrial applicability.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">Post-it®, Velcro®, Tesla battery pack</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for statutory examination tests</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Rights, Monopoly & Prosecution Cycle -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between cursor-pointer hover:border-l-[12px] hover:border-[#D1A705] transition-all" onclick="document.getElementById('modal-pat-3-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-timeline text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Prosecution & Rights</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Grants negative rights to exclude or license commercialization. Enforces the lifecycle sequence: Filing → Examination → Grant → Maintenance.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">20-Year Statutory Term (INPI / USPTO / EPO)</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for office examination pipeline</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Interactive Claim Lab Hook -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">VERTICAL BRANCH Y=1</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-3">Patent Claim & Novelty Lab</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Dissect patent anatomy, contrast independent vs dependent claims, and simulate prior art novelty risks.</p>
+                </div>
+                <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                    <span>Launch Patent Claim Lab (Press ↓)</span>
+                    <i class="fa-solid fa-microscope text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (3,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for IPR Taxonomy | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Claim Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Trademarks</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-pat-3-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">SUBSTANTIVE EXAMINATION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">The Three Patentability Criteria</h3>
+            </div>
+            <button onclick="document.getElementById('modal-pat-3-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>An invention cannot be patented unless it satisfies three cumulative legal hurdles recognized worldwide by national patent offices (Law 9.279/96, 35 U.S.C., EPC):</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2">
+                <div><strong class="text-white block">1. Absolute Novelty:</strong> The technology must not be known in the state of the art anywhere in the world prior to the filing date (or valid priority date). Prior publication destroys novelty.</div>
+                <div><strong class="text-white block">2. Inventive Step (Non-Obviousness):</strong> The solution must not result in an obvious manner from the state of the art to a person having ordinary skill in the art (PHOSITA).</div>
+                <div><strong class="text-white block">3. Industrial Application:</strong> The invention must be capable of being manufactured, synthesized, or deployed in any branch of industry. Pure theories and algorithms are barred per se.</div>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-pat-3-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">PROCEDURAL LIFECYCLE</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Prosecution Pipeline & Negative Right</h3>
+            </div>
+            <button onclick="document.getElementById('modal-pat-3-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>A patent does not give an affirmative right to produce; it grants a <strong>negative right</strong>: the statutory power to legally stop, sue, and exclude unauthorized competitors from making, using, selling, or importing the claimed technical solution.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                <strong class="text-[#D1A705] block mb-2">Standard Patent Lifecycle (INPI / International):</strong>
+                <ol class="list-decimal list-inside space-y-1.5 text-fluid-meta">
+                    <li><strong class="text-white">Filing (Depósito):</strong> Secures the priority date under the "first to file" principle.</li>
+                    <li><strong class="text-white">Publication:</strong> Official release after 18 months of confidential prosecution.</li>
+                    <li><strong class="text-white">Examination Request (Exame Técnico):</strong> Substantive search of prior art and claim review.</li>
+                    <li><strong class="text-white">Grant (Concessão):</strong> Issuance of patent letters conferring commercial monopoly.</li>
+                    <li><strong class="text-white">Maintenance (Anuidades):</strong> Mandatory payment of progressive annual office maintenance fees.</li>
+                </ol>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (3,1): virtual lab 3,1 -->
+<div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks3.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold tracking-wider uppercase">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#333333]">Patent Claim Architecture & Novelty Test</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 03</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-center">
+            <!-- Painel de Seletores de Reivindicações Técnicas -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-4">
+                <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2">Technical Feature Elements</h3>
+                
+                <div class="space-y-3">
+                    <label class="flex items-center space-x-3 p-3 bg-white/80 rounded-2xl cursor-pointer hover:bg-white transition-colors shadow-sm">
+                        <input type="checkbox" id="feat-matrix-3-1" class="w-5 h-5 accent-[#901812] cursor-pointer" onchange="verificarPatente_3_1()" checked>
+                        <span class="text-fluid-meta text-[#333333] font-semibold">Element A: Alkali-activated geopolimeric binder</span>
+                    </label>
+
+                    <label class="flex items-center space-x-3 p-3 bg-white/80 rounded-2xl cursor-pointer hover:bg-white transition-colors shadow-sm">
+                        <input type="checkbox" id="feat-nano-3-1" class="w-5 h-5 accent-[#901812] cursor-pointer" onchange="verificarPatente_3_1()" checked>
+                        <span class="text-fluid-meta text-[#333333] font-semibold">Element B: Functionalized nano-silica dispersion (1.5% wt)</span>
+                    </label>
+
+                    <label class="flex items-center space-x-3 p-3 bg-white/80 rounded-2xl cursor-pointer hover:bg-white transition-colors shadow-sm">
+                        <input type="checkbox" id="feat-thermal-3-1" class="w-5 h-5 accent-[#901812] cursor-pointer" onchange="verificarPatente_3_1()">
+                        <span class="text-fluid-meta text-[#333333] font-semibold">Element C: Ambient-curing accelerator via bio-based activator</span>
+                    </label>
+
+                    <label class="flex items-center space-x-3 p-3 bg-white/80 rounded-2xl cursor-pointer hover:bg-white transition-colors shadow-sm">
+                        <input type="checkbox" id="feat-prior-3-1" class="w-5 h-5 accent-[#901812] cursor-pointer" onchange="verificarPatente_3_1()">
+                        <span class="text-fluid-meta text-[#901812] font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Prior Public Academic Disclosure (Article published)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Painel de Veredito Técnico de Patenteabilidade -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">SUBSTANTIVE PATENTABILITY AUDIT</span>
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md text-center border border-white/10">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">INPI / EPO Substantive Examination</span>
+                        <span id="res-novelty-3-1" class="text-fluid-h2 font-mono leading-none my-3 block text-emerald-400">PATENTABLE (STRONG NOVELTY)</span>
+                        <div class="grid grid-cols-2 gap-3 mt-4 text-left">
+                            <div class="bg-white/5 p-3 rounded-xl">
+                                <span class="text-fluid-tag text-[#DEDEDE] block">Novelty (Art. 11):</span>
+                                <strong id="res-crit-nov-3-1" class="text-emerald-400 text-fluid-meta">PASSED</strong>
+                            </div>
+                            <div class="bg-white/5 p-3 rounded-xl">
+                                <span class="text-fluid-tag text-[#DEDEDE] block">Inventive Step (Art. 13):</span>
+                                <strong id="res-crit-inv-3-1" class="text-emerald-400 text-fluid-meta">PASSED</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                    <i class="fa-solid fa-scale-balanced text-[#D1A705] text-xl"></i>
+                    <span id="res-desc-3-1">The combination of elements exhibits an inventive step beyond state of the art without conflicting prior public disclosure.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (3,1)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Trademarks</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (3,1) -->
+    <script>
+        function verificarPatente_3_1() {
+            const featMatrix = document.getElementById('feat-matrix-3-1').checked;
+            const featNano = document.getElementById('feat-nano-3-1').checked;
+            const featThermal = document.getElementById('feat-thermal-3-1').checked;
+            const featPrior = document.getElementById('feat-prior-3-1').checked;
+
+            const verdictEl = document.getElementById('res-novelty-3-1');
+            const novEl = document.getElementById('res-crit-nov-3-1');
+            const invEl = document.getElementById('res-crit-inv-3-1');
+            const descEl = document.getElementById('res-desc-3-1');
+
+            if (featPrior) {
+                verdictEl.innerText = "REJECTED (NOVELTY DESTROYED)";
+                verdictEl.className = "text-fluid-h2 font-mono leading-none my-3 block text-rose-500";
+                novEl.innerText = "FAILED (PRIOR ART)";
+                novEl.className = "text-rose-500 text-fluid-meta font-bold";
+                invEl.innerText = "NOT ASSESSED";
+                invEl.className = "text-[#DEDEDE] text-fluid-meta";
+                descEl.innerText = "Prior academic publication or unshielded conference disclosure enters the state of the art worldwide, instantly destroying absolute novelty.";
+                return;
+            }
+
+            const count = (featMatrix ? 1 : 0) + (featNano ? 1 : 0) + (featThermal ? 1 : 0);
+
+            if (count === 3) {
+                verdictEl.innerText = "PATENTABLE (INVENTION PATENT)";
+                verdictEl.className = "text-fluid-h2 font-mono leading-none my-3 block text-emerald-400";
+                novEl.innerText = "PASSED";
+                novEl.className = "text-emerald-400 text-fluid-meta font-bold";
+                invEl.innerText = "HIGH INVENTIVE STEP";
+                invEl.className = "text-emerald-400 text-fluid-meta font-bold";
+                descEl.innerText = "Synergistic combination of elements A, B, and C produces non-obvious rheological and curing kinetics, qualifying for a 20-year Invention Patent.";
+            } else if (count === 2) {
+                verdictEl.innerText = "UTILITY MODEL / NARROW CLAIM";
+                verdictEl.className = "text-fluid-h2 font-mono leading-none my-3 block text-[#D1A705]";
+                novEl.innerText = "PASSED";
+                novEl.className = "text-emerald-400 text-fluid-meta font-bold";
+                invEl.innerText = "MODERATE / OBVIOUS COMB.";
+                invEl.className = "text-[#D1A705] text-fluid-meta font-bold";
+                descEl.innerText = "The claim may encounter office rejections regarding inventive step under standard PHOSITA benchmark tests, requiring narrowing of independent claims.";
+            } else {
+                verdictEl.innerText = "REJECTED (STATE OF THE ART)";
+                verdictEl.className = "text-fluid-h2 font-mono leading-none my-3 block text-rose-500";
+                novEl.innerText = "ANTICIPATED";
+                novEl.className = "text-rose-500 text-fluid-meta font-bold";
+                invEl.innerText = "FAILED";
+                invEl.className = "text-rose-500 text-fluid-meta font-bold";
+                descEl.innerText = "A single isolated technical feature is already anticipated by preexisting literature patents, failing the non-obviousness statutory threshold.";
+            }
+        }
+
+        if (document.getElementById('feat-matrix-3-1')) verificarPatente_3_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (4,0): PATENTS: CRITERIA, EXCLUSIVE RIGHTS & PROSECUTION -->
+<div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-10 md:p-12 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 03 — INDUSTRIAL PROPERTY</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Patents: Legal Exclusivity & Technical Disclosure</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+<!-- Camada 2: Núcleo Centralizado Verticalmente -->
+<div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full items-stretch">
+        <!-- Coluna 1: Trademarks & Brand Equity -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-tm-4-0-1').showModal()">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-[#901812]">
+                    <i class="fa-solid fa-registered text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Trademarks (Marcas)</h3>
+                </div>
+                <p class="text-fluid-body text-[#444444]">Legally protects distinctive signs, symbols, names, and logos identifying commercial origin. Prevents competitor deception and builds long-term consumer trust and brand equity.</p>
+                <div class="grid grid-cols-3 gap-2 pt-2 text-center text-fluid-meta font-bold">
+                    <div class="p-3 bg-white/80 rounded-xl shadow-sm border border-black/5 text-[#333333]">Google®</div>
+                    <div class="p-3 bg-white/80 rounded-xl shadow-sm border border-black/5 text-[#333333]">iPhone®</div>
+                    <div class="p-3 bg-white/80 rounded-xl shadow-sm border border-black/5 text-[#333333]">Coca-Cola®</div>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-black/10">
+                <span class="text-fluid-tag text-[#901812] font-bold block">10-Year Renewable Terms (Indefinite Duration)</span>
+                <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for registration strategy & Nice classification</span>
+            </div>
+        </div>
+
+        <!-- Coluna 2: Industrial Designs & Form Protection -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-id-4-0-2').showModal()">
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-[#D1A705]">
+                    <i class="fa-solid fa-shapes text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-white font-bold">Industrial Designs (Desenho Industrial)</h3>
+                </div>
+                <p class="text-fluid-body text-[#DEDEDE]">Protects purely ornamental or aesthetic three-dimensional forms and surface lines of manufactured products without claiming technical function.</p>
+                <div class="p-4 bg-white/10 rounded-2xl backdrop-blur-md border border-white/10 space-y-2 text-fluid-meta">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-[#D1A705]"></i>
+                        <span>Geometric contours of consumer devices & electronics.</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-[#D1A705]"></i>
+                        <span>Ergonomic chassis, architectural fixtures & bespoke furniture.</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check text-[#D1A705]"></i>
+                        <span>Copyright distinction: protects software source code automatically.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-white/15">
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">Up to 25 Years Statutory Term (INPI)</span>
+                <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for form vs function boundaries</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+<footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+    <span class="font-bold">CIV 670: Class 060 — Slide (4,0)</span>
+    <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Patents | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Trade Secrets</span>
+</footer>
+
+<!-- MODAIS NATIVOS (<DIALOG>) -->
+<dialog id="modal-tm-4-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+    <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold block">COMMERCIAL ORIGIN & DEFENSE</span>
+            <h3 class="text-fluid-h2 text-white font-bold">Trademark Strategic Management</h3>
+        </div>
+        <button onclick="document.getElementById('modal-tm-4-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+        <p>Unlike patents, which expire after 20 years to enrich the public domain, trademarks can be renewed perpetually every 10 years as long as continuous commercial use is demonstrated and maintenance fees are settled.</p>
+        <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2">
+            <strong class="text-white block">Strategic Imperatives for Engineering Startups:</strong>
+            <ul class="list-disc list-inside space-y-1.5 text-fluid-meta">
+                <li><strong>Principle of Specificity (Nice Classification):</strong> Protection applies strictly to the classes filed (e.g., Class 09 for software/sensors, Class 37 for civil construction, Class 42 for engineering services).</li>
+                <li><strong>Principle of Territoriality:</strong> Registration at INPI guarantees legal defense solely in Brazilian national territory; international scalability requires the Madrid Protocol.</li>
+                <li><strong>Risk of Genericization:</strong> When a trademark becomes synonymous with the product itself, legal exclusivity risks judicial revocation.</li>
+            </ul>
+        </div>
+    </div>
+</dialog>
+
+<dialog id="modal-id-4-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+    <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold block">AESTHETIC VS TECHNICAL UTILITY</span>
+            <h3 class="text-fluid-h2 text-white font-bold">Industrial Design Prosecution</h3>
+        </div>
+        <button onclick="document.getElementById('modal-id-4-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+        <p>Industrial Design protection (Law 9.279/96, Art. 95) covers the novel ornamental arrangement of lines, colors, or three-dimensional shapes that can serve as a type for industrial manufacturing.</p>
+        <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2">
+            <strong class="text-[#D1A705] block">Prosecution & Scope Criteria:</strong>
+            <ul class="list-disc list-inside space-y-1.5 text-fluid-meta">
+                <li><strong>Exclusion of Functional Features:</strong> If a geometric form is dictated strictly by technical function (e.g., internal hydraulic diameter), it must be filed as a patent, not as an industrial design.</li>
+                <li><strong>No Substantive Prior Examination:</strong> In most offices (including INPI), registration is granted automatically after formal check. Substantive validity examination is conducted on demand or during infringement litigation.</li>
+                <li><strong>Statutory Duration:</strong> Initial term of 10 years from the filing date, extendable for 3 consecutive 5-year periods up to a statutory maximum of 25 years.</li>
+            </ul>
+        </div>
+    </div>
+</dialog>
+</div>
+
+
+
+<!-- SLIDE (5,0): TRADE SECRETS & LEGAL FRAMEWORKS -->
+<div id="slide-5-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 05 — UNDISCLOSED KNOW-HOW</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Trade Secrets & Legal Protections in Brazil</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Statutory Architecture & Enforcement -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-ts-5-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-gavel text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Brazilian Statutory Regimes</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Confidential technical formulas, internal algorithms, and processes. Enforced via Industrial Property Law (Law 9.279/96), LGPD (Law 13.709/18), and Bankruptcy Law (Law 11.101/05).</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">Criminal Misappropriation & Civil Damage</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for statutory articles & liabilities</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Protection Mechanics & NDAs -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-ts-5-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-file-shield text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Secrecy & Contractual Moats</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">No administrative registration office exists; legal validity requires active secrecy measures. Non-Disclosure Agreements (NDAs) define penalties, confidentiality terms, and boundary governance.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">Active Reasonable Steps Requirement</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for contract clauses & audit tests</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Strategic Trade Secret Benchmark -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-ts-5-0-3').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-brain text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-white font-bold">Patent vs Secret Trade-off</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Trade secrets confer indefinite duration but zero legal protection against reverse engineering or independent duplicate invention. Secrecy loss immediately ends rights.</p>
+                </div>
+                <div class="pt-3 border-t border-white/15">
+                    <span class="text-fluid-tag text-white font-bold block">Coca-Cola® formula & Google Search</span>
+                    <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for strategic engineering comparison</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (5,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Trademarks | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Global IP Systems</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-ts-5-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">LEGAL FRAMEWORKS IN BRAZIL</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Trade Secrets Statutory Protection</h3>
+            </div>
+            <button onclick="document.getElementById('modal-ts-5-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Brazilian jurisprudence establishes protective mechanisms for undisclosed know-how across three specific legal layers:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2.5 text-fluid-meta">
+                <div>
+                    <strong class="text-white block">1. Industrial Property Law (Law 9.279/96, Art. 195, XI & XII):</strong>
+                    Defines unauthorized disclosure, use, or exploitation of business/industrial secrets as a crime of unfair competition. Carries criminal penalties and empowers civil damage recovery within a 3-year statutory discovery window.
+                </div>
+                <div>
+                    <strong class="text-white block">2. General Data Protection Law (LGPD - Law 13.709/18):</strong>
+                    Demands strict data security and confidentiality protocols when trade secrets touch, contain, or correlate with personal user data.
+                </div>
+                <div>
+                    <strong class="text-white block">3. Bankruptcy and Judicial Recovery Law (Law 11.101/05, Art. 169):</strong>
+                    Criminalizes the misappropriation, breach, or disclosure of enterprise secrets during insolvency, liquidation, or restructuring, averting economic asset striping.
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-ts-5-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">CONFIDENTIALITY INFRASTRUCTURE</span>
+                <h3 class="text-fluid-h2 text-white font-bold">NDAs & Operational Secrecy</h3>
+            </div>
+            <button onclick="document.getElementById('modal-ts-5-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>A trade secret possesses zero statutory recognition if the enterprise cannot demonstrate documented, affirmative reasonable steps taken to protect confidentiality.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <strong class="text-[#D1A705] block">Essential Protection Infrastructure:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Non-Disclosure Agreements (NDAs):</strong> Clear bilateral/unilateral definitions of confidential items, restricted purposes, and liquidated penalties for breach.</li>
+                    <li><strong>Access Controls:</strong> Need-to-know technical permissions, encrypted databases, and clean-room coding isolation for core proprietary algorithms.</li>
+                    <li><strong>Internal Policies & Exit Interviews:</strong> Non-compete and IP assignment covenants signed by key engineers and founders.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-ts-5-0-3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">STRATEGIC DECISION MATRIX</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Patent Protection vs Trade Secret</h3>
+            </div>
+            <button onclick="document.getElementById('modal-ts-5-0-3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Choosing between filing a patent and keeping technology as a trade secret dictates an enterprise's long-term competitive moat:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-fluid-meta">
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812]">
+                    <strong class="text-white block mb-1">Patent Monopoly:</strong>
+                    Best for hardware, physical chemical formulations, and mechanical assemblies where reverse engineering is straightforward once sold. Public disclosure in exchange for 20 years exclusivity.
+                </div>
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                    <strong class="text-[#D1A705] block mb-1">Trade Secret:</strong>
+                    Best for internal manufacturing parameters, backend SaaS algorithms, and analytical pipelines unobservable from the final commercial artifact. No 20-year time limit.
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (6,0): NATIONAL & INTERNATIONAL IP SYSTEMS -->
+<div id="slide-6-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 06 — INSTITUTIONAL ARCHITECTURE</span>
+            <h2 class="text-fluid-h2 text-[#901812]">National & International IP Systems</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: INPI & National Prosecution -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-sys-6-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-landmark-flag text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">National Office: INPI</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Instituto Nacional da Propriedade Industrial (INPI). Enforces territorial rights in Brazil across patents, trademarks, and industrial design registrations.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">First-to-File Jurisdictional Rule</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for examination timeline & backlogs</span>
+                </div>
+            </div>
+
+            <!-- Card 2: PCT & Global Coordination -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-sys-6-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-earth-americas text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">PCT & Global Treaty (WIPO)</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">World Intellectual Property Organization (WIPO). The Patent Cooperation Treaty (PCT) establishes a unified international patent filing route across 150+ member states.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">30-Month International Phase Buffer</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for USPTO, EPO & PCT mechanics</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Prior Art Databases & Intelligence -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-sys-6-0-3').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-magnifying-glass-chart text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-white font-bold">Prior Art Intelligence</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Over 80% of technical knowledge is disclosed only in patents. Mandatory search databases: Patentscope, Espacenet, Google Patents, and INPI Search.</p>
+                </div>
+                <div class="pt-3 border-t border-white/15">
+                    <span class="text-fluid-tag text-white font-bold block">Freedom to Operate (FTO) Audits</span>
+                    <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for database search workflows</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (6,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Trade Secrets | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for IP Strategy & Monetization</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-sys-6-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">DOMESTIC PROSECUTION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">INPI Administrative Architecture</h3>
+            </div>
+            <button onclick="document.getElementById('modal-sys-6-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Under Brazilian Law 9.279/96, the National Institute of Industrial Property (INPI) administers and grants exclusive rights. Rights are strictly territorial; protection granted by INPI covers only the territory of Brazil.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <strong class="text-white block">Key INPI Features:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>First-to-File Principle:</strong> Exclusivity belongs to whoever files first, not who invented first (Art. 7).</li>
+                    <li><strong>Grace Period (Período de Graça):</strong> Disclosure made by the inventor within 12 months prior to filing does not destroy novelty (Art. 12), though it is risky internationally.</li>
+                    <li><strong>Fast-Track Programs:</strong> Priority examination available for green technologies, startups, and academic spin-offs.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-sys-6-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">GLOBAL EXPANSION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">The Patent Cooperation Treaty (PCT)</h3>
+            </div>
+            <button onclick="document.getElementById('modal-sys-6-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>There is no such thing as an "international patent". A single global office does not grant global monopolies. Instead, WIPO's PCT provides a unified procedural filing system:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <strong class="text-[#D1A705] block">PCT Operational Roadmap:</strong>
+                <ol class="list-decimal list-inside space-y-1.5">
+                    <li><strong class="text-white">National/PCT Filing ($t=0$ to $t=12$ months):</strong> Establishes priority date globally under the Paris Convention.</li>
+                    <li><strong class="text-white">International Search Report & Written Opinion (ISR/WO):</strong> Preliminary evaluation of patentability by an authorized International Searching Authority.</li>
+                    <li><strong class="text-white">National Phase Entry ($t=30$ or $31$ months):</strong> The applicant chooses specific target jurisdictions (USPTO, EPO, JPO, INPI) to begin substantive national grants. Provides up to 18 months of additional time to raise capital and validate market demand before spending on translations and local foreign attorneys.</li>
+                </ol>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-sys-6-0-3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">PATENT LANDSCAPING</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Patent Databases & Search Protocols</h3>
+            </div>
+            <button onclick="document.getElementById('modal-sys-6-0-3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Conducting prior art searches prior to R&D commitment prevents reinvention and avoids patent infringement litigation:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-white space-y-2 text-fluid-meta">
+                <strong class="text-white block">Primary Patent Portals:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>WIPO Patentscope:</strong> Global access to published PCT applications and member state collections.</li>
+                    <li><strong>Espacenet (EPO):</strong> Over 140 million patent documents with comprehensive family linkages and legal status tracking.</li>
+                    <li><strong>Google Patents:</strong> Machine-learning powered classification search combining patent databases with non-patent scientific literature.</li>
+                    <li><strong>INPI Busca Web:</strong> Direct tracking of Brazilian national patent, trademark, and industrial design gazettes (RPI).</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (7,0): IP STRATEGY, MONETIZATION MODELS & COMMERCIALIZATION -->
+<div id="slide-7-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 07 — COMMERCIALIZATION & ASSET VALUATION</span>
+            <h2 class="text-fluid-h2 text-[#901812]">IP as a Business Strategy & Monetization</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Strategic Business Moat -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-biz-7-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-chess-knight text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Competitive Advantage</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">IP portfolios construct defensive moats against established competitors, enable co-development alliances, and bolster investor valuation during venture rounds.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">Fundraising & Investor Defensibility</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for startup valuation drivers</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Monetization Channels -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-biz-7-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-hand-holding-dollar text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Monetizing IP Rights</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Convert exclusive rights into liquidity via technology licensing, recurring royalties, outright asset assignment, university spin-offs, and open innovation.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">Royalties, Franchising & Spin-offs</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for licensing contract architectures</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Monetization Lab Hook -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-5 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">VERTICAL BRANCH Y=1</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-3">Licensing Royalty Simulator</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Model running royalty rates, gross sales projections, and calculate net present value (NPV) for technology transfer agreements.</p>
+                </div>
+                <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                    <span>Launch Royalty Lab (Press ↓)</span>
+                    <i class="fa-solid fa-chart-line text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (7,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Global Systems | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Royalty Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Common Pitfalls</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-biz-7-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">STRATEGIC COMPETITIVE DYNAMICS</span>
+                <h3 class="text-fluid-h2 text-white font-bold">IP as a Corporate Asset</h3>
+            </div>
+            <button onclick="document.getElementById('modal-biz-7-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Intellectual Property transforms temporary technical head starts into durable legal monopolies that cannot be legitimately duplicated without compensation.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <strong class="text-white block">Core Strategic Functions:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Freedom to Operate (FTO):</strong> Defensively files claims to prevent competitors from encircling core engineering technologies.</li>
+                    <li><strong>Bargaining Power:</strong> Functions as leverage in cross-licensing deals, settling patent disputes without prohibitive cash payouts.</li>
+                    <li><strong>Venture Valuation:</strong> Proprietary IP signals R&D rigor and technological defensibility, lowering perceived execution risk for seed and Series A investors.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-biz-7-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">REVENUE MECHANISMS</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Commercialization Architectures</h3>
+            </div>
+            <button onclick="document.getElementById('modal-biz-7-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Firms can capitalize on engineering assets across distinct commercial models without necessarily manufacturing physical end-products themselves:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <strong class="text-[#D1A705] block">Primary Transfer Models:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Exclusive / Non-Exclusive Licensing:</strong> Authorizing third-party industrial manufacturers to use patented methods in exchange for upfront fees and running royalties.</li>
+                    <li><strong>Spin-Off & Technology Transfer (TT):</strong> Translating university research into independent deep-tech corporate vehicles via institutional licensing agreements (e.g., EMBRAPII framework).</li>
+                    <li><strong>Open Innovation & Strategic Alliances:</strong> Sharing non-core IP to accelerate ecosystem adoption and set industry standards while retaining exclusive rights over core subsystems.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (7,1): LICENSING ROYALTY & NPV MONETIZATION SIMULATOR (BRANCH Y=1) -->
+<div id="slide-7-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold tracking-wider uppercase">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#333333]">Licensing Royalty & Valuation Simulator</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 07</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-center">
+            <!-- Painel de Sliders e Entradas -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-4">
+                <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2">Licensing Contract Variables</h3>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between">
+                        <span>Projected Annual Sales Volume:</span>
+                        <span id="lbl-lic-volume-7-1" class="text-[#901812] font-bold">50,000 units/yr</span>
+                    </label>
+                    <input type="range" id="input-lic-volume-7-1" min="10000" max="250000" step="5000" value="50000" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularRoyalty_7_1()">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between">
+                        <span>Unit Net Market Price ($P$):</span>
+                        <span id="lbl-lic-price-7-1" class="text-[#901812] font-bold">$120.00</span>
+                    </label>
+                    <input type="range" id="input-lic-price-7-1" min="20" max="500" step="10" value="120" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularRoyalty_7_1()">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between">
+                        <span>Running Royalty Rate ($\%_{\text{royalty}}$):</span>
+                        <span id="lbl-lic-rate-7-1" class="text-[#901812] font-bold">5.0%</span>
+                    </label>
+                    <input type="range" id="input-lic-rate-7-1" min="1.0" max="15.0" step="0.5" value="5.0" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularRoyalty_7_1()">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between">
+                        <span>Upfront Licensing Technology Fee:</span>
+                        <span id="lbl-lic-upfront-7-1" class="text-[#901812] font-bold">$150,000</span>
+                    </label>
+                    <input type="range" id="input-lic-upfront-7-1" min="0" max="500000" step="25000" value="150000" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularRoyalty_7_1()">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between">
+                        <span>Contract Term & Cost of Capital ($WACC$):</span>
+                        <span id="lbl-lic-term-7-1" class="text-[#901812] font-bold">8 yrs @ 12.0%</span>
+                    </label>
+                    <input type="range" id="input-lic-term-7-1" min="3" max="15" step="1" value="8" class="w-full accent-[#901812] h-4 cursor-pointer" oninput="calcularRoyalty_7_1()">
+                </div>
+            </div>
+
+            <!-- Painel de Resultados Financeiros e NPV -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-6 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-2">ROYALTY VALUATION OUTPUT</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                            <span class="text-fluid-meta text-[#DEDEDE] block">Gross Annual Revenue</span>
+                            <span id="res-lic-gross-7-1" class="text-fluid-h3 text-white font-mono">$6.00M/yr</span>
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md">
+                            <span class="text-fluid-meta text-[#DEDEDE] block">Annual Royalty Cash Flow</span>
+                            <span id="res-lic-annroy-7-1" class="text-fluid-h3 text-white font-mono">$300.00k/yr</span>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md mt-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-fluid-meta text-[#DEDEDE]">Total Tech Transfer NPV</span>
+                            <span class="text-fluid-tag text-[#D1A705] font-bold">Upfront + Discounted Royalties</span>
+                        </div>
+                        <span id="res-lic-npv-7-1" class="text-fluid-h2 text-[#D1A705] font-mono">$1.64M</span>
+                    </div>
+                </div>
+                <div class="p-4 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm">
+                    <i class="fa-solid fa-file-signature text-[#D1A705] text-xl"></i>
+                    <span>Licensing contracts transform proprietary engineering IP into predictable, scalable revenue streams without capital outlays for manufacturing plants.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (7,1)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Common Pitfalls</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (7,1) -->
+    <script>
+        function calcularRoyalty_7_1() {
+            const vol = parseFloat(document.getElementById('input-lic-volume-7-1').value);
+            const price = parseFloat(document.getElementById('input-lic-price-7-1').value);
+            const rate = parseFloat(document.getElementById('input-lic-rate-7-1').value) / 100;
+            const upfront = parseFloat(document.getElementById('input-lic-upfront-7-1').value);
+            const term = parseInt(document.getElementById('input-lic-term-7-1').value);
+            const wacc = 0.12;
+
+            document.getElementById('lbl-lic-volume-7-1').innerText = `${vol.toLocaleString()} units/yr`;
+            document.getElementById('lbl-lic-price-7-1').innerText = `$${price.toFixed(2)}`;
+            document.getElementById('lbl-lic-rate-7-1').innerText = `${(rate * 100).toFixed(1)}%`;
+            document.getElementById('lbl-lic-upfront-7-1').innerText = `$${upfront.toLocaleString()}`;
+            document.getElementById('lbl-lic-term-7-1').innerText = `${term} yrs @ ${(wacc * 100).toFixed(1)}%`;
+
+            const grossAnnual = vol * price;
+            const annualRoyalty = grossAnnual * rate;
+
+            let npvRoyalties = 0;
+            if (wacc > 0) {
+                npvRoyalties = annualRoyalty * ((1 - Math.pow(1 + wacc, -term)) / wacc);
+            } else {
+                npvRoyalties = annualRoyalty * term;
+            }
+
+            const totalNPV = upfront + npvRoyalties;
+
+            document.getElementById('res-lic-gross-7-1').innerText = `$${(grossAnnual / 1000000).toFixed(2)}M/yr`;
+            document.getElementById('res-lic-annroy-7-1').innerText = `$${(annualRoyalty / 1000).toFixed(1)}k/yr`;
+            document.getElementById('res-lic-npv-7-1').innerText = `$${(totalNPV / 1000000).toFixed(2)}M`;
+        }
+
+        if (document.getElementById('input-lic-volume-7-1')) calcularRoyalty_7_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (8,0): COMMON IP PITFALLS & STARTUP VULNERABILITIES -->
+<div id="slide-8-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-clay1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 08 — RISK MITIGATION & GOVERNANCE</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Common IP Mistakes & Startup Vulnerabilities</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Premature Public Disclosure -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-risk-8-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-radiation text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Premature Disclosure</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Publishing conference papers, theses, or pitching at demo days before filing a provisional patent immediately triggers state-of-the-art novelty destruction worldwide.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">First-to-File Trap & Grace Limits</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for academic disclosure risks</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Leaks & Contractual Gaps -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-risk-8-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-user-lock text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Unshielded Interactions</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Sharing physical prototypes with prospective clients or fabricators without robust NDAs, alongside omitting IP assignment clauses in founder/employee employment agreements.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">Absence of Legal Ownership Vesting</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for contract clauses & team governance</span>
+                </div>
+            </div>
+
+            <!-- Card 3: False Legal Assumptions -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-risk-8-0-3').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-white font-bold">Flawed IP Assumptions</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Assuming invention rights arise automatically without administrative examination, delaying brand filing until commercial launch, and ignoring foreign territorial exclusivity.</p>
+                </div>
+                <div class="pt-3 border-t border-white/15">
+                    <span class="text-fluid-tag text-white font-bold block">Automatic Illusion vs Registration Realities</span>
+                    <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for startup compliance audit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (8,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for IP Monetization | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Case Studies</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-risk-8-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">FATAL NOVELTY PITFALL</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Premature Academic & Market Disclosures</h3>
+            </div>
+            <button onclick="document.getElementById('modal-risk-8-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>The academic impulse to "publish or perish" constitutes the single greatest destroyer of deep-tech venture equity. Once a technology is described publicly in journals, conference posters, or online blogs, its statutory novelty is lost internationally.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <strong class="text-white block">Procedural Guardrails:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>File Priority First:</strong> Always secure at least a provisional national application (INPI) before submitting manuscripts for peer review.</li>
+                    <li><strong>The Grace Period Trap:</strong> While Brazil (12 months) and the US allow grace periods, key jurisdictions like Europe (EPO) enforce strict absolute novelty with zero grace period for voluntary disclosures.</li>
+                    <li><strong>Abstract Presentations:</strong> Disclosing functional mechanisms or formulations during thesis defenses that lack formal confidentiality orders places that IP into the global state of the art.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-risk-8-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">INTERNAL & SUPPLY CHAIN GOVERNANCE</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Contractual Leaks & Vesting Deficits</h3>
+            </div>
+            <button onclick="document.getElementById('modal-risk-8-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Venture capitalists conduct thorough due diligence on IP chain-of-title. Unassigned intellectual work executed by early team members or external contractors can stall investment rounds indefinitely.</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <strong class="text-[#D1A705] block">Mandatory Contract Architecture:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Bilateral Pre-Meeting NDAs:</strong> Require signed NDAs with liquid damages clauses prior to displaying prototypes, cad files, or chemical formulations to manufacturers or external partners.</li>
+                    <li><strong>Proprietary Information & Inventions Agreements (PIIA):</strong> Mandatory contractual clauses explicitly vesting all employee and intern R&D inventions into corporate entity ownership (Law 9.279/96 Art. 88).</li>
+                    <li><strong>Founder Vesting & IP Assignment:</strong> Ensure founders formally assign pre-existing code, blueprints, and prototypes to the startup entity in exchange for equity.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-risk-8-0-3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">MISCONCEPTIONS & TERRITORIALITY</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Fallacies in Startup IP Management</h3>
+            </div>
+            <button onclick="document.getElementById('modal-risk-8-0-3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Engineers often conflate legal doctrines across different IP categories, resulting in irreversible strategic vulnerabilities:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-fluid-meta">
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812]">
+                    <strong class="text-white block mb-1">Fallacy: "Inventions are Automatically Protected"</strong>
+                    False. Copyright protects software code and literary works automatically upon creation, but technological hardware, mechanisms, and formulations require affirmative prosecution and patent grant.
+                </div>
+                <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                    <strong class="text-[#D1A705] block mb-1">Fallacy: "Late Trademark Filing"</strong>
+                    Failing to register trademarks early leaves brands vulnerable to squatter filings. Rebranding after product traction wastes substantial marketing capital and erodes initial market goodwill.
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (9,0): REAL-WORLD CASE STUDIES (NESPRESSO, UBER, EMBRAPII) -->
+<div id="slide-9-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 09 — EMPIRICAL BENCHMARKS</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Case Studies: Business Architecture & IPR</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Case 1: Nespresso -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-case-9-0-1').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#901812]">
+                        <i class="fa-solid fa-mug-hot text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Case 1: Nespresso</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Patent + Business Model + Brand = Market Lock-in. Proprietary capsule-machine interface architecture engineered multi-billion recurring cash flows.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#901812] font-bold block">Hardware Patent Exclusivity & Post-Expiry Moats</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for portfolio teardown</span>
+                </div>
+            </div>
+
+            <!-- Case 2: Uber -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705] cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-case-9-0-2').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-network-wired text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Case 2: Uber</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Trademark + Software + Network Effects = Global Scalability. Dynamic pricing algorithms protected as trade secrets alongside brand asset defense.</p>
+                </div>
+                <div class="pt-3 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">Platform IP & Two-Sided Market Scale</span>
+                    <span class="text-fluid-meta text-[#666666] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for platform dynamics</span>
+                </div>
+            </div>
+
+            <!-- Case 3: EMBRAPII Startups -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-white cursor-pointer hover:shadow-2xl transition-all" onclick="document.getElementById('modal-case-9-0-3').showModal()">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-3 text-[#D1A705]">
+                        <i class="fa-solid fa-flask-vial text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-white font-bold">Case 3: EMBRAPII</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#DEDEDE]">Academic Research + IP Licensing = Technology Transfer. Co-funding applied research between university units and industrial engineering enterprises.</p>
+                </div>
+                <div class="pt-3 border-t border-white/15">
+                    <span class="text-fluid-tag text-white font-bold block">Triple Helix & Tripartite IP Agreements</span>
+                    <span class="text-fluid-meta text-[#DEDEDE] mt-2 block font-semibold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for technology transfer rules</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (9,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Common Pitfalls | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Assignment & References</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) -->
+    <dialog id="modal-case-9-0-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">CLOSED ECOSYSTEM MONETIZATION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Nespresso: Portfolio Lock-in Architecture</h3>
+            </div>
+            <button onclick="document.getElementById('modal-case-9-0-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Nestlé combined patents, design rights, and brand positioning to establish one of modern industry's most successful locked ecosystems:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <strong class="text-white block">Strategic Asset Synergy:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Invention Patents (Extracted Extraction Dynamics):</strong> Over 1,700 patents covering the pod geometry, membrane puncture system, and hydraulic pressurization. Competitors were blocked from producing compatible pods for 20 years.</li>
+                    <li><strong>Razors and Blades Servitization:</strong> Machines were licensed to third-party manufacturers (DeLonghi, Krups) at cost to scale adoption, capturing high-margin annuity revenues exclusively via patented coffee pods.</li>
+                    <li><strong>Transition Beyond Patent Expiry:</strong> As primary patents expired in 2012, Nestlé pivoted into trademark equity (Nespresso® Club), specialized boutique distribution, and a new patent web (Vertuo system barcode recognition).</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-case-9-0-2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">PLATFORM CAPITALIZATION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Uber: Software, Brand & Network Effects</h3>
+            </div>
+            <button onclick="document.getElementById('modal-case-9-0-2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Uber revolutionized urban mobility not through physical fleet ownership, but through intellectual property coordination across multiple regimes:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <strong class="text-[#D1A705] block">Multilayered Asset Composition:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Trade Secrets (Algorithms):</strong> Core routing engines, surge pricing elasticity models, and driver-passenger pairing heuristics remain strictly guarded undisclosed trade secrets.</li>
+                    <li><strong>Patents & Software Copyright:</strong> Global filings protecting user interface interaction mechanics, mobile dispatch interfaces, and telemetry verification frameworks.</li>
+                    <li><strong>Trademarks & Network Dominance:</strong> Massive multi-jurisdiction trademark registrations secured ubiquitous consumer top-of-mind equity, reinforcing extreme two-sided market network effects.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-case-9-0-3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">UNIVERSITY-INDUSTRY ALLIANCES</span>
+                <h3 class="text-fluid-h2 text-white font-bold">EMBRAPII: Institutional Tech Transfer</h3>
+            </div>
+            <button onclick="document.getElementById('modal-case-9-0-3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>The Brazilian Company of Industrial Research and Innovation (EMBRAPII) bridges the "valley of death" between academic lab benches and industrial deployment:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-white space-y-2 text-fluid-meta">
+                <strong class="text-white block">Contractual Innovation Architecture:</strong>
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Non-Refundable Tripartite Funding:</strong> Project funding is split between EMBRAPII (1/3 grant), partner industry/startup (1/3+ equity/cash), and the accredited Research Unit (1/3 economic lab contribution).</li>
+                    <li><strong>Pre-Agreed IP Ownership:</strong> Contractual clarity defined *ex-ante*; industrial partners negotiate clear royalty rates or exclusive exploitation rights upfront, avoiding bureaucratic litigation.</li>
+                    <li><strong>Commercial Acceleration:</strong> Rapid TRL advancement (TRL 3 to TRL 7-8) utilizing university infrastructure without saddling early-stage spin-offs with premature CAPEX.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- STATUS DA MIGRAÇÃO:
+- Concluído: Slide (10,0) - References & In-Class Quiz (Sintaxe de URL e QR Code Estritamente Sanitizadas)
+- Próximo: Slide (11,0) - Weekly Report & Final Deliverables
+- Pendentes: Nenhum.
+-->
+
+<!-- SLIDE (10,0): REFERENCES & IN-CLASS QUIZ -->
+<div id="slide-10-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks3.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">SYNTHESIS & ASSESSMENT</span>
+            <h2 class="text-fluid-h2 text-[#901812]">References & In-Class Quiz</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Coluna Esquerda: Academic References List -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-3">Key Bibliographic & Institutional References</h3>
+                    <ul class="space-y-2.5 text-fluid-meta text-[#444444] font-semibold">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-landmark text-[#901812] mt-1.5 mr-3 flex-shrink-0"></i>
+                            <span><strong>INPI</strong> — Instituto Nacional da Propriedade Industrial (1996). <em>Lei da Propriedade Industrial (Lei nº 9.279/1996) e Diretrizes de Exame de Patentes</em>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-globe text-[#901812] mt-1.5 mr-3 flex-shrink-0"></i>
+                            <span><strong>WIPO</strong> — World Intellectual Property Organization (2020). <em>Patent Cooperation Treaty (PCT) Applicant's Guide & WIPO IP Statistics Data Center</em>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-book-bookmark text-[#901812] mt-1.5 mr-3 flex-shrink-0"></i>
+                            <span><strong>Merges, R. P.</strong> (2019). <em>Justifying Intellectual Property</em>. Harvard University Press.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-shield-halved text-[#901812] mt-1.5 mr-3 flex-shrink-0"></i>
+                            <span><strong>Brasil</strong> (2018). <em>Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018)</em> e <em>Lei de Falências (Lei nº 11.101/2005, Art. 169)</em>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-network-wired text-[#901812] mt-1.5 mr-3 flex-shrink-0"></i>
+                            <span><strong>Chesbrough, H.</strong> (2003). <em>Open Innovation: The New Imperative for Creating and Profiting from Technology</em>. Harvard Business School Press.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-3 border-t border-black/10 flex items-center space-x-2 text-fluid-tag text-[#777777]">
+                    <i class="fa-solid fa-database text-[#D1A705]"></i>
+                    <span>Prior Art Databases: Patentscope (WIPO), Espacenet (EPO), Google Patents & INPI Busca.</span>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: In-Class Quiz Card & QR Code -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white text-center space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">IN-CLASS ASSESSMENT</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Quiz 060: IPR & Monetization</h3>
+                    <p class="text-fluid-meta text-[#DEDEDE]">Scan the QR code below or tap the direct link to submit your real-time individual assessment.</p>
+                </div>
+
+                <div class="bg-white/90 backdrop-blur-md p-4 rounded-2xl max-w-[210px] sm:max-w-[240px] mx-auto shadow-lg">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfHQqpbo5V4gTO3wKj2T0HwDHceUp9UJmJlcq3Z8t698GVRgQ%2Fviewform%3Fusp%3Dheader&color=901812" alt="Quiz 060 Google Form QR Code" class="w-full h-auto rounded-lg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfHQqpbo5V4gTO3wKj2T0HwDHceUp9UJmJlcq3Z8t698GVRgQ%2Fviewform%3Fusp%3Dheader'">
+                </div>
+
+                <div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHQqpbo5V4gTO3wKj2T0HwDHceUp9UJmJlcq3Z8t698GVRgQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-6 bg-[#901812] text-white font-bold rounded-2xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-body shadow-md inline-flex items-center justify-center space-x-3 min-h-[52px]">
+                        <i class="fa-solid fa-list-check text-[#D1A705] text-xl"></i>
+                        <span>Open In-Class Quiz Form</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (10,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Case Studies | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Weekly Report (11,0)</span>
+    </footer>
+</div>
+
+
+
+<!-- SLIDE (11,0): WEEKLY REPORT & EVALUATION ASSIGNMENT -->
+<div id="slide-11-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks4.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">DELIVERABLE & ASSIGNMENT</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Weekly Report 060: IPR Scout & Audit</h2>
+        </div>
+        <a href="https://jmfcarvalho.github.io/civ670/" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Coluna Esquerda: 4 Structural Questions Breakdown -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-3">Report Architecture & Research Prompts</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-fluid-meta font-semibold text-[#444444]">
+                        <div class="p-3.5 bg-white/80 rounded-2xl shadow-sm border-l-4 border-[#901812] cursor-pointer hover:bg-white transition-colors" onclick="document.getElementById('modal-rep-11-0-q1').showModal()">
+                            <strong class="text-[#901812] block mb-0.5">Q1: Decoding the Patent</strong>
+                            <span>Problem, Claims, Triple Helix context & TRL level.</span>
+                            <span class="text-fluid-tag text-[#666666] block mt-1 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for prompt details</span>
+                        </div>
+
+                        <div class="p-3.5 bg-white/80 rounded-2xl shadow-sm border-l-4 border-[#D1A705] cursor-pointer hover:bg-white transition-colors" onclick="document.getElementById('modal-rep-11-0-q2').showModal()">
+                            <strong class="text-[#D1A705] block mb-0.5">Q2: Software Intelligence</strong>
+                            <span>Software registration vs patents & pain/gain mapping.</span>
+                            <span class="text-fluid-tag text-[#666666] block mt-1 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for prompt details</span>
+                        </div>
+
+                        <div class="p-3.5 bg-white/80 rounded-2xl shadow-sm border-l-4 border-[#333333] cursor-pointer hover:bg-white transition-colors" onclick="document.getElementById('modal-rep-11-0-q3').showModal()">
+                            <strong class="text-[#333333] block mb-0.5">Q3: Patent Roadmap</strong>
+                            <span>Prior art search, INPI GRU fees & 4 core docs.</span>
+                            <span class="text-fluid-tag text-[#666666] block mt-1 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for prompt details</span>
+                        </div>
+
+                        <div class="p-3.5 bg-white/80 rounded-2xl shadow-sm border-l-4 border-[#901812] cursor-pointer hover:bg-white transition-colors" onclick="document.getElementById('modal-rep-11-0-q4').showModal()">
+                            <strong class="text-[#901812] block mb-0.5">Q4: Software & Copyright</strong>
+                            <span>Digital Hash, e-Software, speed & Berne Convention.</span>
+                            <span class="text-fluid-tag text-[#666666] block mt-1 font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Tap for prompt details</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-black/10 flex items-center space-x-2 text-fluid-tag text-[#777777]">
+                    <i class="fa-solid fa-clock text-[#901812]"></i>
+                    <span>Submission Deadline: strictly before the start of Class 070. One submission per group.</span>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Google Forms Card & QR Code -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white text-center space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">EVALUATION ASSIGNMENT</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Submit Weekly Report 060</h3>
+                    <p class="text-fluid-meta text-[#DEDEDE]">Access the institutional submission form via QR code or direct link below.</p>
+                </div>
+
+                <div class="bg-white/90 backdrop-blur-md p-4 rounded-2xl max-w-[210px] sm:max-w-[240px] mx-auto shadow-lg">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLScdVTlbfJsVSX1tnfxUL4oIFW5SqVg0vtNBx5PjJWp6GJ4lSw%2Fviewform&color=901812" alt="Weekly Report 060 QR Code" class="w-full h-auto rounded-lg" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLScdVTlbfJsVSX1tnfxUL4oIFW5SqVg0vtNBx5PjJWp6GJ4lSw%2Fviewform'">
+                </div>
+
+                <div>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScdVTlbfJsVSX1tnfxUL4oIFW5SqVg0vtNBx5PjJWp6GJ4lSw/viewform" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-6 bg-[#901812] text-white font-bold rounded-2xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-body shadow-md inline-flex items-center justify-center space-x-3 min-h-[52px]">
+                        <i class="fa-solid fa-file-arrow-up text-[#D1A705] text-xl"></i>
+                        <span>Open Weekly Report Form</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Opcional / Notas Técnicas -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 060 — Slide (11,0)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for References & In-Class Quiz | Final Slide of Module</span>
+    </footer>
+
+    <!-- MODAIS NATIVOS (<DIALOG>) PARA DIRETRIZES COMPLETAS DO WEEKLY REPORT -->
+    <dialog id="modal-rep-11-0-q1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">QUESTION 01 GUIDELINES</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Decoding the Patent: Problem, Claims & TRL</h3>
+            </div>
+            <button onclick="document.getElementById('modal-rep-11-0-q1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Select a specific technology related to your research interests from INPI, Espacenet, Patentscope, or USPTO:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Metadata & Assignee:</strong> Title, Patent Number, Assignee/Owner. Analyze whether ownership reflects an Academic Spin-off (University) or Private Corporation under the Triple Helix framework.</li>
+                    <li><strong>State of the Art & Problem:</strong> Describe the Background section. What technical bottleneck in prior art does this patent solve?</li>
+                    <li><strong>Claims & Competitive Advantage:</strong> Detail 3 technical features in the Claims section and explain how they construct a defensible commercial moat.</li>
+                    <li><strong>TRL Reflection:</strong> Estimate TRL at filing date (e.g., TRL 3 Proof of Concept vs TRL 6 Prototype in relevant environment) citing experimental examples.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-rep-11-0-q2" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">QUESTION 02 GUIDELINES</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Competitive Intelligence: Software Protection</h3>
+            </div>
+            <button onclick="document.getElementById('modal-rep-11-0-q2').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Select a software application or computer-implemented engineering tool from INPI, Espacenet, WIPO, or US Copyright Office:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] space-y-2 text-fluid-meta">
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Identification & Nature:</strong> Delineate between Software Registration (literal source code) versus Software Patent (computer-implemented method).</li>
+                    <li><strong>Structural Breakdown:</strong> Summarize the architecture, abstract, and technical specifications defining the target problem.</li>
+                    <li><strong>Value Alignment:</strong> Link 3 technical claims directly to the Value Proposition Canvas as Pain Relievers or Gain Creators.</li>
+                    <li><strong>Strategic Maturity:</strong> Estimate software TRL at filing date (TRL 2-3 concept vs TRL 5-7 operational system).</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-rep-11-0-q3" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">QUESTION 03 GUIDELINES</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Patent Registration Roadmap</h3>
+            </div>
+            <button onclick="document.getElementById('modal-rep-11-0-q3').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Detail the administrative and economic steps for patent prosecution at INPI:</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-white space-y-2 text-fluid-meta">
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Workflow & Timelines:</strong> Step-by-step from prior art search through formal filing, 18-month publication, examination request, and grant.</li>
+                    <li><strong>Cost Structure & GRUs:</strong> Initial filing fees, examination request rates, and progressive annual maintenance fees (anuidades).</li>
+                    <li><strong>Mandatory Documentation:</strong> Function of Descriptive Report, Claims (quadro reivindicatório), Drawings, and Abstract.</li>
+                    <li><strong>Strategic Reflection:</strong> Trade-offs between patent public disclosure (20-year monopoly) versus keeping secret know-how (Trade Secret).</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog id="modal-rep-11-0-q4" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">QUESTION 04 GUIDELINES</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Software Protection & Copyright Logic</h3>
+            </div>
+            <button onclick="document.getElementById('modal-rep-11-0-q4').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Access INPI's e-Software platform and evaluate the specific regime of software copyright (Law 9.609/98):</p>
+            <div class="p-4 bg-white/10 rounded-2xl border-l-4 border-[#901812] space-y-2 text-fluid-meta">
+                <ul class="list-disc list-inside space-y-1.5">
+                    <li><strong>Digital Declaration & Cryptographic Hash:</strong> Role of the SHA-512 cryptographic hash generated from source code to establish proof of creation.</li>
+                    <li><strong>Costs & Speed:</strong> Compare the modest cost and rapid grant (often under 10 days) versus patent prosecution backlogs, analyzing its impact on startup agility.</li>
+                    <li><strong>Nature of Protection:</strong> Literal code protection versus technical functionality. What happens if a competitor rewrites code in another syntax to execute identical functions?</li>
+                    <li><strong>International Validity:</strong> How the Berne Convention automatically enforces copyright validity across 180+ member countries without separate filings.</li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+
+    </main>
+
+    <!-- MOTOR DE NAVEGAÇÃO MATRICIAL 2D -->
+    <script>
+        let currentX = 0, currentY = 0;
+        let slideGrid = {};
+
+        function updateSlideGrid() {
+            slideGrid = {};
+            document.querySelectorAll('[id^="slide-"]').forEach(slide => {
+                const parts = slide.id.replace('slide-', '').split('-');
+                if (parts.length === 2) slideGrid[`${parts[0]},${parts[1]}`] = slide.id;
+            });
+        }
+
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
+        function updateUI() {
+            updateSlideGrid();
+            const keysH = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const maxH = Math.max(...keysH.map(k => parseInt(k.split(',')[0])), 0);
+            const totalMainSlides = keysH.length;
+            
+            document.getElementById('progressBar').style.width = `${maxH === 0 ? 100 : (currentX / maxH) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX},${currentY}) | ${currentX + 1} of ${totalMainSlides}`;
+
+            const dirs = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in dirs) {
+                const btn = document.getElementById(`btn-nav-${d}`);
+                if (btn) btn.classList.toggle('nav-enabled', hasSlide(currentX + dirs[d][0], currentY + dirs[d][1]));
+            }
+        }
+
+        function moveInGrid(dx, dy) {
+            updateSlideGrid();
+            const nx = currentX + dx, ny = currentY + dy;
+            if (hasSlide(nx, ny)) {
+                const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
+                const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
+                
+                cur.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+
+                if (dx > 0) cur.classList.add('slide-hidden-left');
+                else if (dx < 0) cur.classList.add('slide-hidden-right');
+                else if (dy > 0) cur.classList.add('slide-hidden-down');
+                else if (dy < 0) cur.classList.add('slide-hidden-up');
+
+                nxt.classList.add('slide-active');
+
+                currentX = nx; currentY = ny;
+                updateUI();
+                if (window.renderMathInElement) renderMathInElement(nxt);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT','TEXTAREA','DIALOG'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
+            else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
+            else if (e.key === 'ArrowUp') moveInGrid(0, -1);
+            else if (e.key === 'ArrowDown') moveInGrid(0, 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            updateUI(); 
+        });
+    </script>
+</body>
+</html>
