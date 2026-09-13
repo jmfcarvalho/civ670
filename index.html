@@ -10,14 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- ========================================================================= -->
-    <!-- CENTRAL RESOURCE DIRECTORY                                                 -->
-    <!-- ========================================================================= -->
+    <!-- CENTRAL RESOURCE DIRECTORY -->
     <script>
         const COURSE_ASSETS = {
             logos: {
-                ufv: "https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png",
-                pms: "https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png"
+                ufv: "Logo UFV oficial horizontal.png",
+                pms: "pms.png"
             },
             externalLinks: {
                 sharedDrive: "https://drive.google.com/open?id=1lk2dcMJCYRIH672xxkG2vDPFvih__Urr&usp=drive_fs",
@@ -35,7 +33,7 @@
             --pms-gold: #D1A705;
             --pms-dark: #333333;
             --pms-bg: #F4F6F5;
-            --pms-card-light: rgba(255, 255, 255, 0.70);
+            --pms-card-light: rgba(255, 255, 255, 0.72);
             --pms-card-dark: rgba(51, 51, 51, 0.85);
             --pms-text-muted: #444444;
 
@@ -45,8 +43,8 @@
             --fluid-h1: clamp(2.2rem, 4.5vw, 3.8rem);
             --fluid-h2: clamp(1.6rem, 3.2vw, 2.5rem);
             --fluid-h3: clamp(1.25rem, 2.2vw, 1.75rem);
-            --fluid-body: clamp(1.05rem, 1.6vw, 1.35rem);
-            --fluid-meta: clamp(0.9rem, 1.3vw, 1.15rem);
+            --fluid-body: clamp(1.10rem, 1.6vw, 1.40rem);
+            --fluid-meta: clamp(0.95rem, 1.3vw, 1.20rem);
             --fluid-tag: clamp(0.85rem, 1.1vw, 1.05rem);
         }
 
@@ -100,6 +98,11 @@
             pointer-events: none;
             z-index: 1;
         }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.70);
+            backdrop-filter: blur(8px);
+        }
     </style>
 </head>
 <body class="bg-portal-fade min-h-screen flex flex-col justify-between p-4 sm:p-8 md:p-12 relative">
@@ -109,15 +112,15 @@
         <!-- HEADER -->
         <header class="w-full flex justify-between items-center gap-4">
             <div class="flex items-center space-x-4 sm:space-x-6 bg-white/80 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
-                <img id="img-logo-ufv" src="https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto">
+                <img id="img-logo-ufv" src="Logo UFV oficial horizontal.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png'">
                 <div class="h-10 w-[1px] bg-[#DEDEDE]"></div>
                 <div>
-                    <span class="text-fluid-tag text-[#901812] block">CIV 670</span>
+                    <span class="text-fluid-tag text-[#901812] block font-bold">CIV 670</span>
                     <span class="text-fluid-meta text-[#333333] font-bold hidden sm:inline">PPGEC / DEC / UFV</span>
                 </div>
             </div>
             <a id="link-pms-portal" href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/85 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
-                <img id="img-logo-pms" src="https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png" alt="PMS Logo" class="h-10 sm:h-14 w-auto">
+                <img id="img-logo-pms" src="pms.png" alt="PMS Logo" class="h-10 sm:h-14 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ153/main/assets/pms_logo/pms.png'">
             </a>
         </header>
 
@@ -130,12 +133,18 @@
                     <p class="text-fluid-body text-[#444444] max-w-3xl">
                         Interactive presentations, virtual labs, decision simulators, and technical modules designed for translating engineering research into market-ready ventures.
                     </p>
-                    <div class="mt-6 flex flex-wrap items-center gap-4 text-fluid-meta text-[#555555]">
-                        <span class="flex items-center"><i class="fa-solid fa-user-tie text-[#901812] mr-2"></i> Prof. José Maria Franco de Carvalho</span>
+                    <div class="mt-6 flex flex-wrap items-center gap-3 text-fluid-meta text-[#555555]">
+                        <button onclick="document.getElementById('modal-prof-profile').showModal()" class="flex items-center bg-white/90 hover:bg-[#901812] hover:text-white px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer border border-black/5 font-bold text-[#901812]">
+                            <i class="fa-solid fa-user-tie mr-2"></i> Prof. José Maria Franco de Carvalho <i class="fa-solid fa-circle-info ml-2 text-xs"></i>
+                        </button>
                         <span class="hidden sm:inline">•</span>
-                        <span class="flex items-center"><i class="fa-solid fa-graduation-cap text-[#901812] mr-2"></i> Semester 2026/2</span>
+                        <button onclick="document.getElementById('modal-ai-statement').showModal()" class="flex items-center bg-white/90 hover:bg-[#D1A705] hover:text-[#333333] px-3.5 py-2 rounded-xl transition-all shadow-sm cursor-pointer border border-black/5 font-bold text-[#333333]">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-2 text-[#901812]"></i> AI Course Development Statement <i class="fa-solid fa-circle-info ml-2 text-xs"></i>
+                        </button>
                         <span class="hidden sm:inline">•</span>
-                        <span class="flex items-center"><i class="fa-solid fa-flask text-[#901812] mr-2"></i> PMS & tecnoPARQ Ecosystem</span>
+                        <span class="flex items-center font-bold text-[#444444]"><i class="fa-solid fa-graduation-cap text-[#901812] mr-2"></i> Semester 2026/2</span>
+                        <span class="hidden sm:inline">•</span>
+                        <span class="flex items-center font-bold text-[#444444]"><i class="fa-solid fa-flask text-[#901812] mr-2"></i> PMS & tecnoPARQ Ecosystem</span>
                     </div>
                 </div>
             </div>
@@ -157,7 +166,7 @@
         <section class="space-y-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-fluid-tag text-[#901812] uppercase tracking-wider block">Course Modules</span>
+                    <span class="text-fluid-tag text-[#901812] uppercase tracking-wider block font-bold">Course Modules</span>
                     <h2 class="text-fluid-h2 text-[#333333]">Chronological Lecture Roadmap</h2>
                 </div>
                 <div class="hidden md:flex items-center space-x-2 text-fluid-meta text-[#555555]">
@@ -174,7 +183,6 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 010</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Aug 13</span>
                         </div>
                         <h3 class="text-fluid-h3 text-[#333333] mb-2">Course Overview & Structural Dynamics</h3>
                         <p class="text-fluid-body text-[#444444]">Syllabus, evaluation system, CAPES integration, international policies, and shared repository overview.</p>
@@ -190,7 +198,6 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 020</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Aug 20</span>
                         </div>
                         <h3 class="text-fluid-h3 text-[#333333] mb-2">Innovation Contexts: Global & National</h3>
                         <p class="text-fluid-body text-[#444444]">Triple/Quadruple Helix models, TTO cap tables, Law 10,973/04, CAPES technological metrics, and NIT-UFV.</p>
@@ -206,10 +213,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 030</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Aug 27</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Products, Services & Market Opportunities</h3>
-                        <p class="text-fluid-body text-[#444444]">Product-Service Systems (PSS), Life Cycle Costing (LCC), LCA carbon metrics (EN 15978), and FMEA reliability labs.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Products and Services in Engineering</h3>
+                        <p class="text-fluid-body text-[#444444]">Product-Service Systems (PSS), Life Cycle Costing (LCC), LCA carbon metrics (EN 15978), normative compliance, and FMEA reliability analysis.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/030.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 030</span>
@@ -222,10 +228,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 040</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Sep 03</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Business Models & Competition Analysis</h3>
-                        <p class="text-fluid-body text-[#444444]">Business Model Canvas (BMC), Porter's Five Forces, Blue Ocean strategy, and value proposition architecture.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Business Models & Strategy</h3>
+                        <p class="text-fluid-body text-[#444444]">Business Model Canvas (BMC), Lean Canvas, unit economics modeling (LTV/CAC), MIT 24-step roadmap, and engineering venture archetypes.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/040.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 040</span>
@@ -238,10 +243,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 050</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Sep 10</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Financing & Intellectual Property Rights (IPR)</h3>
-                        <p class="text-fluid-body text-[#444444]">Patenting strategies, trade secrets, software registration, equity fundraising, grants (FINEP/FAPEMIG), and venture capital.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Undertake to Innovate</h3>
+                        <p class="text-fluid-body text-[#444444]">Technology Readiness Levels (TRL 1–9), Value Proposition architecture, Technology Push vs. Market Pull, and Valley of Death traversal.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/050.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 050</span>
@@ -254,10 +258,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 060</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Sep 17</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Business Planning, Pitching & SDGs</h3>
-                        <p class="text-fluid-body text-[#444444]">Elevator pitch formulation, executive summaries, pitch decks, and integration with UN Sustainable Development Goals.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Intellectual Property Rights (IPR)</h3>
+                        <p class="text-fluid-body text-[#444444]">Patenting criteria, trade secrets (Law 9.279/96), software registration, INPI/PCT prosecution routes, and licensing royalty valuation.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/060.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 060</span>
@@ -270,10 +273,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 070</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Sep 24</span>
                         </div>
                         <h3 class="text-fluid-h3 text-[#333333] mb-2">Market Assessment & Customer Development</h3>
-                        <p class="text-fluid-body text-[#444444]">Steve Blank's Customer Discovery methodology, market sizing (TAM/SAM/SOM), and structured user interviews.</p>
+                        <p class="text-fluid-body text-[#444444]">Customer Discovery methodology, market sizing (TAM/SAM/SOM), problem interviews, and validation of commercial beachheads.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/070.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 070</span>
@@ -286,10 +288,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 080</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Oct 01</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Technical, Economic & Legal Viability</h3>
-                        <p class="text-fluid-body text-[#444444]">Feasibility analysis, CapEx/OpEx cash flow projection, NPV/IRR/Payback metrics, and normative compliance.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Technical, Economic & Financial Viability</h3>
+                        <p class="text-fluid-body text-[#444444]">Engineering feasibility analysis, CapEx/OpEx cash-flow projections, financial metrics (NPV, IRR, Payback), and sensitivity modeling.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/080.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 080</span>
@@ -302,10 +303,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 090</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Oct 08</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Design Principles & User Pain Points</h3>
-                        <p class="text-fluid-body text-[#444444]">Design Thinking in engineering, user journey mapping, ergonomic considerations, and iterative feedback loops.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Venture Financing, Pitching & SDGs</h3>
+                        <p class="text-fluid-body text-[#444444]">Grants (FINEP/FAPEMIG/EMBRAPII), Angel & Venture Capital rounds, SAFE equity notes, pitch deck architecture, and SDG/ESG alignment.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/090.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 090</span>
@@ -318,7 +318,6 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 100</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Oct 29</span>
                         </div>
                         <h3 class="text-fluid-h3 text-[#333333] mb-2">Prototyping, LCA & Eco-Labeling</h3>
                         <p class="text-fluid-body text-[#444444]">TRL escalation (1 to 9), rapid physical prototyping, EPD certifications, Type I/II/III eco-labels, and cradle-to-cradle design.</p>
@@ -334,10 +333,9 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-white bg-[#901812] px-3 py-1 rounded-full">Lecture 110</span>
-                            <span class="text-fluid-meta font-bold text-[#D1A705]">Nov 05</span>
                         </div>
-                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Start-up Exploration & Incubation</h3>
-                        <p class="text-fluid-body text-[#444444]">Incubation process at CENTEV/tecnoPARQ, cap table management, accelerator selection, and university spin-off structuring.</p>
+                        <h3 class="text-fluid-h3 text-[#333333] mb-2">Innovation Plan & Strategic Execution</h3>
+                        <p class="text-fluid-body text-[#444444]">Innovation Sweet Spot (Desirability, Feasibility, Viability, Integrity), Risk Matrix (Probability vs. Impact), 5W2H Action Plan, and 12-month budget roadmap.</p>
                     </div>
                     <a href="https://jmfcarvalho.github.io/civ670/110.html" class="w-full py-3 px-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-tag text-center shadow-md flex items-center justify-center space-x-2 min-h-[48px]">
                         <span>Launch Presentation 110</span>
@@ -350,7 +348,6 @@
                     <div>
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-fluid-tag font-bold text-[#333333] bg-[#D1A705] px-3 py-1 rounded-full">Applied Phase</span>
-                            <span class="text-fluid-meta font-bold text-[#DEDEDE]">Nov 12 – Dec 03</span>
                         </div>
                         <h3 class="text-fluid-h3 text-white mb-2">Technical Visits & Business Plan Defenses</h3>
                         <ul class="text-fluid-meta space-y-1 text-[#DEDEDE]">
@@ -372,13 +369,119 @@
             <div>
                 © 2026 <strong>PMS — Center for Prototyping Materials, Parts and Systems</strong> | PPGEC / DEC / UFV
             </div>
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-6 font-bold">
+                <button onclick="document.getElementById('modal-prof-profile').showModal()" class="hover:text-[#901812] transition-colors cursor-pointer"><i class="fa-solid fa-user-tie mr-1"></i> Instructor Profile</button>
+                <button onclick="document.getElementById('modal-ai-statement').showModal()" class="hover:text-[#901812] transition-colors cursor-pointer"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i> AI Development Statement</button>
                 <a href="https://pms.ufv.br" target="_blank" class="hover:text-[#901812] transition-colors"><i class="fa-solid fa-globe mr-1"></i> PMS Portal</a>
                 <a href="https://drive.google.com/open?id=1lk2dcMJCYRIH672xxkG2vDPFvih__Urr&usp=drive_fs" target="_blank" class="hover:text-[#901812] transition-colors"><i class="fa-brands fa-google-drive mr-1"></i> Drive</a>
             </div>
         </footer>
 
     </div>
+
+    <!-- MODAL AUTOCONTIDO: PROFESSOR PROFILE (UPDATED IN ENGLISH) -->
+    <dialog id="modal-prof-profile" class="rounded-3xl p-6 sm:p-10 bg-[#262626] text-white max-w-4xl w-full shadow-2xl border border-white/20">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-6">
+            <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-[#D1A705] shadow-md flex-shrink-0 bg-white/10">
+                    <img src="PhotoS.jpg" alt="Prof. José Maria Franco de Carvalho" class="w-full h-full object-cover object-top" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/PhotoS.jpg'">
+                </div>
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block">COURSE INSTRUCTOR & SCIENTIFIC LEAD</span>
+                    <h3 class="text-fluid-h2 text-white font-bold">Prof. José Maria Franco de Carvalho</h3>
+                    <p class="text-fluid-meta !text-[#DEDEDE]">Associate Professor | CNPq PQ-C Researcher | Coordinator of PMS & PPGEC — UFV</p>
+                </div>
+            </div>
+            <button onclick="document.getElementById('modal-prof-profile').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-h-[60vh] overflow-y-auto pr-2">
+            <!-- Academic Background -->
+            <div class="md:col-span-7 space-y-3">
+                <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider block">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Academic Profile & Scientific Leadership
+                </span>
+                <p class="text-fluid-body !text-[#F5F5F5] text-justify leading-relaxed">
+                    Civil Engineer graduated from the Federal University of Viçosa - UFV (2004), Master of Science in Civil Engineering from the Federal University of Ouro Preto - UFOP (2007), and Ph.D. in Civil Engineering from the Federal University of Ouro Preto with a doctoral research internship (sandwich period) at the Federal Institute for Materials Research and Testing in Berlin - BAM, Germany (2019).
+                </p>
+                <p class="text-fluid-body !text-[#F5F5F5] text-justify leading-relaxed">
+                    He is currently an Associate Professor at the Federal University of Viçosa (UFV), a CNPq Research Productivity Fellow (Level PQ-C), General Coordinator of the Prototyping Center for Materials, Parts, and Systems (PMS/UFV), Coordinator of the Graduate Program in Civil Engineering (PPGEC/UFV), and Co-Leader of the Sustainable & Innovative Construction Research Group (SICon - CNPq/UFV). He actively collaborates with CNPq research groups RECICLOS (UFOP), ATIVE (UFOP), DEC UFV Structures, and TechBIM (UFV).
+                </p>
+                <div class="p-4 bg-white/10 rounded-2xl border border-white/15 text-fluid-meta !text-[#E5E5E5]">
+                    <strong class="text-[#D1A705] block mb-1">Primary Technological & Research Focus:</strong>
+                    Sustainable construction materials, eco-efficient concretes, industrial waste valorization, alkali-activated cementitious matrices, structural repair and rehabilitation of bridge infrastructure, and structural health management.
+                </div>
+            </div>
+
+            <!-- Personal Profile & Trivia -->
+            <div class="md:col-span-5 space-y-4 border-t md:border-t-0 md:border-l border-white/15 pt-4 md:pt-0 md:pl-6">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider block mb-3">
+                        <i class="fa-solid fa-fingerprint mr-1.5"></i> Personal Profile & Trivia
+                    </span>
+                    <ul class="space-y-2.5 text-fluid-meta !text-[#E5E5E5]">
+                        <li class="flex items-center space-x-2.5 p-2 bg-white/5 rounded-xl border border-white/5">
+                            <i class="fa-solid fa-location-dot text-[#D1A705] text-lg w-6 text-center"></i>
+                            <span>Born in Coimbra, Minas Gerais, Brazil</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5 p-2 bg-white/5 rounded-xl border border-white/5">
+                            <i class="fa-solid fa-glasses text-[#D1A705] text-lg w-6 text-center"></i>
+                            <span>Proudly nerdy personality</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5 p-2 bg-white/5 rounded-xl border border-white/5">
+                            <i class="fa-solid fa-music text-[#D1A705] text-lg w-6 text-center"></i>
+                            <span>Rock enthusiast (with eclectic appreciation from samba to electronic)</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5 p-2 bg-white/5 rounded-xl border border-white/5">
+                            <i class="fa-solid fa-drum text-[#D1A705] text-lg w-6 text-center"></i>
+                            <span>Amateur drummer ("noise maker")</span>
+                        </li>
+                        <li class="flex items-center space-x-2.5 p-2 bg-white/5 rounded-xl border border-white/5">
+                            <i class="fa-solid fa-futbol text-[#D1A705] text-lg w-6 text-center"></i>
+                            <span>Devoted supporter of Fluminense FC and São Paulo FC</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL AUTOCONTIDO: STATEMENT ON THE USE OF AI IN PREPARING THE COURSE AND PRESENTATIONS -->
+    <dialog id="modal-ai-statement" class="rounded-3xl p-6 sm:p-10 bg-[#262626] text-white max-w-3xl w-full shadow-2xl border border-white/20">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div class="flex items-center space-x-3">
+                <i class="fa-solid fa-wand-magic-sparkles text-2xl text-[#D1A705]"></i>
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block uppercase tracking-wider">PEDAGOGICAL & TECHNICAL DISCLOSURE</span>
+                    <h2 class="text-fluid-h2 text-white font-bold">Statement on the Use of Artificial Intelligence</h2>
+                </div>
+            </div>
+            <button onclick="document.getElementById('modal-ai-statement').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body !text-[#F5F5F5] max-h-[60vh] overflow-y-auto pr-2">
+            <p class="!text-[#F5F5F5] leading-relaxed">
+                In alignment with academic transparency, technological innovation, and scientific rigor, the syllabus, slide decks, interactive simulations, and virtual laboratories of <strong>CIV 670</strong> were developed through collaborative human-AI co-piloting between the course professor and state-of-the-art Large Language Models.
+            </p>
+            <div class="space-y-2.5 text-fluid-meta">
+                <div class="p-4 bg-white/10 rounded-2xl border border-white/15 !text-[#E5E5E5]">
+                    <strong class="text-[#D1A705] block mb-1 font-bold"><i class="fa-solid fa-code mr-1.5"></i> 1. Front-End Architecture & Virtual Lab Synthesis:</strong>
+                    Generative AI was utilized to architect clean, dependency-light HTML5, TailwindCSS, and vanilla JavaScript simulation engines. This includes the implementation of real-time interactive models (such as LCC discounted cash-flows, LCA carbon accounts, RPN/FMEA matrix calculators, SAFE dilution converters, and dynamic sticky-note canvases).
+                </div>
+                <div class="p-4 bg-white/10 rounded-2xl border border-white/15 !text-[#E5E5E5]">
+                    <strong class="text-[#D1A705] block mb-1 font-bold"><i class="fa-solid fa-layer-group mr-1.5"></i> 2. Curricular Structuring & Scaffolding:</strong>
+                    AI tools assisted in synthesizing international frameworks (NASA TRLs, ISO 14040/44, ISO 31000, Design Thinking, PSS archetypes, and European SFDR directives) into consistent pedagogical matrices calibrated for Full HD and mobile projection.
+                </div>
+                <div class="p-4 bg-white/10 rounded-2xl border border-white/15 !text-[#E5E5E5]">
+                    <strong class="text-[#D1A705] block mb-1 font-bold"><i class="fa-solid fa-user-check mr-1.5"></i> 3. Scientific Curation & Pedagogical Responsibility:</strong>
+                    All mathematical formulas, legal standards (Brazilian Law 10,973/04 and Law 13,243/16), prompt directives, and engineering concepts were rigorously curated, fact-checked, and validated by the course instructor. The instructor assumes complete intellectual and pedagogical responsibility for all delivered materials.
+                </div>
+            </div>
+        </div>
+    </dialog>
 
 </body>
 </html>

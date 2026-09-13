@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIV 670 | Business Models & Strategy - PMS UFV</title>
+    
+    <!-- ESSENTIAL CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false });"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Preset PMS */
+            --color-primary: #901812;
+            --color-secondary: #D1A705;
+            --color-dark: #333333;
+            --color-bg: #F4F6F5;
+            --bg-shade-left: rgba(244,246,245,0.96);
+            --bg-shade-mid: rgba(244,246,245,0.70);
+            --bg-shade-right: rgba(244,246,245,0.15);
+            --card-light: rgba(255, 255, 255, 0.58);
+            --card-dark: rgba(51, 51, 51, 0.65);
+
+            /* Tipografia Super-Ampliada (Calibração Nativa Full HD / 4k) */
+            --fluid-h1: clamp(2.8rem, 6.2vw, 5.5rem);
+            --fluid-h2: clamp(2.2rem, 4.6vw, 4.0rem);
+            --fluid-h3: clamp(1.75rem, 3.2vw, 2.8rem);
+            --fluid-body: clamp(1.35rem, 2.2vw, 1.95rem);
+            --fluid-meta: clamp(1.15rem, 1.6vw, 1.55rem);
+            --fluid-tag: clamp(1.05rem, 1.4vw, 1.35rem);
+        }
+
+        html, body { 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: var(--color-bg); 
+            font-family: 'PT Sans Narrow', sans-serif; 
+            color: var(--color-dark); 
+        }
+
+        .text-fluid-h1 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h1); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h2); font-weight: 800; line-height: 1.15; }
+        .text-fluid-h3 { font-size: var(--fluid-h3); font-weight: 700; line-height: 1.25; }
+        .text-fluid-body { font-size: var(--fluid-body); font-weight: 500; line-height: 1.45; }
+        .text-fluid-meta { font-size: var(--fluid-meta); font-weight: 600; }
+        .text-fluid-tag { font-size: var(--fluid-tag); font-weight: 700; letter-spacing: 0.04em; }
+
+        .katex-display { font-size: clamp(1.45rem, 2.7vw, 2.45rem) !important; margin: 0.85rem 0 !important; line-height: 1.25 !important; }
+        .katex { font-size: 1.08em; }
+
+        .slide-screen {
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0;
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
+        .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
+        .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
+        .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
+        .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
+
+        .slide-screen::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide-screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide-screen::-webkit-scrollbar-thumb {
+            background: rgba(144, 24, 18, 0.25);
+            border-radius: 9999px;
+        }
+        .slide-screen::-webkit-scrollbar-thumb:hover {
+            background: rgba(144, 24, 18, 0.65);
+        }
+
+        .card-glass { 
+            border: none !important; 
+            background-color: var(--card-light); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+        .card-glass-dark { 
+            border: none !important; 
+            background-color: var(--card-dark); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            color: white; 
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+
+        .card-glass:hover {
+            transform: translateY(-4px);
+            background-color: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-glass-dark:hover {
+            transform: translateY(-4px);
+            background-color: rgba(51, 51, 51, 0.78);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+        }
+
+        .reveal-controls { 
+            position: fixed; 
+            bottom: 1.25rem; 
+            right: 1.25rem; 
+            width: 110px; 
+            height: 110px; 
+            z-index: 1000; 
+            pointer-events: none; 
+        }
+        .control-arrow {
+            position: absolute; 
+            width: 38px; 
+            height: 38px; 
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(6px); 
+            border-radius: 50%; 
+            color: #888888; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0.15; 
+            pointer-events: none;
+            transition: all 0.2s ease; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            font-size: 0.95rem;
+        }
+        .control-arrow.nav-up { top: 0; left: 36px; }
+        .control-arrow.nav-down { bottom: 0; left: 36px; }
+        .control-arrow.nav-left { top: 36px; left: 0; }
+        .control-arrow.nav-right { top: 36px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--color-primary); opacity: 0.65; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--color-primary); color: #FFF; opacity: 1; transform: scale(1.1); }
+    </style>
+</head>
+<body class="w-screen h-screen relative">
+
+    <div class="fixed top-0 left-0 h-2 bg-[var(--color-secondary)] transition-all duration-300 z-[1000]" id="progressBar" style="width: 0%;"></div>
+
+    <div class="fixed bottom-3 left-3 text-fluid-tag font-bold text-[var(--color-dark)] bg-white/70 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm z-[1000] flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]"></span>
+        <span id="slideIndicator">Slide (0,0) | 1 of 5</span>
+    </div>
+
+    <div class="reveal-controls">
+        <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-nav-right" onclick="moveInGrid(1, 0)" class="control-arrow nav-right" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <main class="w-full h-full relative" id="slideDeck">
+
+        
+        
+<!-- SLIDE (0,0): TITLE & COURSE COVER (AULA 110) -->
+<div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
+            <img src="Logo UFV oficial horizontal.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png'">
+            <div class="h-10 w-[1px] bg-black/10"></div>
+            <span class="text-fluid-tag text-[#333333]">CIV 670 • PMS / UFV</span>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-12 sm:h-16 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full">
+            <div class="lg:col-span-7 space-y-4">
+                <div class="p-8 sm:p-12 rounded-3xl card-glass border-l-[16px] border-[#901812]">
+                    <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2 font-bold uppercase">CIV 670 — INNOVATION & TECHNOLOGICAL ENTREPRENEURSHIP</span>
+                    <h1 class="text-fluid-h1 mb-3 text-[#901812]">INNOVATION PLAN & STRATEGIC EXECUTION<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">The Innovation Sweet Spot, Risk Matrix & 5W2H Roadmap</span></h1>
+                    <p class="text-fluid-body text-[#444444]">Translating laboratory research into market-ready ventures: Balancing Desirability, Viability, Feasibility, and Integrity; managing external barriers; structured risk profiling; and 12-month operational execution.</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 p-6 sm:p-10 rounded-3xl card-glass-dark text-white flex flex-col justify-between space-y-4 h-full min-h-[420px]">
+                <div class="bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-md w-full flex-1 flex flex-col items-center justify-center min-h-0 overflow-hidden">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fjmfcarvalho.github.io%2Fciv670%2F110.html&color=901812" alt="Lesson 110 Mobile Sync QR Code" class="w-full h-full max-h-[46vh] object-contain aspect-square mx-auto rounded-lg">
+                    <span class="text-fluid-tag text-[#333333] font-bold mt-2 block flex-shrink-0">Follow On Smartphone</span>
+                </div>
+                <div class="text-center space-y-1 flex-shrink-0">
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold">Course Instructor</span>
+                    <p class="text-fluid-body font-bold text-white">Prof. José Maria Franco de Carvalho</p>
+                    <p class="text-fluid-meta text-[#DEDEDE]">SICon / DEC — Universidade Federal de Viçosa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Innovation Plan & Strategic Execution</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Lesson Plan | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 01</span>
+    </footer>
+</div>
+
+<!-- SLIDE (0,1): LESSON ARCHITECTURE & COMPREHENSIVE LEARNING MATRIX (BRANCH Y=1) -->
+<div id="slide-0-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">PEDAGOGICAL FRAMEWORK (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Lesson Architecture & Strategic Planning Matrix</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Cover</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Core Competencies -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-bullseye text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Core Competencies</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Formulating rigorous, fundable innovation plans for academic and industrial spin-offs by integrating 4-pillar balance, multi-tier risk mitigation, 5W2H operational roadmapping, and disciplined 12-month budget allocation.</p>
+                </div>
+                <ul class="text-fluid-meta space-y-2 text-[#444444] border-t border-black/10 pt-3 font-semibold">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Innovation Plan Architecture: 8 core structural pillars</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Innovation Sweet Spot: Desirability, Viability, Feasibility, Integrity</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>External Barriers: Porter's structural entry barriers & compliance</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Quantitative Risk Matrix: Probability vs. Impact categorization</li>
+                    <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Operational 5W2H: 12-month timeline & budget disbursement</li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Modular Path -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-3">
+                        <i class="fa-solid fa-layer-group text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Modular Path</h3>
+                    </div>
+                    <div class="space-y-1.5 text-fluid-meta font-semibold text-[#444444]">
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 01:</strong> Strategic Structure of the Innovation Plan</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 02:</strong> The Innovation Sweet Spot & 4-Pillar Equilibrium</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 03:</strong> Objectives, KPIs, Targets & Multidisciplinary Teams</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 04:</strong> Market Barriers & University-Industry Partnerships</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 05:</strong> Qualitative & Quantitative Risk Matrix Formulation</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 06:</strong> Action Plan Operationalization via 5W2H Method</div>
+                        <div class="p-2 bg-white/70 rounded-xl border border-black/5"><strong>Mod 07:</strong> 12-Month Financial Forecasting & Grant Synergies</div>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('modal-agenda-110').showModal()" class="w-full py-3 bg-white/80 hover:bg-[#901812] hover:text-white text-[#901812] border border-[#901812]/30 font-bold rounded-2xl transition-all text-fluid-meta shadow-sm flex items-center justify-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Methodological References</span>
+                </button>
+            </div>
+
+            <!-- Card 3: Virtual Labs & Post-it Canvases -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">INTERACTIVE SIMULATION</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Integrated Virtual Labs</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Direct interactive modeling embedded in secondary vertical branches ($Y=1$):</p>
+                    <div class="mt-2 space-y-1.5 text-fluid-meta text-[#DEDEDE]">
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-note-sticky text-[#D1A705] mr-2"></i><strong>Lab 1 (1,1):</strong> Dynamic Post-it Innovation Plan Canvas</div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-scale-balanced text-[#D1A705] mr-2"></i><strong>Lab 2 (2,1):</strong> 4-Pillar Sweet Spot Balance Simulator</div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-table-cells text-[#D1A705] mr-2"></i><strong>Lab 3 (5,1):</strong> 3x3 Dynamic Probability-Impact Risk Matrix</div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-list-check text-[#D1A705] mr-2"></i><strong>Lab 4 (6,1):</strong> Interactive 5W2H Milestone Builder</div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-chart-line text-[#D1A705] mr-2"></i><strong>Lab 5 (7,1):</strong> 12-Month Runway & Budget Engine</div>
+                    </div>
+                </div>
+                <button onclick="moveInGrid(1, 0)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                    <span>Start Module 01 (Press →)</span>
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Architecture & Learning Matrix</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> for Cover | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 01</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: REFERENCES & STANDARDS -->
+    <dialog id="modal-agenda-110" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">PLANNING METHODOLOGY AUDIT</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Scientific & Managerial References</h3>
+            </div>
+            <button onclick="document.getElementById('modal-agenda-110').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Class 110 synthesizes structured business modeling, technology transfer, and execution methodologies:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">IDEO & Design Council (2005/2015):</strong> The Four Pillars of Innovation: Desirability, Viability, Feasibility, and Systemic Integrity.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Porter, M. E. (1980/2008):</strong> <em>Competitive Strategy</em> — Structural Analysis of Industries and Barriers to Market Entry.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">ISO 31000:2018:</strong> Risk Management Guidelines — Principles, Framework, and Probability vs. Consequence Categorization.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Day, G. S. (2007):</strong> Is It Real? Can We Win? Is It Worth Doing? — Managing Risk and Reward in Innovation Portfolios.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Brazilian National Innovation Framework:</strong> Law 10,973/04 & Law 13,243/16 (Marco Legal da CT&I) — NIT-UFV spin-off and shared infrastructure protocols.</div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+
+<!-- SLIDE (1,0): THE INNOVATION PLAN ARCHITECTURE & STRATEGIC FOUNDATION -->
+<div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 01 — STRATEGIC FOUNDATIONS</span>
+            <h2 class="text-fluid-h2 text-[#901812]">The Innovation Plan: Architecture & Systemic Scope</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: The 8-Component Anatomy -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-sitemap text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Strategic Anatomy of the Innovation Plan</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        The Innovation Plan translates lab-scale technological validation into an operationalized market-entry document, articulating eight interdependent modules:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-fluid-meta text-[#444444]">
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>1. Justification:</strong> Core problem, persona pain & market impact.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>2. Persona & Value:</strong> Targeted jobs-to-be-done & pain relievers.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>3. Objectives & Targets:</strong> Quantifiable, time-bounded KPI thresholds.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>4. Hypotheses:</strong> Critical assumptions & prototype proofs.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>5. Team Structure:</strong> Multidisciplinary roles & execution skills.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>6. Solution & Differentiator:</strong> TRL rating & competitive moats.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>7. External Barriers:</strong> Regulatory codes, IP constraints & policies.</div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5"><strong>8. Strategic Partnerships:</strong> University-industry co-development.</div>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between">
+                    <span class="text-fluid-meta text-[#666666] font-semibold"><i class="fa-solid fa-code-compare text-[#901812] mr-2"></i>Covers 12-month development horizon</span>
+                    <button onclick="document.getElementById('modal-anatomy-1-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Anatomy Breakdown</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Push-Pull Dynamics & Virtual Lab Trigger -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">MARKET ENGINE</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Hybrid Innovation Model</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Hard engineering ventures must synthesize Technology-Push (academic discovery) and Market-Pull (industrial demand) to escape the Valley of Death:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Technology-Push (R&D Rigor):</strong>
+                            Scientific novelty, patented processes, and technical feasibility derived from doctoral and master's research.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Market-Pull (Customer Discovery):</strong>
+                            Unaddressed compliance mandates, field downtime costs, and commercial willingness to pay.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-note-sticky text-lg"></i>
+                        <span>Launch Post-it Canvas (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Sweet Spot (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 01: Innovation Plan Foundations</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Post-it Canvas | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 02</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: ESTRUTURA METODOLÓGICA DO PLANO -->
+    <dialog id="modal-anatomy-1-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-3xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">STRUCTURAL PROTOCOL</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Innovation Plan Submission Matrix</h3>
+            </div>
+            <button onclick="document.getElementById('modal-anatomy-1-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE] max-h-[60vh] overflow-y-auto pr-2">
+            <p>Every engineering spin-off must submit a formally validated Innovation Plan that aligns technological TRL with execution metrics:</p>
+            <div class="space-y-3 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Problem Justification & Market Size:</strong>
+                    Define TAM/SAM/SOM and quantify direct economic/environmental gains over current industrial benchmarks.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Persona Alignment & Unique Value:</strong>
+                    Identify specific B2B decision-makers (Plant Manager, Technical Director) and formulate clear pain relievers.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Falsifiable Hypotheses & Prototype Proofs:</strong>
+                    Explicitly detail operational hypotheses to be tested during the 12-month sprint through bench or pilot prototypes.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Regulatory Boundaries & Freedom-to-Operate (FTO):</strong>
+                    Document standards compliance (ABNT, ASTM, ISO) and confirm patent clearances with university TTOs (NIT-UFV).
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (1,1): VIRTUAL LAB 1 - INTERACTIVE POST-IT INNOVATION PLAN CANVAS (BRANCH Y=1) -->
+<div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB 01 (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Interactive Innovation Plan Post-it Canvas</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 01</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex flex-col my-auto py-1 min-h-0 overflow-hidden">
+        <!-- Barra Superior de Controle de Post-it -->
+        <div class="w-full flex flex-wrap items-center justify-between gap-3 p-3 bg-white/80 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 flex-shrink-0 mb-3">
+            <div class="flex items-center space-x-2">
+                <span class="text-fluid-meta font-bold text-[#333333]">Section:</span>
+                <select id="canvas-section-select-1-1" class="px-3 py-1.5 bg-white border border-black/15 rounded-xl text-fluid-meta font-semibold text-[#333333] focus:outline-none focus:border-[#901812]">
+                    <option value="col-justification">1. Justification & Problem</option>
+                    <option value="col-persona">2. Persona & Value Proposition</option>
+                    <option value="col-hypotheses">3. Hypotheses & Prototype</option>
+                    <option value="col-barriers">4. External Barriers & IP</option>
+                </select>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <span class="text-fluid-meta font-bold text-[#333333]">Color:</span>
+                <div class="flex items-center space-x-1.5">
+                    <button type="button" onclick="setPostitColor_1_1('yellow')" id="btn-col-yellow" class="w-7 h-7 rounded-full bg-[#FEF08A] border-2 border-black/40 scale-110 cursor-pointer transition-transform"></button>
+                    <button type="button" onclick="setPostitColor_1_1('pink')" id="btn-col-pink" class="w-7 h-7 rounded-full bg-[#FBCFE8] border-2 border-transparent hover:scale-105 cursor-pointer transition-transform"></button>
+                    <button type="button" onclick="setPostitColor_1_1('cyan')" id="btn-col-cyan" class="w-7 h-7 rounded-full bg-[#BAE6FD] border-2 border-transparent hover:scale-105 cursor-pointer transition-transform"></button>
+                    <button type="button" onclick="setPostitColor_1_1('green')" id="btn-col-green" class="w-7 h-7 rounded-full bg-[#BBF7D0] border-2 border-transparent hover:scale-105 cursor-pointer transition-transform"></button>
+                </div>
+            </div>
+
+            <div class="flex-1 max-w-md min-w-[200px]">
+                <input type="text" id="postit-text-input-1-1" placeholder="Write insight or assumption..." class="w-full px-4 py-1.5 bg-white border border-black/15 rounded-xl text-fluid-meta text-[#333333] focus:outline-none focus:border-[#901812]" onkeydown="if(event.key==='Enter') addPostit_1_1()">
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button type="button" onclick="addPostit_1_1()" class="px-4 py-1.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl text-fluid-meta transition-colors shadow-sm cursor-pointer flex items-center space-x-1.5">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Sticky</span>
+                </button>
+                <button type="button" onclick="resetCanvas_1_1()" class="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-[#333333] font-bold rounded-xl text-fluid-meta transition-colors cursor-pointer" title="Reset default cards">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Grade do Canvas (4 Colunas) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 flex-1 min-h-0 items-stretch">
+            <!-- Coluna 1 -->
+            <div class="card-glass rounded-2xl p-3.5 flex flex-col min-h-0 border-t-8 border-[#901812]">
+                <div class="flex items-center justify-between pb-2 border-b border-black/10 flex-shrink-0">
+                    <span class="text-fluid-meta font-bold text-[#333333] flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-question text-[#901812]"></i>
+                        <span>1. Justification</span>
+                    </span>
+                    <span id="badge-count-justification" class="px-2 py-0.5 bg-black/10 rounded-full text-xs font-bold text-[#444444]">2</span>
+                </div>
+                <div id="col-justification" class="flex-1 overflow-y-auto space-y-2.5 pt-2.5 pr-1"></div>
+            </div>
+
+            <!-- Coluna 2 -->
+            <div class="card-glass rounded-2xl p-3.5 flex flex-col min-h-0 border-t-8 border-[#D1A705]">
+                <div class="flex items-center justify-between pb-2 border-b border-black/10 flex-shrink-0">
+                    <span class="text-fluid-meta font-bold text-[#333333] flex items-center gap-1.5">
+                        <i class="fa-solid fa-user-check text-[#D1A705]"></i>
+                        <span>2. Persona & Value</span>
+                    </span>
+                    <span id="badge-count-persona" class="px-2 py-0.5 bg-black/10 rounded-full text-xs font-bold text-[#444444]">2</span>
+                </div>
+                <div id="col-persona" class="flex-1 overflow-y-auto space-y-2.5 pt-2.5 pr-1"></div>
+            </div>
+
+            <!-- Coluna 3 -->
+            <div class="card-glass rounded-2xl p-3.5 flex flex-col min-h-0 border-t-8 border-[#2563EB]">
+                <div class="flex items-center justify-between pb-2 border-b border-black/10 flex-shrink-0">
+                    <span class="text-fluid-meta font-bold text-[#333333] flex items-center gap-1.5">
+                        <i class="fa-solid fa-flask text-[#2563EB]"></i>
+                        <span>3. Hypotheses</span>
+                    </span>
+                    <span id="badge-count-hypotheses" class="px-2 py-0.5 bg-black/10 rounded-full text-xs font-bold text-[#444444]">2</span>
+                </div>
+                <div id="col-hypotheses" class="flex-1 overflow-y-auto space-y-2.5 pt-2.5 pr-1"></div>
+            </div>
+
+            <!-- Coluna 4 -->
+            <div class="card-glass rounded-2xl p-3.5 flex flex-col min-h-0 border-t-8 border-[#16A34A]">
+                <div class="flex items-center justify-between pb-2 border-b border-black/10 flex-shrink-0">
+                    <span class="text-fluid-meta font-bold text-[#333333] flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved text-[#16A34A]"></i>
+                        <span>4. Barriers & IP</span>
+                    </span>
+                    <span id="badge-count-barriers" class="px-2 py-0.5 bg-black/10 rounded-full text-xs font-bold text-[#444444]">2</span>
+                </div>
+                <div id="col-barriers" class="flex-1 overflow-y-auto space-y-2.5 pt-2.5 pr-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Virtual Lab 01: Innovation Plan Sticky Board</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 01 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 02</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (1,1) -->
+    <script>
+        let selectedColor_1_1 = 'yellow';
+        const colorClasses_1_1 = {
+            'yellow': 'bg-[#FEF08A] text-[#713F12] border-[#EAB308]',
+            'pink': 'bg-[#FBCFE8] text-[#831843] border-[#EC4899]',
+            'cyan': 'bg-[#BAE6FD] text-[#0C4A6E] border-[#0EA5E9]',
+            'green': 'bg-[#BBF7D0] text-[#14532D] border-[#22C55E]'
+        };
+
+        function setPostitColor_1_1(color) {
+            selectedColor_1_1 = color;
+            ['yellow', 'pink', 'cyan', 'green'].forEach(c => {
+                const btn = document.getElementById(`btn-col-${c}`);
+                if (btn) {
+                    btn.classList.toggle('border-black/40', c === color);
+                    btn.classList.toggle('scale-110', c === color);
+                    btn.classList.toggle('border-transparent', c !== color);
+                }
+            });
+        }
+
+        function createStickyElement_1_1(text, color) {
+            const card = document.createElement('div');
+            card.className = `p-3 rounded-xl border-l-4 shadow-sm relative group hover:shadow-md transition-all ${colorClasses_1_1[color] || colorClasses_1_1['yellow']}`;
+            card.innerHTML = `
+                <button onclick="this.parentElement.remove(); updateCounts_1_1();" class="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/10 hover:bg-black/25 flex items-center justify-center text-xs opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer" title="Delete note">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <p class="text-fluid-meta font-semibold pr-4 leading-snug break-words">${text}</p>
+            `;
+            return card;
+        }
+
+        function addPostit_1_1() {
+            const input = document.getElementById('postit-text-input-1-1');
+            const targetColId = document.getElementById('canvas-section-select-1-1').value;
+            const text = input.value.trim();
+            if (!text) return;
+
+            const targetCol = document.getElementById(targetColId);
+            if (targetCol) {
+                targetCol.appendChild(createStickyElement_1_1(text, selectedColor_1_1));
+                input.value = '';
+                updateCounts_1_1();
+                targetCol.scrollTop = targetCol.scrollHeight;
+            }
+        }
+
+        function updateCounts_1_1() {
+            const cols = ['justification', 'persona', 'hypotheses', 'barriers'];
+            cols.forEach(c => {
+                const colEl = document.getElementById(`col-${c}`);
+                const badge = document.getElementById(`badge-count-${c}`);
+                if (colEl && badge) badge.innerText = colEl.children.length;
+            });
+        }
+
+        function resetCanvas_1_1() {
+            const defaults = {
+                'col-justification': [
+                    { t: "High CO2 footprint in traditional Portland clinker production", c: "yellow" },
+                    { t: "Mining waste tailing accumulation in Minas Gerais sites", c: "pink" }
+                ],
+                'col-persona': [
+                    { t: "Precast Concrete Plant Manager seeking ESG certifications", c: "cyan" },
+                    { t: "Value: 30% lower embodied carbon with equal compressive strength", c: "green" }
+                ],
+                'col-hypotheses': [
+                    { t: "Alkali-activated mortar achieves 40 MPa within 28 days", c: "yellow" },
+                    { t: "Pre-treated tailings do not leach toxic heavy metals", c: "cyan" }
+                ],
+                'col-barriers': [
+                    { t: "Normative limit: Brazilian standard ABNT NBR 16697 compliance", c: "pink" },
+                    { t: "NIT-UFV patent licensing agreement with commercial partner", c: "green" }
+                ]
+            };
+
+            for (const [colId, items] of Object.entries(defaults)) {
+                const col = document.getElementById(colId);
+                if (col) {
+                    col.innerHTML = '';
+                    items.forEach(item => col.appendChild(createStickyElement_1_1(item.t, item.c)));
+                }
+            }
+            updateCounts_1_1();
+        }
+
+        if (document.getElementById('col-justification')) resetCanvas_1_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (2,0): THE INNOVATION SWEET SPOT & 4-PILLAR EQUILIBRIUM -->
+<div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 02 — SYSTEMIC EQUILIBRIUM</span>
+            <h2 class="text-fluid-h2 text-[#901812]">The Innovation Sweet Spot: 4-Pillar Model</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: The 4 Pillars & Tensions -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-scale-balanced text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Holistic Equilibrium Architecture</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        Achieving the innovation sweet spot requires balancing four orthogonal criteria. Neglecting any single pillar results in venture collapse:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-fluid-meta text-[#444444]">
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#901812] block mb-1"><i class="fa-solid fa-heart mr-1"></i> Desirability (Human):</strong>
+                            Solves real user pain; achieves strong product-market fit and customer pull.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#D1A705] block mb-1"><i class="fa-solid fa-dollar-sign mr-1"></i> Viability (Business):</strong>
+                            Economically sustainable model; positive unit economics and scalable margins.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#2563EB] block mb-1"><i class="fa-solid fa-gear mr-1"></i> Feasibility (Technology):</strong>
+                            Operational capability to manufacture, deliver, and maintain at scale.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#16A34A] block mb-1"><i class="fa-solid fa-earth-americas mr-1"></i> Integrity (Impact):</strong>
+                            Environmental and ethical soundness; circularity, ESG compliance, and social license.
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between">
+                    <span class="text-fluid-meta text-[#666666] font-semibold"><i class="fa-solid fa-triangle-exclamation text-[#901812] mr-2"></i>Tension: Profitability vs. Environmental Degradation</span>
+                    <button onclick="document.getElementById('modal-case-water-2-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Bottled Water Case</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Strategic Balancing & Lab Launch -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">AUDIT METHODOLOGY</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Decoupled Pillar Audit</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Hard engineering solutions often fail because teams allow high technical feasibility to mask fatal flaws in customer desirability or environmental integrity:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Independent Assessment:</strong>
+                            Score each pillar on an isolated scale to expose hidden venture liabilities.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Continuous Iteration (Lean Cycle):</strong>
+                            Ideate $\rightarrow$ Prototype $\rightarrow$ Test $\rightarrow$ Refine across all four pillars simultaneously.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-sliders text-lg"></i>
+                        <span>Launch Sweet Spot Simulator (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Goals & Teams (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 02: Innovation Sweet Spot Equilibrium</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Simulator | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 03</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: CASE STUDY BOTTLED WATER -->
+    <dialog id="modal-case-water-2-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">REAL-WORLD PARADOX</span>
+                <h3 class="text-fluid-h2 text-white font-bold">The Bottled Water Case Study</h3>
+            </div>
+            <button onclick="document.getElementById('modal-case-water-2-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Bottled water demonstrates how severe asymmetry across the four pillars threatens long-term venture viability:</p>
+            <div class="grid grid-cols-2 gap-3 text-fluid-meta font-semibold">
+                <div class="p-3 bg-green-900/40 rounded-xl border border-green-500/30">
+                    <strong class="text-green-300 block">Desirability: HIGH</strong>
+                    Convenient access to clean, potable drinking water anywhere.
+                </div>
+                <div class="p-3 bg-green-900/40 rounded-xl border border-green-500/30">
+                    <strong class="text-green-300 block">Viability: STRONG</strong>
+                    High recurring margins and continuous repeat purchase behavior.
+                </div>
+                <div class="p-3 bg-green-900/40 rounded-xl border border-green-500/30">
+                    <strong class="text-green-300 block">Feasibility: HIGH</strong>
+                    Established blow molding, automated bottling, and distribution fleets.
+                </div>
+                <div class="p-3 bg-red-900/40 rounded-xl border border-red-500/30">
+                    <strong class="text-red-300 block">Integrity: LOW (FATAL)</strong>
+                    Single-use plastic pollution, microplastics, high carbon footprint per liter.
+                </div>
+            </div>
+            <div class="p-3 bg-white/10 rounded-xl text-fluid-meta border-l-4 border-[#D1A705]">
+                <strong>Key Takeaway:</strong> Despite commercial success, low Integrity triggers regulatory bans, carbon taxes, and consumer backlash, threatening long-term survival.
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (2,1): VIRTUAL LAB 2 - SWEET SPOT BALANCE SIMULATOR (BRANCH Y=1) -->
+<div id="slide-2-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB 02 (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">The 4-Pillar Sweet Spot Balance Simulator</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 02</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-stretch">
+            <!-- Painel de Sliders dos 4 Pilares -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3.5 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-3">Pillar Evaluation Sliders (0 - 100%)</h3>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#901812]">
+                            <span><i class="fa-solid fa-heart mr-1.5"></i>Desirability (Human / Market Need):</span>
+                            <span id="lbl-des-2-1" class="font-bold font-mono">80%</span>
+                        </label>
+                        <input type="range" id="input-des-2-1" min="0" max="100" step="5" value="80" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularSweetSpot_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#B45309]">
+                            <span><i class="fa-solid fa-dollar-sign mr-1.5"></i>Viability (Business Model & Economics):</span>
+                            <span id="lbl-via-2-1" class="font-bold font-mono">75%</span>
+                        </label>
+                        <input type="range" id="input-via-2-1" min="0" max="100" step="5" value="75" class="w-full accent-[#D1A705] h-3.5 cursor-pointer" oninput="calcularSweetSpot_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#1D4ED8]">
+                            <span><i class="fa-solid fa-gear mr-1.5"></i>Feasibility (Technical & Execution):</span>
+                            <span id="lbl-fea-2-1" class="font-bold font-mono">85%</span>
+                        </label>
+                        <input type="range" id="input-fea-2-1" min="0" max="100" step="5" value="85" class="w-full accent-[#2563EB] h-3.5 cursor-pointer" oninput="calcularSweetSpot_2_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#15803D]">
+                            <span><i class="fa-solid fa-earth-americas mr-1.5"></i>Integrity (ESG & Societal Impact):</span>
+                            <span id="lbl-int-2-1" class="font-bold font-mono">40%</span>
+                        </label>
+                        <input type="range" id="input-int-2-1" min="0" max="100" step="5" value="40" class="w-full accent-[#16A34A] h-3.5 cursor-pointer" oninput="calcularSweetSpot_2_1()">
+                    </div>
+                </div>
+
+                <!-- Preset Buttons -->
+                <div class="pt-2 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#666666] font-bold block mb-1.5">Load Simulation Archetypes:</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="loadSweetSpotPreset_2_1(90, 85, 90, 20)" class="px-2 py-1.5 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/15 rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Bottled Water
+                        </button>
+                        <button type="button" onclick="loadSweetSpotPreset_2_1(30, 40, 95, 80)" class="px-2 py-1.5 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/15 rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Lab Science Push
+                        </button>
+                        <button type="button" onclick="loadSweetSpotPreset_2_1(85, 80, 85, 90)" class="px-2 py-1.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Sweet Spot
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Resultados do Sweet Spot -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">EQUILIBRIUM DIAGNOSTIC</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-3">Systemic Sweet Spot Index ($\text{SSI}$)</h3>
+
+                    <div class="bg-white/10 p-5 rounded-2xl backdrop-blur-md border border-white/10 text-center">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Geometric Equilibrium Score</span>
+                        <span id="res-ssi-score-2-1" class="text-fluid-h1 text-[#D1A705] font-mono leading-none my-1 block">67.3%</span>
+                        <span id="res-ssi-status-2-1" class="text-fluid-tag font-bold uppercase inline-block mt-2 text-white bg-amber-600 py-1.5 px-6 rounded-full shadow-md">
+                            MODERATE IMBALANCE
+                        </span>
+                    </div>
+
+                    <div class="mt-3 p-3 bg-white/5 rounded-xl border border-white/10 text-fluid-meta space-y-1">
+                        <div class="flex justify-between">
+                            <span class="text-[#DEDEDE]">Bottleneck Pillar:</span>
+                            <span id="res-bottleneck-2-1" class="font-bold text-red-400">Integrity (40%)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-[#DEDEDE]">Failure Risk:</span>
+                            <span id="res-risk-desc-2-1" class="font-semibold text-[#DEDEDE]">Environmental backlash / Regulatory ban</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm border border-white/10">
+                    <i class="fa-solid fa-bullseye text-[#D1A705] text-2xl flex-shrink-0"></i>
+                    <span id="res-advisory-2-1">The venture lacks systemic integrity. Low impact/ESG alignment creates legal vulnerabilities even if economically viable.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Virtual Lab 02: 4-Pillar Sweet Spot Simulator</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 02 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 03</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (2,1) -->
+    <script>
+        function loadSweetSpotPreset_2_1(des, via, fea, intg) {
+            document.getElementById('input-des-2-1').value = des;
+            document.getElementById('input-via-2-1').value = via;
+            document.getElementById('input-fea-2-1').value = fea;
+            document.getElementById('input-int-2-1').value = intg;
+            calcularSweetSpot_2_1();
+        }
+
+        function calcularSweetSpot_2_1() {
+            const des = parseFloat(document.getElementById('input-des-2-1').value);
+            const via = parseFloat(document.getElementById('input-via-2-1').value);
+            const fea = parseFloat(document.getElementById('input-fea-2-1').value);
+            const intg = parseFloat(document.getElementById('input-int-2-1').value);
+
+            document.getElementById('lbl-des-2-1').innerText = `${des}%`;
+            document.getElementById('lbl-via-2-1').innerText = `${via}%`;
+            document.getElementById('lbl-fea-2-1').innerText = `${fea}%`;
+            document.getElementById('lbl-int-2-1').innerText = `${intg}%`;
+
+            // Média geométrica penaliza assimetrias severas
+            const ssi = Math.pow((des/100) * (via/100) * (fea/100) * (intg/100), 0.25) * 100;
+            const ssiEl = document.getElementById('res-ssi-score-2-1');
+            const statusEl = document.getElementById('res-ssi-status-2-1');
+            const bottleneckEl = document.getElementById('res-bottleneck-2-1');
+            const riskEl = document.getElementById('res-risk-desc-2-1');
+            const advisoryEl = document.getElementById('res-advisory-2-1');
+
+            ssiEl.innerText = `${ssi.toFixed(1)}%`;
+
+            // Encontrar o menor pilar
+            const pillars = [
+                { name: 'Desirability', val: des, risk: 'Lack of customer demand / Market rejection', advise: 'Customers do not care enough about the solution. Refine value proposition and problem interviews.' },
+                { name: 'Viability', val: via, risk: 'Financial insolvence / Negative unit economics', advise: 'High costs exceed revenue. Fix CAC/LTV, pricing strategy, and recurring revenue mechanics.' },
+                { name: 'Feasibility', val: fea, risk: 'Execution / Production / Delivery failure', advise: 'Technology is not ready or scalable. Escalate TRL through rapid physical prototyping.' },
+                { name: 'Integrity', val: intg, risk: 'Regulatory bans / Social and environmental backlash', advise: 'The solution harms ecosystems or societal standards. Incorporate circular design and ESG criteria.' }
+            ];
+
+            pillars.sort((a, b) => a.val - b.val);
+            const weakest = pillars[0];
+
+            bottleneckEl.innerText = `${weakest.name} (${weakest.val}%)`;
+            riskEl.innerText = weakest.risk;
+            advisoryEl.innerText = weakest.advise;
+
+            if (ssi >= 80 && weakest.val >= 70) {
+                statusEl.innerText = "INNOVATION SWEET SPOT ACHIEVED";
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-2 text-white bg-green-700 py-1.5 px-6 rounded-full shadow-md";
+            } else if (weakest.val < 45) {
+                statusEl.innerText = "CRITICAL ASYMMETRY / HIGH RISK";
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-2 text-white bg-[#901812] py-1.5 px-6 rounded-full shadow-md";
+            } else {
+                statusEl.innerText = "MODERATE IMBALANCE";
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-2 text-[#333333] bg-[#D1A705] py-1.5 px-6 rounded-full shadow-md";
+            }
+        }
+
+        if (document.getElementById('input-des-2-1')) calcularSweetSpot_2_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (3,0): GOALS, INDICATORS, TARGETS & MULTIDISCIPLINARY TEAMS -->
+<div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 03 — EXECUTION INFRASTRUCTURE</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Goals, Metrics & Multidisciplinary Team Architecture</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Goals, Indicators, and Targets Triad -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-bullseye text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">The Strategic Measurement Triad</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        Hard engineering ventures translate technical ambition into milestones through three mathematically coupled layers:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta text-[#444444]">
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5 flex items-start space-x-3">
+                            <span class="px-2.5 py-1 bg-[#901812] text-white rounded-lg font-bold text-fluid-tag flex-shrink-0">OBJECTIVES</span>
+                            <div>
+                                <strong class="text-[#333333] block">Broad Strategic Ambition:</strong>
+                                Defines the overarching technological and commercial destination (e.g., validate low-carbon binder at industrial scale).
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5 flex items-start space-x-3">
+                            <span class="px-2.5 py-1 bg-[#D1A705] text-[#333333] rounded-lg font-bold text-fluid-tag flex-shrink-0">INDICATORS</span>
+                            <div>
+                                <strong class="text-[#333333] block">Key Performance Tracking Tools (KPIs):</strong>
+                                Standardized variables measuring progress (e.g., 28-day compressive strength, embodied $\text{kg CO}_2\text{e/m}^3$).
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5 flex items-start space-x-3">
+                            <span class="px-2.5 py-1 bg-[#2563EB] text-white rounded-lg font-bold text-fluid-tag flex-shrink-0">TARGETS</span>
+                            <div>
+                                <strong class="text-[#333333] block">Quantifiable Thresholds:</strong>
+                                Time-bounded numerical limits (e.g., $f_{ck} \ge 40\text{ MPa}$ and carbon reduction $\ge 30\%$ by month 6).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between">
+                    <span class="text-fluid-meta text-[#666666] font-semibold"><i class="fa-solid fa-calculator text-[#901812] mr-2"></i>Formal condition: $\text{Target} = f(\text{Indicator}, t_{\text{deadline}})$</span>
+                    <button onclick="document.getElementById('modal-metrics-3-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Metric Formulations</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Team Execution Primacy & Branch Access -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">FOUNDATIONAL CAPITAL</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Team Supremacy Over Ideas</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Execution capability dictates venture survival. High-performing engineering spin-offs prioritize team composition over isolated technical inventions:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Role Allocation & Accountability:</strong>
+                            Clear division across scientific R&D, pilot fabrication, regulatory certification, and finance.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Multidisciplinary Synergy:</strong>
+                            Deep technical know-how paired with market acumen prevents academic lock-in and commercial failure.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-users-gear text-lg"></i>
+                        <span>Explore RACI & Skill Matrix (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Market Barriers (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 03: Goals, Indicators, Targets & Team Structure</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for RACI Matrix | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 04</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: FORMULAÇÃO DE METAS E INDICADORES -->
+    <dialog id="modal-metrics-3-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">GOVERNANCE PROTOCOL</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Formulating Auditable Engineering OKRs</h3>
+            </div>
+            <button onclick="document.getElementById('modal-metrics-3-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Every milestone in the 12-month Innovation Plan must be expressed as a verifiable objective with distinct KPI thresholds:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Ambition Layer (Objective):</strong> "Validate the alkali-activated binder for structural precast elements under commercial autoclave curing."
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Verification Layer (Indicator):</strong> "Compressive strength at 28 days (ASTM C39) and carbon emission intensity ($\text{kg CO}_2\text{e/m}^3$)."
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Threshold Layer (Target):</strong> "$f_{ck} \ge 40\text{ MPa}$ and carbon reduction $\ge 30\%$ compared to OPC benchmark by month 6."
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (3,1): DEEP DIVE - MULTIDISCIPLINARY TEAM COMPOSITION & RACI MATRIX (BRANCH Y=1) -->
+<div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">STRATEGIC DRILL-DOWN (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Team Execution Capacity & RACI Governance</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 03</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: RACI Responsibility Matrix -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-table-list text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">RACI Governance for Engineering Spin-offs</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        Eliminates execution ambiguity across the 12-month development roadmap by defining exact role accountability:
+                    </p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-fluid-meta border-collapse">
+                            <thead>
+                                <tr class="border-b-2 border-black/10 text-[#901812]">
+                                    <th class="py-2 font-bold">Major Workstream</th>
+                                    <th class="py-2 text-center font-bold">Tech Lead</th>
+                                    <th class="py-2 text-center font-bold">Lab Eng.</th>
+                                    <th class="py-2 text-center font-bold">Business</th>
+                                    <th class="py-2 text-center font-bold">TTO / NIT</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-black/5 text-[#444444]">
+                                <tr>
+                                    <td class="py-2 font-semibold">TRL 4 Prototype Validation</td>
+                                    <td class="py-2 text-center font-bold text-[#901812]">A</td>
+                                    <td class="py-2 text-center font-bold text-green-700">R</td>
+                                    <td class="py-2 text-center font-bold text-gray-500">I</td>
+                                    <td class="py-2 text-center font-bold text-amber-600">C</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">Patent Prosecution & FTO</td>
+                                    <td class="py-2 text-center font-bold text-amber-600">C</td>
+                                    <td class="py-2 text-center font-bold text-gray-500">I</td>
+                                    <td class="py-2 text-center font-bold text-[#901812]">A</td>
+                                    <td class="py-2 text-center font-bold text-green-700">R</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">B2B Customer Discovery (20 calls)</td>
+                                    <td class="py-2 text-center font-bold text-amber-600">C</td>
+                                    <td class="py-2 text-center font-bold text-gray-500">I</td>
+                                    <td class="py-2 text-center font-bold text-green-700">R / A</td>
+                                    <td class="py-2 text-center font-bold text-gray-500">I</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 font-semibold">Grant Financial Accountability</td>
+                                    <td class="py-2 text-center font-bold text-amber-600">C</td>
+                                    <td class="py-2 text-center font-bold text-gray-500">I</td>
+                                    <td class="py-2 text-center font-bold text-green-700">R / A</td>
+                                    <td class="py-2 text-center font-bold text-amber-600">C</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between text-fluid-tag text-[#666666] font-semibold">
+                    <span><strong class="text-[#901812]">R:</strong> Responsible | <strong class="text-[#901812]">A:</strong> Accountable</span>
+                    <span><strong class="text-[#D1A705]">C:</strong> Consulted | <strong class="text-gray-500">I:</strong> Informed</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Critical Skill Coverage & Failure Modes -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">CAPABILITY AUDIT</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Multidisciplinary Skill Balance</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Hard tech ventures routinely fail not from technological limitations, but from missing functional capabilities:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Failure Mode 1: Technical Monoculture</strong>
+                            Teams consisting solely of laboratory researchers struggle with B2B negotiations, financial runway modeling, and regulatory filings.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Failure Mode 2: Premature Delegations</strong>
+                            Founders abdicating direct customer discovery to external sales consultants lose essential feedback required for prototype iteration.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm border border-white/10">
+                    <i class="fa-solid fa-users-viewfinder text-[#D1A705] text-2xl flex-shrink-0"></i>
+                    <span>A team of 3 complementary profiles (Hacker/Maker, Hustler/Commercial, Operator/Regulatory) outperforms any single genius founder.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Branch 3: Team Governance & RACI Framework</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 03 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 04</span>
+    </footer>
+</div>
+
+
+
+<!-- SLIDE (4,0): EXTERNAL CONSTRAINTS, BARRIERS & STRATEGIC PARTNERSHIPS -->
+<div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 04 — ECOSYSTEM DYNAMICS</span>
+            <h2 class="text-fluid-h2 text-[#901812]">External Constraints, Barriers & Strategic Partnerships</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Market Entry Barriers (Porter's Lens) -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-dungeon text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">External Constraints & Entry Hurdles</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        Engineering spin-offs encounter structural market frictions classified under Michael Porter's entry barrier taxonomy:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-fluid-meta text-[#444444]">
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#901812] block"><i class="fa-solid fa-coins mr-1"></i> Capital Requirements:</strong>
+                            High initial CapEx for pilot plants, characterization equipment, and scaling.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#D1A705] block"><i class="fa-solid fa-stamp mr-1"></i> Regulatory Hurdles:</strong>
+                            Mandatory technical compliance (ABNT, ASTM) and environmental licensing.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#2563EB] block"><i class="fa-solid fa-microchip mr-1"></i> Technology Control:</strong>
+                            Pre-existing competitor patents, proprietary know-how, and locked raw materials.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#16A34A] block"><i class="fa-solid fa-building-flag mr-1"></i> Institutional Policy:</strong>
+                            University innovation bylaws (NIT-UFV), royalty splits, and conflict of interest rules.
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between">
+                    <span class="text-fluid-meta text-[#666666] font-semibold"><i class="fa-solid fa-shield-halved text-[#901812] mr-2"></i>FTO analysis mandatory before pilot scaling</span>
+                    <button onclick="document.getElementById('modal-barriers-4-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Porter's Matrix</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Strategic Partnerships & Co-Development -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">ACCELERATION LEVER</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">University-Industry Synergies</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Strategic alliances bypass entry barriers through resource pooling and institutional credibility:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Shared Infrastructure & Lab Access:</strong>
+                            Leveraging university characterization facilities (e.g., SICon/DEC-UFV) to reduce venture CapEx.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Mutual Commitment Architecture:</strong>
+                            Defining partner contributions, IP co-ownership boundaries, and pilot off-take agreements.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-handshake-angle text-lg"></i>
+                        <span>Explore Partnership Protocols (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Risk Matrix (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 04: Market Barriers & Strategic Partnerships</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Partnership Protocols | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 05</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: CLASSIFICAÇÃO DE BARREIRAS SEGUNDO PORTER -->
+    <dialog id="modal-barriers-4-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">COMPETITIVE FRAMEWORK</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Porter's Entry Barriers in Hard Tech</h3>
+            </div>
+            <button onclick="document.getElementById('modal-barriers-4-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Every engineering Innovation Plan must detail defensive moats and offensive strategies against established market incumbent barriers:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Supply-Side Economies of Scale:</strong> Incumbents produce building materials at massive unit discounts; spin-offs counter via high-performance green premiums.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Customer Switching Costs:</strong> Contractors resist untested cementitious blends due to liability risk; spin-offs provide certified insurance and third-party lab proofs.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705]">Restrictive Government Policy:</strong> Mandatory national standards (e.g., ABNT NBR); spin-offs must participate directly in technical normalization committees.
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (4,1): DEEP DIVE - UNIVERSITY-INDUSTRY PARTNERSHIPS & IP FRAMEWORKS (BRANCH Y=1) -->
+<div id="slide-4-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">INSTITUTIONAL DRILL-DOWN (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">University-Industry Co-Development & IP Governance</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 04</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Institutional IP & Legal Alignment -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-scale-balanced text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Brazilian Legal Framework & NIT-UFV Protocols</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        Structuring academic spin-offs requires explicit alignment with Brazilian Innovation Law (Law 10,973/04 & Law 13,243/16):
+                    </p>
+                    <div class="space-y-2 text-fluid-meta text-[#444444]">
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#901812] block mb-1">Intellectual Property Titularity:</strong>
+                            Patents generated using university public facilities remain under joint or institutional ownership (UFV/NIT), requiring formal licensing contracts.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#D1A705] block mb-1">Royalty Sharing Distribution:</strong>
+                            Mandatory statutory division of commercial licensing revenues among the academic inventors, research department, and university central fund.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#2563EB] block mb-1">Shared Laboratory Usage Agreements:</strong>
+                            Formal instruments enabling pre-incubation spin-offs to utilize university testing apparatuses without generating legal conflicts of interest.
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between text-fluid-tag text-[#666666] font-semibold">
+                    <span><i class="fa-solid fa-file-contract text-[#901812] mr-2"></i>Marco Legal da CT&I Compliant</span>
+                    <button onclick="document.getElementById('modal-checklist-4-1').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Partnership Checklist</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Strategic Partnership Audit Matrix -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">PARTNER QUALIFICATION</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Three-Point Partnership Audit</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        The Innovation Plan must evaluate each industrial prospective partner across three mandatory criteria:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-0.5">1. Role & Scope Definition:</strong>
+                            Precise allocation of duties (e.g., pilot fabrication site, chemical feedstock provider, regulatory tester).
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-0.5">2. Resource Contributions:</strong>
+                            Quantification of economic contributions (in-kind engineering hours, industrial raw materials, co-financing grants).
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-0.5">3. Mutual Commitments & Exclusivity:</strong>
+                            Clear boundaries regarding commercial exclusivity, geographic reach, and first right of refusal for licensing.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm border border-white/10">
+                    <i class="fa-solid fa-handshake-simple text-[#D1A705] text-2xl flex-shrink-0"></i>
+                    <span>Unvetted corporate partners create IP encumbrance that repels future venture capital rounds.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Branch 4: University-Industry Alliances & Legal Frameworks</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 04 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 05</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: CHECKLIST DE FORMALIZAÇÃO DE PARCERIAS -->
+    <dialog id="modal-checklist-4-1" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">DUE DILIGENCE</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Innovation Plan Partnership Checklist</h3>
+            </div>
+            <button onclick="document.getElementById('modal-checklist-4-1').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-3 text-fluid-body text-[#DEDEDE]">
+            <p>Verify that the following questions are fully answered in the plan narrative:</p>
+            <ul class="space-y-2 text-fluid-meta font-semibold">
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-[#D1A705]"></i>
+                    <span>Are institutions and industrial companies actively interested in the technology?</span>
+                </li>
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-[#D1A705]"></i>
+                    <span>Who holds the industrial and intellectual property rights (patents, software)?</span>
+                </li>
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-[#D1A705]"></i>
+                    <span>Has the project received external resources (grants, seed capital, in-kind equipment)?</span>
+                </li>
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check text-[#D1A705]"></i>
+                    <span>Is there a signed Non-Disclosure Agreement (NDA) and Term of Co-Development in place?</span>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (5,0): RISK ANALYSIS -->
+<div id="slide-5-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 04 — ECOSYSTEM DYNAMICS</span>
+            <h2 class="text-fluid-h2 text-[#901812]">External Constraints, Barriers & Strategic Partnerships</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+<!-- Camada 2: Núcleo Centralizado Verticalmente -->
+<div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+        <!-- Card 1: Risk Quantification Formulation & Criteria -->
+        <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+            <div>
+                <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                    <i class="fa-solid fa-table-cells text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Risk Assessment Matrix Architecture</h3>
+                </div>
+                <p class="text-fluid-body text-[#444444] mb-2">
+                    Risk management in innovation planning identifies, classifies, and controls failure variables using orthogonal probability and consequence dimensions:
+                </p>
+
+                <!-- Equação KaTeX Isolada -->
+                <div class="bg-white/85 backdrop-blur-md p-3 sm:p-4 rounded-2xl text-center shadow-inner overflow-x-auto overflow-y-hidden my-2 border border-black/5" style="font-size: clamp(1.15rem, 1.9vw, 1.75rem);">
+                    $$\text{Risk Criticality Index (RCI)} = \text{Probability (P)} \times \text{Impact (I)}$$
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-fluid-meta text-[#444444] pt-1">
+                    <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                        <strong class="text-[#901812] block mb-1"><i class="fa-solid fa-chart-line mr-1.5"></i>Probability Scale:</strong>
+                        Discrete likelihood categories: Low ($P=1$), Average/Medium ($P=2$), and High ($P=3$).
+                    </div>
+                    <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                        <strong class="text-[#D1A705] block mb-1"><i class="fa-solid fa-burst mr-1.5"></i>Impact Severity Scale:</strong>
+                        Systemic disruption levels: Insignificant ($I=1$), Moderate ($I=2$), and Severe ($I=3$).
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-black/10 pt-2 flex items-center justify-between text-fluid-tag text-[#666666] font-semibold">
+                <span><i class="fa-solid fa-shield-halved text-[#901812] mr-2"></i>ISO 31000 Compliant Risk Categorization</span>
+                <button onclick="document.getElementById('modal-risk-5-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                    <span>Boundary Thresholds</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Card 2: Mitigation Archetypes & Lab Trigger -->
+        <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">DECISION MECHANICS</span>
+                <h3 class="text-fluid-h3 text-white font-bold mb-2">Operational Mitigation Protocols</h3>
+                <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                    Hard engineering ventures must preemptively categorize project uncertainties into three auditable operational intervention levels:
+                </p>
+                <div class="space-y-2 text-fluid-meta">
+                    <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                        <span class="w-3 h-3 rounded-full bg-green-500 mt-1 flex-shrink-0"></span>
+                        <div><strong class="text-green-300">Acceptable Tier ($\text{RCI} \le 2$):</strong> Routine operational monitoring; no budget allocation required.</div>
+                    </div>
+                    <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                        <span class="w-3 h-3 rounded-full bg-[#D1A705] mt-1 flex-shrink-0"></span>
+                        <div><strong class="text-[#D1A705]">Mitigation Tier ($3 \le \text{RCI} \le 4$):</strong> Active engineering control, redundant suppliers, and bench buffers.</div>
+                    </div>
+                    <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                        <span class="w-3 h-3 rounded-full bg-[#901812] mt-1 flex-shrink-0"></span>
+                        <div><strong class="text-red-400">Critical Tier ($\text{RCI} \ge 6$):</strong> Mandates fundamental pivot, architectural redesign, or formal legal revision.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                    <i class="fa-solid fa-table text-lg"></i>
+                    <span>Launch Dynamic Risk Matrix (Press ↓)</span>
+                </button>
+                <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                    <span>Skip to 5W2H Action Plan (Press →)</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Camada 3: Rodapé Técnico -->
+<footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+    <span class="font-bold">CIV 670: Class 110 — Module 05: Risk Matrix Formulation</span>
+    <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Risk Matrix Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 06</span>
+</footer>
+
+<!-- MODAL AUTOCONTIDO: MATRIZ DE CRITICIDADE E RESPOSTAS A RISCO -->
+<dialog id="modal-risk-5-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+    <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold block">RISK CONTROL PROTOCOL</span>
+            <h3 class="text-fluid-h2 text-white font-bold">Severity Matrix & Strategic Actions</h3>
+        </div>
+        <button onclick="document.getElementById('modal-risk-5-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+        <p>Every engineering project risk must be scored and mapped to an auditable risk mitigation strategy:</p>
+        <div class="space-y-2.5 text-fluid-meta font-semibold">
+            <div class="p-3 bg-red-950/40 rounded-xl border border-red-500/30">
+                <strong class="text-red-400 block">High Probability $\times$ Severe Impact ($\text{RCI}=9$):</strong>
+                Immediate showstopper. Requires re-engineering of the solution, non-infringement redesign, or restructuring raw material supply chains.
+            </div>
+            <div class="p-3 bg-amber-950/40 rounded-xl border border-[#D1A705]/30">
+                <strong class="text-[#D1A705] block">Average Probability $\times$ Moderate Impact ($\text{RCI}=4$):</strong>
+                Establish dual-sourcing contracts, run parallel laboratory formulation trials, and build standard operating procedures (SOPs).
+            </div>
+            <div class="p-3 bg-emerald-950/40 rounded-xl border border-emerald-500/30">
+                <strong class="text-emerald-400 block">Low Probability $\times$ Insignificant Impact ($\text{RCI}=1$):</strong>
+                Retained project risk with passive observation; logged into the quarterly risk registry.
+            </div>
+        </div>
+    </div>
+</dialog>
+</div>
+
+
+
+
+<!-- SLIDE (5,1): DYNAMIC RISK MATRIX -->
+<div id="slide-5-1" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 04 — ECOSYSTEM DYNAMICS</span>
+            <h2 class="text-fluid-h2 text-[#901812]">External Constraints, Barriers & Strategic Partnerships</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+<div class="w-full flex-1 flex flex-col lg:flex-row gap-5 items-stretch my-auto py-1 min-h-0 overflow-hidden">
+    <!-- Coluna Esquerda: Painel de Mapeamento de Risco -->
+    <div class="lg:w-5/12 p-5 sm:p-6 rounded-3xl card-glass space-y-3 flex flex-col justify-between overflow-y-auto">
+        <div>
+            <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-3">Add / Evaluate Venture Risk</h3>
+
+            <div class="space-y-2 text-fluid-meta">
+                <div>
+                    <label class="font-bold text-[#333333] block mb-1">Risk Title & Description:</label>
+                    <input type="text" id="risk-name-input-5-1" placeholder="e.g., Raw material supply disruption..." class="w-full px-3.5 py-2 bg-white border border-black/15 rounded-xl text-fluid-meta text-[#333333] focus:outline-none focus:border-[#901812]">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div>
+                        <label class="font-bold text-[#333333] block mb-1">Probability (P):</label>
+                        <select id="risk-prob-select-5-1" class="w-full px-3 py-2 bg-white border border-black/15 rounded-xl text-fluid-meta font-semibold text-[#333333] focus:outline-none focus:border-[#901812]">
+                            <option value="1">1 - Low</option>
+                            <option value="2" selected>2 - Average</option>
+                            <option value="3">3 - High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="font-bold text-[#333333] block mb-1">Impact (I):</label>
+                        <select id="risk-impact-select-5-1" class="w-full px-3 py-2 bg-white border border-black/15 rounded-xl text-fluid-meta font-semibold text-[#333333] focus:outline-none focus:border-[#901812]">
+                            <option value="1">1 - Insignificant</option>
+                            <option value="2" selected>2 - Moderate</option>
+                            <option value="3">3 - Severe</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2 pt-3">
+                <button type="button" onclick="addCustomRisk_5_1()" class="flex-1 py-2.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl text-fluid-meta transition-colors shadow-sm cursor-pointer flex items-center justify-center space-x-1.5">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Map Risk to Grid</span>
+                </button>
+                <button type="button" onclick="resetRiskGrid_5_1()" class="px-3.5 py-2.5 bg-gray-200 hover:bg-gray-300 text-[#333333] font-bold rounded-xl text-fluid-meta transition-colors cursor-pointer" title="Reset default risks">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pre-loaded Engineering Risk Scenarios -->
+        <div class="pt-2 border-t border-black/10">
+            <span class="text-fluid-tag text-[#666666] font-bold block mb-1.5">Preset Hard Tech Scenarios:</span>
+            <div class="grid grid-cols-2 gap-2 text-fluid-tag font-semibold">
+                <button type="button" onclick="quickAddRisk_5_1('Patent Infringement by Incumbent', 1, 3)" class="p-2 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/10 rounded-xl transition-colors text-left cursor-pointer">
+                    <strong class="block text-[#901812]">P: Low | I: Severe</strong>
+                    Patent Litigation
+                </button>
+                <button type="button" onclick="quickAddRisk_5_1('Batch Leaching Toxicity Flaw', 2, 3)" class="p-2 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/10 rounded-xl transition-colors text-left cursor-pointer">
+                    <strong class="block text-red-700">P: Med | I: Severe</strong>
+                    Environmental Flaw
+                </button>
+                <button type="button" onclick="quickAddRisk_5_1('Minor Pilot Testing Delay', 3, 1)" class="p-2 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/10 rounded-xl transition-colors text-left cursor-pointer">
+                    <strong class="block text-amber-700">P: High | I: Insignif.</strong>
+                    Schedule Slippage
+                </button>
+                <button type="button" onclick="quickAddRisk_5_1('ABNT Normative Approval Block', 3, 3)" class="p-2 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/10 rounded-xl transition-colors text-left cursor-pointer">
+                    <strong class="block text-[#901812]">P: High | I: Severe</strong>
+                    Regulatory Block
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coluna Direita: Grade 3x3 Visual da Matriz de Risco -->
+    <div class="lg:w-7/12 p-5 sm:p-6 rounded-3xl card-glass-dark text-white flex flex-col justify-between min-h-0">
+        <div class="flex items-center justify-between border-b border-white/20 pb-2 mb-2 flex-shrink-0">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">ISO 31000 EVALUATION</span>
+                <h3 class="text-fluid-h3 text-white font-bold">Interactive 3x3 Criticality Matrix</h3>
+            </div>
+            <div class="text-right">
+                <span class="text-fluid-tag text-[#DEDEDE] block">Active Risks: <strong id="lbl-total-risks-5-1" class="text-white">4</strong></span>
+                <span class="text-fluid-tag text-red-400 font-bold block">Critical: <strong id="lbl-critical-risks-5-1">1</strong></span>
+            </div>
+        </div>
+
+        <!-- Matriz 3x3 com cabeçalhos de linha e coluna -->
+        <div class="flex-1 flex flex-col justify-center min-h-0 py-1">
+            <div class="grid grid-cols-4 gap-2 text-center text-fluid-tag font-bold text-[#DEDEDE] mb-1">
+                <span class="text-xs uppercase tracking-wider text-[#D1A705] self-center">Prob. \\ Impact</span>
+                <span class="p-1 rounded-lg bg-white/5">Insignificant (1)</span>
+                <span class="p-1 rounded-lg bg-white/5">Moderate (2)</span>
+                <span class="p-1 rounded-lg bg-white/5">Severe (3)</span>
+            </div>
+
+            <!-- Linha P = High (3) -->
+            <div class="grid grid-cols-4 gap-2 flex-1 min-h-[70px] mb-2">
+                <div class="flex items-center justify-center p-2 rounded-xl bg-white/5 font-bold text-fluid-meta text-white">High (3)</div>
+                <div id="cell-3-1" class="p-2 rounded-2xl bg-amber-600/30 border border-amber-500/40 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-3-2" class="p-2 rounded-2xl bg-orange-700/40 border border-orange-500/50 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-3-3" class="p-2 rounded-2xl bg-red-900/60 border border-red-500/60 overflow-y-auto space-y-1.5 transition-all"></div>
+            </div>
+
+            <!-- Linha P = Average (2) -->
+            <div class="grid grid-cols-4 gap-2 flex-1 min-h-[70px] mb-2">
+                <div class="flex items-center justify-center p-2 rounded-xl bg-white/5 font-bold text-fluid-meta text-white">Average (2)</div>
+                <div id="cell-2-1" class="p-2 rounded-2xl bg-green-700/30 border border-green-500/30 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-2-2" class="p-2 rounded-2xl bg-amber-600/30 border border-amber-500/40 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-2-3" class="p-2 rounded-2xl bg-orange-700/40 border border-orange-500/50 overflow-y-auto space-y-1.5 transition-all"></div>
+            </div>
+
+            <!-- Linha P = Low (1) -->
+            <div class="grid grid-cols-4 gap-2 flex-1 min-h-[70px]">
+                <div class="flex items-center justify-center p-2 rounded-xl bg-white/5 font-bold text-fluid-meta text-white">Low (1)</div>
+                <div id="cell-1-1" class="p-2 rounded-2xl bg-green-700/30 border border-green-500/30 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-1-2" class="p-2 rounded-2xl bg-green-700/30 border border-green-500/30 overflow-y-auto space-y-1.5 transition-all"></div>
+                <div id="cell-1-3" class="p-2 rounded-2xl bg-amber-600/30 border border-amber-500/40 overflow-y-auto space-y-1.5 transition-all"></div>
+            </div>
+        </div>
+
+        <!-- Legenda da Matriz -->
+        <div class="flex items-center justify-between text-fluid-tag pt-2 border-t border-white/15 text-[#DEDEDE] font-semibold flex-shrink-0">
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-600 inline-block"></span> Low Risk (1-2)</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Moderate Risk (3-4)</span>
+            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span> Severe / Critical (6-9)</span>
+        </div>
+    </div>
+</div>
+
+<!-- Camada 3: Rodapé Técnico -->
+<footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+    <span class="font-bold">CIV 670: Class 110 — Virtual Lab 03: Interactive 3x3 Risk Matrix</span>
+    <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 05 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 06</span>
+</footer>
+
+<!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (5,1) -->
+<script>
+    let registeredRisks_5_1 = [];
+
+    function renderRiskMatrix_5_1() {
+        // Limpar todas as 9 células
+        for (let p = 1; p <= 3; p++) {
+            for (let i = 1; i <= 3; i++) {
+                const cell = document.getElementById(`cell-${p}-${i}`);
+                if (cell) cell.innerHTML = '';
+            }
+        }
+
+        let criticalCount = 0;
+
+        registeredRisks_5_1.forEach((risk, index) => {
+            const targetCell = document.getElementById(`cell-${risk.p}-${risk.i}`);
+            const rci = risk.p * risk.i;
+            if (rci >= 6) criticalCount++;
+
+            if (targetCell) {
+                const card = document.createElement('div');
+                card.className = "p-1.5 bg-white/95 text-[#333333] rounded-lg text-xs font-bold shadow-sm relative group flex items-center justify-between border-l-4 " + 
+                    (rci >= 6 ? "border-[#901812]" : rci >= 3 ? "border-[#D1A705]" : "border-green-600");
+                card.innerHTML = `
+                    <span class="truncate pr-2 leading-tight" title="${risk.name}">${risk.name}</span>
+                    <button onclick="removeRisk_5_1(${index})" class="w-4 h-4 rounded-full bg-black/10 hover:bg-[#901812] hover:text-white flex items-center justify-center text-[10px] opacity-40 group-hover:opacity-100 transition-opacity cursor-pointer">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                `;
+                targetCell.appendChild(card);
+            }
+        });
+
+        document.getElementById('lbl-total-risks-5-1').innerText = registeredRisks_5_1.length;
+        document.getElementById('lbl-critical-risks-5-1').innerText = criticalCount;
+    }
+
+    function addCustomRisk_5_1() {
+        const input = document.getElementById('risk-name-input-5-1');
+        const p = parseInt(document.getElementById('risk-prob-select-5-1').value);
+        const i = parseInt(document.getElementById('risk-impact-select-5-1').value);
+        const name = input.value.trim();
+
+        if (!name) return;
+
+        registeredRisks_5_1.push({ name, p, i });
+        input.value = '';
+        renderRiskMatrix_5_1();
+    }
+
+    function quickAddRisk_5_1(name, p, i) {
+        registeredRisks_5_1.push({ name, p, i });
+        renderRiskMatrix_5_1();
+    }
+
+    function removeRisk_5_1(index) {
+        registeredRisks_5_1.splice(index, 1);
+        renderRiskMatrix_5_1();
+    }
+
+    function resetRiskGrid_5_1() {
+        registeredRisks_5_1 = [
+            { name: 'Patent Infringement by Incumbent', p: 1, i: 3 },
+            { name: 'Key Research Personnel Turnover', p: 2, i: 2 },
+            { name: 'Batch Leaching Toxicity Flaw', p: 2, i: 3 },
+            { name: 'Minor Testing Protocol Delay', p: 3, i: 1 }
+        ];
+        renderRiskMatrix_5_1();
+    }
+
+    if (document.getElementById('cell-1-1')) resetRiskGrid_5_1();
+</script>
+</div>
+
+
+
+<!-- SLIDE (6,0): ACTION PLAN OPERATIONALIZATION (5W2H METHOD) -->
+<div id="slide-6-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 06 — OPERATIONAL DEPLOYMENT</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Action Plan Engineering: The 5W2H Framework</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: 5W2H Seven Guiding Dimensions -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-list-check text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">The 7 Pillars of Operational Rigor</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-3">
+                        The 5W2H methodology transforms abstract innovation goals into auditable work packages, eliminating execution friction across 7 dimensions:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-fluid-meta text-[#444444]">
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#901812] block">What (Scope):</strong>
+                            Specific technical deliverable or operational activity to be executed.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#901812] block">Why (Justification):</strong>
+                            Underlying strategic purpose, hypothesis test, or risk mitigation rationale.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#D1A705] block">Where (Location):</strong>
+                            Physical laboratory facility, pilot plant site, or cloud deployment venue.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#D1A705] block">When (Timeline):</strong>
+                            Exact calendar duration, start/end deadlines within the 12-month sprint.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#2563EB] block">Who (Ownership):</strong>
+                            Designated responsible team member accountable for completion.
+                        </div>
+                        <div class="p-2.5 bg-white/80 rounded-xl border border-black/5">
+                            <strong class="text-[#2563EB] block">How (Methodology):</strong>
+                            Experimental standard (ASTM/ABNT), fabrication procedure, or validation protocol.
+                        </div>
+                    </div>
+                    <div class="mt-2 p-2.5 bg-amber-500/10 rounded-xl border border-amber-500/30 text-fluid-meta">
+                        <strong class="text-amber-800"><i class="fa-solid fa-coins mr-1"></i> How Much (Cost):</strong>
+                        Direct CapEx, OpEx, scholarships, and consumables feeding the cash-flow forecast.
+                    </div>
+                </div>
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between">
+                    <span class="text-fluid-meta text-[#666666] font-semibold"><i class="fa-solid fa-timeline text-[#901812] mr-2"></i>Covers complete 12-month execution window</span>
+                    <button onclick="document.getElementById('modal-protocol-6-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Audit Protocol</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Strategic Roadmapping & Virtual Lab Trigger -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">EXECUTION CONTROL</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">12-Month Staged Validation</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Hard tech roadmaps link technical TRL escalation directly to quarterly capital disbursements, ensuring zero unfunded commitments:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">TRL Stage-Gate Linking:</strong>
+                            Milestones define clear criteria: an activity must not trigger disbursement until preceding test proofs validate hypothesis viability.
+                        </div>
+                        <div class="p-3 bg-white/10 rounded-2xl border border-white/10">
+                            <strong class="text-[#D1A705] block mb-1">Direct Budget Synthesis:</strong>
+                            Every single row of the 5W2H register automatically feeds the line-item grant financial reporting requirements.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-calendar-days text-lg"></i>
+                        <span>Launch 5W2H Interactive Planner (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Budget Forecasting (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 06: Action Plan (5W2H Method)</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for 5W2H Planner | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 07</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: AUDITORIA 5W2H -->
+    <dialog id="modal-protocol-6-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">AUDIT CRITERIA</span>
+                <h3 class="text-fluid-h2 text-white font-bold">5W2H Execution Quality Checklist</h3>
+            </div>
+            <button onclick="document.getElementById('modal-protocol-6-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-3 text-fluid-body text-[#DEDEDE]">
+            <p>Grant evaluators (FINEP/FAPEMIG/EMBRAPII) reject vague innovation timelines. Ensure each entry satisfies these conditions:</p>
+            <ul class="space-y-2 text-fluid-meta font-semibold">
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-check text-[#D1A705]"></i>
+                    <span><strong>Unambiguous Ownership:</strong> One single responsible person named per row; shared responsibility equals zero accountability.</span>
+                </li>
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-check text-[#D1A705]"></i>
+                    <span><strong>Verifiable Completion:</strong> Deliverables must be binary (either the report/prototype exists or it does not).</span>
+                </li>
+                <li class="p-2.5 bg-white/10 rounded-xl flex items-center gap-2">
+                    <i class="fa-solid fa-check text-[#D1A705]"></i>
+                    <span><strong>Exhaustive Costing:</strong> All direct expenses (consumables, shipping, stipends) must sum directly to the total budget.</span>
+                </li>
+            </ul>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (6,1): VIRTUAL LAB 4 - INTERACTIVE 5W2H MILESTONE BUILDER (BRANCH Y=1) -->
+<div id="slide-6-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB 04 (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Interactive 5W2H Milestone Builder & Budget Engine</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 06</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex flex-col my-auto py-1 min-h-0 overflow-hidden">
+        <!-- Barra de Entrada e Cadastro Rápido de Ações -->
+        <div class="w-full p-3.5 bg-white/85 backdrop-blur-md rounded-2xl shadow-sm border border-black/5 flex-shrink-0 mb-2.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-2 items-center text-fluid-meta">
+                <div class="md:col-span-2">
+                    <input type="text" id="input-5w2h-what-6-1" placeholder="What (Activity deliverable)..." class="w-full px-3 py-1.5 bg-white border border-black/15 rounded-xl text-[#333333] focus:outline-none focus:border-[#901812]">
+                </div>
+                <div>
+                    <input type="text" id="input-5w2h-who-6-1" placeholder="Who (Owner)..." class="w-full px-3 py-1.5 bg-white border border-black/15 rounded-xl text-[#333333] focus:outline-none focus:border-[#901812]">
+                </div>
+                <div>
+                    <select id="input-5w2h-when-6-1" class="w-full px-2 py-1.5 bg-white border border-black/15 rounded-xl text-[#333333] font-semibold focus:outline-none focus:border-[#901812]">
+                        <option value="M01–M03">Q1 (M01–03)</option>
+                        <option value="M04–M06" selected>Q2 (M04–06)</option>
+                        <option value="M07–M09">Q3 (M07–09)</option>
+                        <option value="M10–M12">Q4 (M10–12)</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="text" id="input-5w2h-where-6-1" placeholder="Where (Lab/Site)..." class="w-full px-3 py-1.5 bg-white border border-black/15 rounded-xl text-[#333333] focus:outline-none focus:border-[#901812]">
+                </div>
+                <div>
+                    <input type="number" id="input-5w2h-cost-6-1" placeholder="Cost ($)..." class="w-full px-3 py-1.5 bg-white border border-black/15 rounded-xl text-[#333333] font-mono focus:outline-none focus:border-[#901812]">
+                </div>
+                <div class="flex items-center space-x-1.5">
+                    <button type="button" onclick="addAction_6_1()" class="flex-1 py-1.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl text-fluid-meta transition-colors shadow-sm cursor-pointer flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-plus text-xs"></i>
+                        <span>Add</span>
+                    </button>
+                    <button type="button" onclick="resetActions_6_1()" class="px-2.5 py-1.5 bg-gray-200 hover:bg-gray-300 text-[#333333] font-bold rounded-xl text-fluid-meta transition-colors cursor-pointer" title="Reset default milestones">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel Tabela de Marcos e Consolidação Financeira -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 flex-1 min-h-0 items-stretch">
+            <!-- Tabela Interativa de Tarefas 5W2H -->
+            <div class="lg:col-span-9 card-glass rounded-2xl p-3.5 flex flex-col min-h-0">
+                <div class="flex items-center justify-between pb-2 border-b border-black/10 flex-shrink-0">
+                    <span class="text-fluid-meta font-bold text-[#333333] flex items-center gap-1.5">
+                        <i class="fa-solid fa-calendar-check text-[#901812]"></i>
+                        <span>12-Month Operational Action Register (5W2H)</span>
+                    </span>
+                    <span class="text-xs font-semibold text-[#666666]">Dynamic Disbursement Scheduler</span>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto pt-2 pr-1 min-h-0">
+                    <table class="w-full text-left text-fluid-meta border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-black/10 text-[#901812] sticky top-0 bg-white/90 backdrop-blur-sm z-10">
+                                <th class="py-1.5 px-2 font-bold">What (Activity)</th>
+                                <th class="py-1.5 px-2 font-bold">Who</th>
+                                <th class="py-1.5 px-2 font-bold">When</th>
+                                <th class="py-1.5 px-2 font-bold">Where</th>
+                                <th class="py-1.5 px-2 font-bold text-right">Cost ($)</th>
+                                <th class="py-1.5 px-2 text-center font-bold">Del</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-5w2h-6-1" class="divide-y divide-black/5 text-[#444444]">
+                            <!-- Inserido dinamicamente via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card Lateral: Resumo de Desembolso e Status -->
+            <div class="lg:col-span-3 card-glass-dark rounded-2xl p-4 text-white flex flex-col justify-between min-h-0">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block mb-1">FINANCIAL ROLLUP</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-3">Roadmap Totals</h3>
+
+                    <div class="bg-white/10 p-3.5 rounded-2xl backdrop-blur-md border border-white/10 text-center mb-3">
+                        <span class="text-fluid-tag text-[#DEDEDE] block">Total Estimated Budget</span>
+                        <span id="lbl-total-budget-6-1" class="text-fluid-h2 text-[#D1A705] font-mono leading-tight my-1 block">$0</span>
+                        <span class="text-xs text-[#DEDEDE] block">Allocated across <strong id="lbl-action-count-6-1" class="text-white">0</strong> activities</span>
+                    </div>
+
+                    <div class="space-y-1.5 text-xs text-[#DEDEDE]">
+                        <div class="flex justify-between p-1.5 bg-white/5 rounded-lg">
+                            <span>Q1 (M01–03):</span>
+                            <span id="lbl-q1-budget-6-1" class="font-mono font-bold text-white">$0</span>
+                        </div>
+                        <div class="flex justify-between p-1.5 bg-white/5 rounded-lg">
+                            <span>Q2 (M04–06):</span>
+                            <span id="lbl-q2-budget-6-1" class="font-mono font-bold text-white">$0</span>
+                        </div>
+                        <div class="flex justify-between p-1.5 bg-white/5 rounded-lg">
+                            <span>Q3 (M07–09):</span>
+                            <span id="lbl-q3-budget-6-1" class="font-mono font-bold text-white">$0</span>
+                        </div>
+                        <div class="flex justify-between p-1.5 bg-white/5 rounded-lg">
+                            <span>Q4 (M10–12):</span>
+                            <span id="lbl-q4-budget-6-1" class="font-mono font-bold text-white">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-2.5 bg-white/5 rounded-xl text-xs text-[#DEDEDE] border border-white/10 mt-2">
+                    <i class="fa-solid fa-circle-info text-[#D1A705] mr-1"></i>
+                    Costs reflect directly into the 12-Month Cash-Flow runway of Module 07.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Virtual Lab 04: Interactive 5W2H Planner</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 06 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 07</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (6,1) -->
+    <script>
+        let actionsList_6_1 = [];
+
+        function render5W2HTable_6_1() {
+            const tbody = document.getElementById('table-body-5w2h-6-1');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            let total = 0;
+            let qTotals = { 'M01–M03': 0, 'M04–M06': 0, 'M07–M09': 0, 'M10–M12': 0 };
+
+            actionsList_6_1.forEach((act, idx) => {
+                total += act.cost;
+                if (qTotals[act.when] !== undefined) qTotals[act.when] += act.cost;
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-black/5 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-2 px-2 font-semibold text-[#333333]">${act.what}</td>
+                    <td class="py-2 px-2 text-xs font-bold text-[#901812]">${act.who}</td>
+                    <td class="py-2 px-2"><span class="px-2 py-0.5 bg-black/10 rounded-full text-xs font-bold">${act.when}</span></td>
+                    <td class="py-2 px-2 text-xs">${act.where}</td>
+                    <td class="py-2 px-2 text-right font-mono font-bold text-[#333333]">$${act.cost.toLocaleString()}</td>
+                    <td class="py-2 px-2 text-center">
+                        <button onclick="removeAction_6_1(${idx})" class="w-6 h-6 rounded-full bg-red-100 hover:bg-[#901812] hover:text-white text-[#901812] transition-colors cursor-pointer inline-flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('lbl-total-budget-6-1').innerText = `$${total.toLocaleString()}`;
+            document.getElementById('lbl-action-count-6-1').innerText = actionsList_6_1.length;
+            document.getElementById('lbl-q1-budget-6-1').innerText = `$${qTotals['M01–M03'].toLocaleString()}`;
+            document.getElementById('lbl-q2-budget-6-1').innerText = `$${qTotals['M04–M06'].toLocaleString()}`;
+            document.getElementById('lbl-q3-budget-6-1').innerText = `$${qTotals['M07–M09'].toLocaleString()}`;
+            document.getElementById('lbl-q4-budget-6-1').innerText = `$${qTotals['M10–12'].toLocaleString()}`;
+        }
+
+        function addAction_6_1() {
+            const what = document.getElementById('input-5w2h-what-6-1').value.trim();
+            const who = document.getElementById('input-5w2h-who-6-1').value.trim() || 'Team';
+            const when = document.getElementById('input-5w2h-when-6-1').value;
+            const where = document.getElementById('input-5w2h-where-6-1').value.trim() || 'DEC/UFV';
+            const cost = parseFloat(document.getElementById('input-5w2h-cost-6-1').value) || 0;
+
+            if (!what) return;
+
+            actionsList_6_1.push({ what, who, when, where, cost });
+            document.getElementById('input-5w2h-what-6-1').value = '';
+            document.getElementById('input-5w2h-cost-6-1').value = '';
+            render5W2HTable_6_1();
+        }
+
+        function removeAction_6_1(index) {
+            actionsList_6_1.splice(index, 1);
+            render5W2HTable_6_1();
+        }
+
+        function resetActions_6_1() {
+            actionsList_6_1 = [
+                { what: 'Pre-treat iron ore tailings & perform XRF/XRD characterization', who: 'Lead Eng.', when: 'M01–M03', where: 'SICon Lab', cost: 12000 },
+                { what: 'Formulate 4 alkali-activated mix designs & test 7/28d strength', who: 'R&D Scholar', when: 'M01–M03', where: 'DEC Materials Lab', cost: 8500 },
+                { what: 'Produce 1:1 scale pilot precast elements with partner company', who: 'Tech Lead', when: 'M04–M06', where: 'Partner Precast Plant', cost: 24000 },
+                { what: 'Conduct 20 commercial customer problem interviews with builders', who: 'Business Lead', when: 'M04–M06', where: 'Field / Virtual', cost: 4000 },
+                { what: 'File patent application with INPI through NIT-UFV TTO office', who: 'NIT Attorney', when: 'M07–M09', where: 'NIT-UFV', cost: 6500 },
+                { what: 'Prepare and submit FINEP economic subvention public proposal', who: 'Full Team', when: 'M10–12', where: 'tecnoPARQ UFV', cost: 5000 }
+            ];
+            render5W2HTable_6_1();
+        }
+
+        if (document.getElementById('table-body-5w2h-6-1')) resetActions_6_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (7,0): BUDGET PLANNING & 12-MONTH FINANCIAL FORECASTING -->
+<div id="slide-7-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">MODULE 07 — FINANCIAL ARCHITECTURE</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Budget Planning, Capital Stacking & Runway</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-stretch">
+            <!-- Card 1: Budget Formulation & Grant Integration -->
+            <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                        <i class="fa-solid fa-file-invoice-dollar text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">12-Month Financial Engineering</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444] mb-2">
+                        Budget planning translates the 5W2H operational schedule into a synchronized cash-flow forecast, mapping expenses against non-dilutive and dilutive capital sources:
+                    </p>
+
+                    <!-- Equação KaTeX Isolada -->
+                    <div class="bg-white/85 backdrop-blur-md p-3 sm:p-4 rounded-2xl text-center shadow-inner overflow-x-auto overflow-y-hidden my-2 border border-black/5" style="font-size: clamp(1.15rem, 1.9vw, 1.75rem);">
+                        $$\text{Cash Balance}(t) = \text{Cash}(t-1) + \sum \text{Inflows}(t) - \sum \text{5W2H Outflows}(t)$$
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-fluid-meta text-[#444444] pt-1">
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#901812] block mb-1"><i class="fa-solid fa-hand-holding-dollar mr-1.5"></i>Inflow Synchronization:</strong>
+                            Public calls (FINEP, FAPEMIG), corporate counterpart investments, scholarships, and angel capital.
+                        </div>
+                        <div class="p-3 bg-white/80 rounded-2xl border border-black/5">
+                            <strong class="text-[#D1A705] block mb-1"><i class="fa-solid fa-money-bill-trend-up mr-1.5"></i>Expenditure Feed:</strong>
+                            Direct inputs from 5W2H work packages: personnel stipends, pilot materials, third-party lab testing, and IP filing fees.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-black/10 pt-2 flex items-center justify-between text-fluid-tag text-[#666666] font-semibold">
+                    <span><i class="fa-solid fa-hourglass-half text-[#901812] mr-2"></i>Target Metric: Minimum 6 Months Sustainable Runway</span>
+                    <button onclick="document.getElementById('modal-budget-7-0').showModal()" class="text-fluid-meta text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Capital Pipeline</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 2: Financial Sustainability & Lab Trigger -->
+            <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">VENTURE SOLVENCY</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Multi-Source Capital Stacking</h3>
+                    <p class="text-fluid-body text-[#DEDEDE] mb-3">
+                        Relying exclusively on a single grant disbursement risks project paralysis during administrative reimbursement delays:
+                    </p>
+                    <div class="space-y-2 text-fluid-meta">
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                            <i class="fa-solid fa-shield text-[#D1A705] mt-1 flex-shrink-0"></i>
+                            <div><strong class="text-[#D1A705]">Public Economic Subvention:</strong> Covers CapEx instrumentation and dedicated researcher stipends without equity dilution.</div>
+                        </div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                            <i class="fa-solid fa-handshake text-white mt-1 flex-shrink-0"></i>
+                            <div><strong class="text-white">Industrial Matching Funds:</strong> Validates market demand and finances scalable raw materials for pilot production runs.</div>
+                        </div>
+                        <div class="p-2.5 bg-white/10 rounded-xl border border-white/10 flex items-start space-x-2.5">
+                            <i class="fa-solid fa-seedling text-green-400 mt-1 flex-shrink-0"></i>
+                            <div><strong class="text-green-300">Self-Funding / Pre-Incubation Seed:</strong> Bridges regulatory filing windows and emergency operational overhead.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-2 pt-2">
+                    <button onclick="moveInGrid(0, 1)" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-calculator text-lg"></i>
+                        <span>Launch 12-Month Runway Engine (Press ↓)</span>
+                    </button>
+                    <button onclick="moveInGrid(1, 0)" class="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all text-fluid-meta border border-white/15 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Skip to Assignment (Press →)</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Module 07: Budget Planning & Forecasting</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Runway Simulator | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Assignment</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: CANAIS DE FINANCIAMENTO E SUBVENÇÃO -->
+    <dialog id="modal-budget-7-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">FUNDING PIPELINE AUDIT</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Innovation Plan Capital Sources</h3>
+            </div>
+            <button onclick="document.getElementById('modal-budget-7-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Every engineering spin-off budget must articulate realistic capital tranches to avoid insolvency during technical validation:</p>
+            <div class="space-y-2.5 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">FAPEMIG / FINEP Economic Subvention:</strong>
+                    Non-reimbursable state and federal grants covering specialized consumables, testing standards, and research stipends.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">EMBRAPII Units & Co-Financing:</strong>
+                    Tripartite contracts (1/3 EMBRAPII, 1/3 Enterprise, 1/3 Research Group) accelerating industrial pre-commercial scale-up.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">Incubator Infrastructure (CENTEV / tecnoPARQ UFV):</strong>
+                    Subsidized physical headquarters, intellectual property advisory via NIT-UFV, and fiscal hosting benefits.
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<!-- SLIDE (7,1): VIRTUAL LAB 5 - 12-MONTH RUNWAY & CASH-FLOW SENSITIVITY ENGINE (BRANCH Y=1) -->
+<div id="slide-7-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB 05 (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">12-Month Runway & Cash-Flow Sensitivity Engine</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 07</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 my-auto w-full items-stretch">
+            <!-- Painel de Parâmetros Financeiros -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-3">Capital Inflows & Monthly Burn Rate</h3>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#901812]">
+                            <span><i class="fa-solid fa-building-columns mr-1.5"></i>Grant Funding (FINEP/FAPEMIG):</span>
+                            <span id="lbl-grant-7-1" class="font-bold font-mono">$60k</span>
+                        </label>
+                        <input type="range" id="input-grant-7-1" min="10" max="150" step="5" value="60" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularRunway_7_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#B45309]">
+                            <span><i class="fa-solid fa-handshake mr-1.5"></i>Partner Co-Funding / Seed Capital:</span>
+                            <span id="lbl-partner-7-1" class="font-bold font-mono">$30k</span>
+                        </label>
+                        <input type="range" id="input-partner-7-1" min="0" max="100" step="5" value="30" class="w-full accent-[#D1A705] h-3.5 cursor-pointer" oninput="calcularRunway_7_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#1D4ED8]">
+                            <span><i class="fa-solid fa-fire mr-1.5"></i>Monthly Burn Rate (5W2H OpEx):</span>
+                            <span id="lbl-burn-7-1" class="font-bold font-mono">$6.5k/mo</span>
+                        </label>
+                        <input type="range" id="input-burn-7-1" min="2" max="15" step="0.5" value="6.5" class="w-full accent-[#2563EB] h-3.5 cursor-pointer" oninput="calcularRunway_7_1()">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold block flex justify-between text-[#15803D]">
+                            <span><i class="fa-solid fa-industry mr-1.5"></i>Pilot Equipment CapEx (Month 3):</span>
+                            <span id="lbl-capex-7-1" class="font-bold font-mono">$18k</span>
+                        </label>
+                        <input type="range" id="input-capex-7-1" min="0" max="50" step="2" value="18" class="w-full accent-[#16A34A] h-3.5 cursor-pointer" oninput="calcularRunway_7_1()">
+                    </div>
+                </div>
+
+                <!-- Presets de Cenários -->
+                <div class="pt-2 border-t border-black/10">
+                    <span class="text-fluid-tag text-[#666666] font-bold block mb-1.5">Load Capital Scenarios:</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="loadRunwayPreset_7_1(30, 0, 5.0, 15)" class="px-2 py-1.5 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/15 rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Underfunded
+                        </button>
+                        <button type="button" onclick="loadRunwayPreset_7_1(60, 30, 6.5, 18)" class="px-2 py-1.5 bg-white/90 hover:bg-black/5 text-[#333333] border border-black/15 rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Baseline 5W2H
+                        </button>
+                        <button type="button" onclick="loadRunwayPreset_7_1(100, 60, 8.0, 25)" class="px-2 py-1.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white rounded-xl text-fluid-tag font-semibold transition-colors cursor-pointer text-center">
+                            Fully Funded
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Resultados de Runway e Solvência -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] font-bold block mb-1">FINANCIAL RUNWAY AUDIT</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-3">Venture Solvency Projection</h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/10 text-center">
+                            <span class="text-fluid-tag text-[#DEDEDE] block">Total Capital Raised</span>
+                            <span id="res-total-capital-7-1" class="text-fluid-h2 text-white font-mono leading-tight my-0.5 block">$90,000</span>
+                            <span class="text-xs text-[#DEDEDE]">Grants + Partner Matching</span>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/10 text-center">
+                            <span class="text-fluid-tag text-[#DEDEDE] block">Net 12-Month Outflow</span>
+                            <span id="res-total-outflow-7-1" class="text-fluid-h2 text-[#D1A705] font-mono leading-tight my-0.5 block">$96,000</span>
+                            <span class="text-xs text-[#DEDEDE]">12mo OpEx + Pilot CapEx</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/10 text-center">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Estimated Runway Horizon</span>
+                        <span id="res-runway-months-7-1" class="text-fluid-h1 text-[#D1A705] font-mono leading-none my-1 block">11.1 Months</span>
+                        <span id="res-runway-status-7-1" class="text-fluid-tag font-bold uppercase inline-block mt-1 text-white bg-amber-600 py-1 px-5 rounded-full shadow-md">
+                            RUNWAY RISK (INSOLVENT IN M12)
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white/5 rounded-2xl text-fluid-meta text-[#DEDEDE] flex items-center space-x-3 backdrop-blur-sm border border-white/10">
+                    <i class="fa-solid fa-chart-line text-[#D1A705] text-2xl flex-shrink-0"></i>
+                    <span id="res-runway-advisory-7-1">Capital exhausts before 12-month commercial demonstration. Secure additional partner counterpart or trim non-essential 5W2H work packages.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Virtual Lab 05: 12-Month Runway Engine</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return to Module 07 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Assignment</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (7,1) -->
+    <script>
+        function loadRunwayPreset_7_1(grant, partner, burn, capex) {
+            document.getElementById('input-grant-7-1').value = grant;
+            document.getElementById('input-partner-7-1').value = partner;
+            document.getElementById('input-burn-7-1').value = burn;
+            document.getElementById('input-capex-7-1').value = capex;
+            calcularRunway_7_1();
+        }
+
+        function calcularRunway_7_1() {
+            const grant = parseFloat(document.getElementById('input-grant-7-1').value) * 1000;
+            const partner = parseFloat(document.getElementById('input-partner-7-1').value) * 1000;
+            const burn = parseFloat(document.getElementById('input-burn-7-1').value) * 1000;
+            const capex = parseFloat(document.getElementById('input-capex-7-1').value) * 1000;
+
+            document.getElementById('lbl-grant-7-1').innerText = `$${(grant/1000).toFixed(0)}k`;
+            document.getElementById('lbl-partner-7-1').innerText = `$${(partner/1000).toFixed(0)}k`;
+            document.getElementById('lbl-burn-7-1').innerText = `$${(burn/1000).toFixed(1)}k/mo`;
+            document.getElementById('lbl-capex-7-1').innerText = `$${(capex/1000).toFixed(0)}k`;
+
+            const totalCapital = grant + partner;
+            const totalOutflow12 = (burn * 12) + capex;
+            
+            document.getElementById('res-total-capital-7-1').innerText = `$${Math.round(totalCapital).toLocaleString()}`;
+            document.getElementById('res-total-outflow-7-1').innerText = `$${Math.round(totalOutflow12).toLocaleString()}`;
+
+            // Cálculo do runway considerando CapEx no mês 3
+            let balance = totalCapital;
+            let monthsRunway = 0;
+            for (let m = 1; m <= 36; m++) {
+                let monthlyCost = burn;
+                if (m === 3) monthlyCost += capex;
+                if (balance >= monthlyCost) {
+                    balance -= monthlyCost;
+                    monthsRunway = m;
+                } else {
+                    monthsRunway += balance / monthlyCost;
+                    break;
+                }
+            }
+
+            const runwayEl = document.getElementById('res-runway-months-7-1');
+            const statusEl = document.getElementById('res-runway-status-7-1');
+            const advisoryEl = document.getElementById('res-runway-advisory-7-1');
+
+            runwayEl.innerText = `${monthsRunway >= 24 ? '> 24' : monthsRunway.toFixed(1)} Months`;
+
+            if (monthsRunway >= 14) {
+                statusEl.innerText = "EXCELLENT CAPITAL BUFFER (> 14 MOS)";
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-1 text-white bg-green-700 py-1 px-5 rounded-full shadow-md";
+                advisoryEl.innerText = "Robust runway provides safety buffer for delayed grant tranches and technical prototype re-testing without insolvency risk.";
+            } else if (monthsRunway >= 12) {
+                statusEl.innerText = "SUFFICIENT 12-MONTH COVERAGE";
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-1 text-[#333333] bg-[#D1A705] py-1 px-5 rounded-full shadow-md";
+                advisoryEl.innerText = "Meets the minimum 12-month development horizon. Keep strict oversight on non-essential 5W2H expenses to prevent year-end deficit.";
+            } else {
+                statusEl.innerText = `CRITICAL DEFICIT (INSOLVENT IN M${Math.floor(monthsRunway)})`;
+                statusEl.className = "text-fluid-tag font-bold uppercase inline-block mt-1 text-white bg-[#901812] py-1 px-5 rounded-full shadow-md";
+                advisoryEl.innerText = "Capital exhausts before completing full validation. Increase grant applications (FAPEMIG/FINEP) or secure industrial counterpart.";
+            }
+        }
+
+        if (document.getElementById('input-grant-7-1')) calcularRunway_7_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (8,0): REFERENCES, CLOSING & EVALUATION ASSIGNMENTS -->
+<div id="slide-8-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks3.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold uppercase tracking-wider">CLOSING MODULE — SYNTHESIS & AUDIT</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Academic References & Assessments</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-lg hover:scale-105 transition-transform flex-shrink-0">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2 min-h-0">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 w-full items-stretch h-full max-h-[82vh]">
+            <!-- Coluna 1: Referências Metodológicas -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between overflow-hidden border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-3 flex-shrink-0">
+                        <i class="fa-solid fa-book-bookmark text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Methodological References</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-fluid-meta text-[#444444] font-semibold overflow-y-auto pr-1">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-book text-[#901812] mt-1 mr-2.5 flex-shrink-0"></i>
+                            <span><strong>Porter, M. E.</strong> (2008). <em>Competitive Strategy: Techniques for Analyzing Industries and Competitors</em>. Free Press.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2.5 flex-shrink-0"></i>
+                            <span><strong>International Organization for Standardization.</strong> (2018). <em>ISO 31000: Risk Management — Guidelines</em>. Geneva: ISO.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2.5 flex-shrink-0"></i>
+                            <span><strong>IDEO & Design Council.</strong> (2015). <em>The Innovation Sweet Spot: Balancing Desirability, Feasibility, Viability, and Integrity</em>.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-building-columns text-[#901812] mt-1 mr-2.5 flex-shrink-0"></i>
+                            <span><strong>Brasil.</strong> (2016). <em>Lei nº 13.243/2016 — Marco Legal de Ciência, Tecnologia e Inovação</em>. Presidência da República.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2.5 flex-shrink-0"></i>
+                            <span><strong>FINEP & FAPEMIG. </strong><em>Manuais Operacionais de Subvenção e Prestação de Contas</em>.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-2 border-t border-black/10 text-fluid-tag text-[#666666] font-semibold flex items-center justify-between flex-shrink-0">
+                    <span><i class="fa-solid fa-graduation-cap text-[#901812] mr-2"></i>CIV 670 • Class 110 Final Sprints</span>
+                    <button onclick="document.getElementById('modal-closing-110').showModal()" class="text-[#901812] font-bold hover:underline cursor-pointer flex items-center gap-1">
+                        <span>Course Closing Remarks</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Dual QR Codes Responsivos Maximais -->
+            <div class="lg:col-span-6 p-5 sm:p-6 rounded-3xl card-glass-dark text-white flex flex-col justify-between border-l-[12px] border-[#D1A705] min-h-0">
+                <div class="text-center flex-shrink-0 mb-1">
+                    <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider block">CLASS EVALUATIONS</span>
+                    <h3 class="text-fluid-h3 text-white font-bold">Synchronous Assessment Gateways</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 items-stretch my-auto min-h-0 py-1">
+                    <!-- QR Code Card 1: In-Class Quiz -->
+                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 flex flex-col justify-between items-center text-center group hover:bg-white/15 transition-all">
+                        <span class="text-fluid-tag text-[#D1A705] font-bold block mb-1 flex-shrink-0">
+                            <i class="fa-solid fa-stopwatch mr-1"></i> In-Class Quiz 110
+                        </span>
+                        <div class="bg-white/95 p-2 rounded-xl shadow-md w-full flex-1 flex items-center justify-center max-w-[210px] aspect-square my-auto min-h-0">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSfNTxaRiBefUbO248fPL3E1Wafsh6ZgQt3avMXXiWsGt4aHWg%2Fviewform%3Fusp%3Dheader&color=901812" alt="Quiz 110 QR Code" class="w-full h-full object-contain aspect-square rounded-lg group-hover:scale-105 transition-transform">
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNTxaRiBefUbO248fPL3E1Wafsh6ZgQt3avMXXiWsGt4aHWg/viewform?usp=header" target="_blank" class="w-full py-2.5 px-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl text-fluid-tag transition-all shadow-md flex items-center justify-center space-x-1.5 flex-shrink-0 mt-2">
+                            <span>Open Quiz Form</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+
+                    <!-- QR Code Card 2: Weekly Report -->
+                    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 flex flex-col justify-between items-center text-center group hover:bg-white/15 transition-all">
+                        <span class="text-fluid-tag text-[#D1A705] font-bold block mb-1 flex-shrink-0">
+                            <i class="fa-solid fa-file-pen mr-1"></i> Weekly Report
+                        </span>
+                        <div class="bg-white/95 p-2 rounded-xl shadow-md w-full flex-1 flex items-center justify-center max-w-[210px] aspect-square my-auto min-h-0">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSf474IiMPgsiaaHPngc9PJiDBYaFCg6eKLFX0_E2JGk8U76Tg%2Fviewform%3Fusp%3Dheader&color=901812" alt="Weekly Report QR Code" class="w-full h-full object-contain aspect-square rounded-lg group-hover:scale-105 transition-transform">
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf474IiMPgsiaaHPngc9PJiDBYaFCg6eKLFX0_E2JGk8U76Tg/viewform?usp=header" target="_blank" class="w-full py-2.5 px-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl text-fluid-tag transition-all shadow-md flex items-center justify-center space-x-1.5 flex-shrink-0 mt-2">
+                            <span>Open Weekly Report</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center text-fluid-tag text-[#DEDEDE] pt-1 flex-shrink-0">
+                    <span class="text-xs text-[#DEDEDE] block">Both gateways require institutional @ufv.br authentication. Single submission strictly enforced.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 110 — Closing Module: References & Assessments</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> to Return to Module 07 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">Home</kbd> for Cover</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: SÍNTESE FINAL E PRÓXIMOS PASSOS -->
+    <dialog id="modal-closing-110" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">VENTURE CONSOLIDATION</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Innovation Plan Final Milestone</h3>
+            </div>
+            <button onclick="document.getElementById('modal-closing-110').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Completion of Class 110 solidifies the operational bridge between laboratory research and commercial insertion:</p>
+            <div class="space-y-2.5 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">Equilibrium Verification:</strong>
+                    Ensure your venture maintains balance across Desirability, Viability, Feasibility, and Integrity prior to incubator submission.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">Risk Control Architecture:</strong>
+                    Ensure every critical probability-impact risk factor has an active, funded engineering mitigation task within the 5W2H plan.
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block">Financial Execution:</strong>
+                    Confirm that your 12-month budget demonstrates at least 6 months of non-dilutive runway coverage under simulated delays.
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+
+
+
+
+</main>
+
+    <!-- MOTOR DE NAVEGAÇÃO MATRICIAL 2D -->
+    <script>
+        let currentX = 0, currentY = 0;
+        let slideGrid = {};
+
+        function updateSlideGrid() {
+            slideGrid = {};
+            document.querySelectorAll('[id^="slide-"]').forEach(slide => {
+                const parts = slide.id.replace('slide-', '').split('-');
+                if (parts.length === 2) slideGrid[`${parts[0]},${parts[1]}`] = slide.id;
+            });
+        }
+
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
+        function updateUI() {
+            updateSlideGrid();
+            const keysH = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const maxH = Math.max(...keysH.map(k => parseInt(k.split(',')[0])), 0);
+            const totalMainSlides = keysH.length;
+            
+            document.getElementById('progressBar').style.width = `${maxH === 0 ? 100 : (currentX / maxH) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX},${currentY}) | ${currentX + 1} of ${totalMainSlides}`;
+
+            const dirs = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in dirs) {
+                const btn = document.getElementById(`btn-nav-${d}`);
+                if (btn) btn.classList.toggle('nav-enabled', hasSlide(currentX + dirs[d][0], currentY + dirs[d][1]));
+            }
+        }
+
+        function moveInGrid(dx, dy) {
+            updateSlideGrid();
+            const nx = currentX + dx, ny = currentY + dy;
+            if (hasSlide(nx, ny)) {
+                const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
+                const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
+                
+                cur.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+
+                if (dx > 0) cur.classList.add('slide-hidden-left');
+                else if (dx < 0) cur.classList.add('slide-hidden-right');
+                else if (dy > 0) cur.classList.add('slide-hidden-down');
+                else if (dy < 0) cur.classList.add('slide-hidden-up');
+
+                nxt.classList.add('slide-active');
+
+                currentX = nx; currentY = ny;
+                updateUI();
+                if (window.renderMathInElement) renderMathInElement(nxt);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT','TEXTAREA','DIALOG'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
+            else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
+            else if (e.key === 'ArrowUp') moveInGrid(0, -1);
+            else if (e.key === 'ArrowDown') moveInGrid(0, 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            updateUI(); 
+        });
+    </script>
+</body>
+</html>

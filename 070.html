@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden select-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CIV 670 | Business Models & Strategy - PMS UFV</title>
+    
+    <!-- ESSENTIAL CDNs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false });"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Preset PMS */
+            --color-primary: #901812;
+            --color-secondary: #D1A705;
+            --color-dark: #333333;
+            --color-bg: #F4F6F5;
+            --bg-shade-left: rgba(244,246,245,0.96);
+            --bg-shade-mid: rgba(244,246,245,0.70);
+            --bg-shade-right: rgba(244,246,245,0.15);
+            --card-light: rgba(255, 255, 255, 0.58);
+            --card-dark: rgba(51, 51, 51, 0.65);
+
+            /* Tipografia Super-Ampliada (Calibração Nativa Full HD / 4k) */
+            --fluid-h1: clamp(2.8rem, 6.2vw, 5.5rem);
+            --fluid-h2: clamp(2.2rem, 4.6vw, 4.0rem);
+            --fluid-h3: clamp(1.75rem, 3.2vw, 2.8rem);
+            --fluid-body: clamp(1.35rem, 2.2vw, 1.95rem);
+            --fluid-meta: clamp(1.15rem, 1.6vw, 1.55rem);
+            --fluid-tag: clamp(1.05rem, 1.4vw, 1.35rem);
+        }
+
+        html, body { 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: var(--color-bg); 
+            font-family: 'PT Sans Narrow', sans-serif; 
+            color: var(--color-dark); 
+        }
+
+        .text-fluid-h1 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h1); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; }
+        .text-fluid-h2 { font-family: 'Montserrat', sans-serif; font-size: var(--fluid-h2); font-weight: 800; line-height: 1.15; }
+        .text-fluid-h3 { font-size: var(--fluid-h3); font-weight: 700; line-height: 1.25; }
+        .text-fluid-body { font-size: var(--fluid-body); font-weight: 500; line-height: 1.45; }
+        .text-fluid-meta { font-size: var(--fluid-meta); font-weight: 600; }
+        .text-fluid-tag { font-size: var(--fluid-tag); font-weight: 700; letter-spacing: 0.04em; }
+
+        .katex-display { font-size: clamp(1.45rem, 2.7vw, 2.45rem) !important; margin: 0.85rem 0 !important; line-height: 1.25 !important; }
+        .katex { font-size: 1.08em; }
+
+        .slide-screen {
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            top: 0; 
+            left: 0;
+            opacity: 0; 
+            pointer-events: none; 
+            z-index: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        .slide-active { opacity: 1; transform: translate3d(0, 0, 0); pointer-events: auto; z-index: 10; }
+        .slide-hidden-left  { opacity: 0; transform: translate3d(-100%, 0, 0); }
+        .slide-hidden-right { opacity: 0; transform: translate3d(100%, 0, 0); }
+        .slide-hidden-up    { opacity: 0; transform: translate3d(0, -100%, 0); }
+        .slide-hidden-down  { opacity: 0; transform: translate3d(0, 100%, 0); }
+
+        .slide-screen::-webkit-scrollbar {
+            width: 6px;
+        }
+        .slide-screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .slide-screen::-webkit-scrollbar-thumb {
+            background: rgba(144, 24, 18, 0.25);
+            border-radius: 9999px;
+        }
+        .slide-screen::-webkit-scrollbar-thumb:hover {
+            background: rgba(144, 24, 18, 0.65);
+        }
+
+        .card-glass { 
+            border: none !important; 
+            background-color: var(--card-light); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+        .card-glass-dark { 
+            border: none !important; 
+            background-color: var(--card-dark); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px); 
+            color: white; 
+            box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+            will-change: transform, box-shadow; 
+        }
+
+        .card-glass:hover {
+            transform: translateY(-4px);
+            background-color: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-glass-dark:hover {
+            transform: translateY(-4px);
+            background-color: rgba(51, 51, 51, 0.78);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+        }
+
+        .reveal-controls { 
+            position: fixed; 
+            bottom: 1.25rem; 
+            right: 1.25rem; 
+            width: 110px; 
+            height: 110px; 
+            z-index: 1000; 
+            pointer-events: none; 
+        }
+        .control-arrow {
+            position: absolute; 
+            width: 38px; 
+            height: 38px; 
+            background: rgba(255, 255, 255, 0.40);
+            backdrop-filter: blur(6px); 
+            border-radius: 50%; 
+            color: #888888; 
+            cursor: pointer;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            opacity: 0.15; 
+            pointer-events: none;
+            transition: all 0.2s ease; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06); 
+            font-size: 0.95rem;
+        }
+        .control-arrow.nav-up { top: 0; left: 36px; }
+        .control-arrow.nav-down { bottom: 0; left: 36px; }
+        .control-arrow.nav-left { top: 36px; left: 0; }
+        .control-arrow.nav-right { top: 36px; right: 0; }
+        .control-arrow.nav-enabled { color: var(--color-primary); opacity: 0.65; pointer-events: auto; }
+        .control-arrow.nav-enabled:hover { background: var(--color-primary); color: #FFF; opacity: 1; transform: scale(1.1); }
+    </style>
+</head>
+<body class="w-screen h-screen relative">
+
+    <div class="fixed top-0 left-0 h-2 bg-[var(--color-secondary)] transition-all duration-300 z-[1000]" id="progressBar" style="width: 0%;"></div>
+
+    <div class="fixed bottom-3 left-3 text-fluid-tag font-bold text-[var(--color-dark)] bg-white/70 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm z-[1000] flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]"></span>
+        <span id="slideIndicator">Slide (0,0) | 1 of 5</span>
+    </div>
+
+    <div class="reveal-controls">
+        <button id="btn-nav-up" onclick="moveInGrid(0, -1)" class="control-arrow nav-up" aria-label="Up"><i class="fa-solid fa-chevron-up"></i></button>
+        <button id="btn-nav-left" onclick="moveInGrid(-1, 0)" class="control-arrow nav-left" aria-label="Left"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="btn-nav-right" onclick="moveInGrid(1, 0)" class="control-arrow nav-right" aria-label="Right"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btn-nav-down" onclick="moveInGrid(0, 1)" class="control-arrow nav-down" aria-label="Down"><i class="fa-solid fa-chevron-down"></i></button>
+    </div>
+
+    <main class="w-full h-full relative" id="slideDeck">
+
+        
+        
+<!-- SLIDE (0,0): TITLE & COURSE COVER (AULA 070) -->
+<div id="slide-0-0" class="slide-screen slide-active flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0">
+        <div class="flex items-center space-x-4 sm:space-x-6 bg-white/75 backdrop-blur-md px-6 py-3.5 rounded-2xl shadow-sm">
+            <img src="Logo UFV oficial horizontal.png" alt="UFV Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://dci.ufv.br/wp-content/themes/diretorias/assets/images/estrutura/logotipoUFV.png'">
+            <div class="h-10 w-[1px] bg-black/10"></div>
+            <span class="text-fluid-tag text-[#333333]">CIV 670 • PMS / UFV</span>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-12 sm:h-16 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full my-auto py-4">
+        <div class="lg:col-span-7 space-y-4">
+            <div class="p-8 sm:p-12 rounded-3xl card-glass border-l-[16px] border-[#901812]">
+                <span class="text-fluid-tag text-[#D1A705] tracking-wider block mb-2 font-bold uppercase">CIV 670 — INNOVATION & TECHNOLOGICAL ENTREPRENEURSHIP</span>
+                <h1 class="text-fluid-h1 mb-3 text-[#901812]">MARKET ASSESSMENT & CUSTOMER DEVELOPMENT<span class="block text-fluid-h2 text-[#333333] font-bold mt-2">Customer Discovery, Market Sizing & Problem-Solution Fit</span></h1>
+                <p class="text-fluid-body text-[#444444]">Systematic methods for identifying root pain points, structuring testable customer hypotheses, conducting non-biased qualitative discovery, and sizing commercial beachheads (TAM/SAM/SOM) for deep-tech engineering innovations.</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 p-6 sm:p-10 rounded-3xl card-glass-dark text-white flex flex-col justify-between space-y-6">
+            <div class="bg-white/90 backdrop-blur-md p-4 sm:p-6 rounded-2xl text-center shadow-md w-full flex flex-col items-center justify-center flex-1 min-h-0">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fjmfcarvalho.github.io%2Fciv670%2F070.html&color=901812" alt="Lesson 070 Mobile Sync QR Code" class="w-full max-w-[260px] max-h-[32vh] object-contain aspect-square mx-auto rounded-lg">
+                <span class="text-fluid-tag text-[#333333] font-bold mt-3 block">Follow On Smartphone</span>
+            </div>
+            <div class="text-center space-y-1">
+                <span class="text-fluid-tag text-[#D1A705] block font-bold">Course Instructor</span>
+                <p class="text-fluid-body font-bold text-white">Prof. José Maria Franco de Carvalho</p>
+                <p class="text-fluid-meta text-[#DEDEDE]">SICon / DEC — Universidade Federal de Viçosa</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Market Assessment & Customer Development</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Lesson Plan | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 01</span>
+    </footer>
+</div>
+
+<!-- SLIDE (0,1): LESSON ARCHITECTURE & LEARNING OBJECTIVES (BRANCH Y=1) -->
+<div id="slide-0-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-10 md:p-12" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">PEDAGOGICAL FRAMEWORK (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812]">Lesson Architecture & Strategic Learning Matrix</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Cover</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 my-auto w-full py-4 items-stretch">
+        <!-- Card 1: Core Competencies -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+            <div>
+                <div class="flex items-center space-x-3 text-[#901812] mb-3">
+                    <i class="fa-solid fa-bullseye text-3xl"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Core Competencies</h3>
+                </div>
+                <p class="text-fluid-body text-[#444444]">De-risking technological assumptions through rigorous ethnographic observation, structured inquiry, and quantitative market filtering.</p>
+            </div>
+            <ul class="text-fluid-meta space-y-2.5 text-[#444444] border-t border-black/10 pt-4 font-semibold">
+                <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Challenge formulation under UN 2030 SDGs</li>
+                <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Constructing testable CSD hypothesis matrices</li>
+                <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Ethnographic immersion: See, Feel, and Listen</li>
+                <li class="flex items-start"><i class="fa-solid fa-check text-[#D1A705] mt-1 mr-2 flex-shrink-0"></i>Eliminating false positives in problem interviews</li>
+            </ul>
+        </div>
+
+        <!-- Card 2: Modular Syllabus Grid -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+            <div>
+                <div class="flex items-center space-x-3 text-[#D1A705] mb-3">
+                    <i class="fa-solid fa-layer-group text-3xl text-[#901812]"></i>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Modular Path</h3>
+                </div>
+                <div class="space-y-2 text-fluid-meta font-semibold text-[#444444]">
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5"><strong>Mod 01:</strong> Strategic Challenge Framing & SDGs</div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5"><strong>Mod 02:</strong> Hypothesis Testing & CSD Alignment</div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5"><strong>Mod 03:</strong> Desk Research & Field Ethnography</div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5"><strong>Mod 04:</strong> Discovery Protocol & 7-Step Pain Audit</div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5"><strong>Mod 05:</strong> Synthesis, Empathy Maps & Beachheads</div>
+                </div>
+            </div>
+            <button onclick="document.getElementById('modal-agenda-070').showModal()" class="w-full py-3.5 bg-white/80 hover:bg-[#901812] hover:text-white text-[#901812] border border-[#901812]/30 font-bold rounded-2xl transition-all text-fluid-meta shadow-sm flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Methodological References</span>
+            </button>
+        </div>
+
+        <!-- Card 3: Interactive Virtual Labs Access -->
+        <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">HANDS-ON SIMULATION</span>
+                <h3 class="text-fluid-h3 text-white font-bold mb-2">Integrated Virtual Labs</h3>
+                <p class="text-fluid-body text-[#DEDEDE]">Direct interactive modeling embedded in secondary branches ($Y=1$):</p>
+                <div class="mt-3 space-y-2 text-fluid-meta text-[#DEDEDE]">
+                    <div class="p-3 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-table-cells text-[#D1A705] mr-2"></i><strong>Lab 1:</strong> Dynamic CSD Matrix Hypothesis Prioritizer</div>
+                    <div class="p-3 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-chart-pie text-[#D1A705] mr-2"></i><strong>Lab 2:</strong> Bottom-Up TAM / SAM / SOM Market Sizer</div>
+                    <div class="p-3 bg-white/10 rounded-xl border border-white/10"><i class="fa-solid fa-comments text-[#D1A705] mr-2"></i><strong>Lab 3:</strong> Discovery Interview Bias & Script Auditor</div>
+                </div>
+            </div>
+            <button onclick="moveInGrid(1, 0)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                <span>Start Module 01 (Press →)</span>
+                <i class="fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Architecture & Learning Matrix</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> for Cover | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 01</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: REFERENCES & STANDARDS -->
+    <dialog id="modal-agenda-070" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">METHODOLOGICAL AUDIT</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Frameworks & Reference Base</h3>
+            </div>
+            <button onclick="document.getElementById('modal-agenda-070').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>Class 070 integrates empirical customer discovery frameworks with rigorous academic product design procedures:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Design Council (2005, 2019):</strong> Double Diamond research-to-synthesis divergence/convergence model.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Blank & Dorf (2020):</strong> The Startup Owner's Manual — Customer Discovery search phases.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Aulet (2013):</strong> Disciplined Entrepreneurship — Beachhead market selection and bottom-up TAM modeling.</div>
+                <div class="p-3 bg-white/10 rounded-xl"><strong class="text-[#D1A705]">Fitzpatrick (2013):</strong> The Mom Test — Eliminating conversational flattery and false purchase signals.</div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (1,0): STRATEGIC CHALLENGE & UN 2030 SDGS -->
+<div id="slide-1-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 01 — STRATEGIC FORMULATION</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Strategic Challenge & SDG Enactment</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Card 1: Challenge Definition Syntax -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                        <i class="fa-solid fa-compass-drafting text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Inquiry Architecture</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Framing deep-tech challenges centered on human, environmental, and operational frictions rather than premature solutions.</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2.5 bg-red-500/10 rounded-xl border border-red-500/20">
+                        <strong class="text-[#901812] block mb-0.5"><i class="fa-solid fa-xmark mr-1"></i> Flawed / Solution-Locked:</strong>
+                        <span class="text-fluid-meta font-sans italic">"How can we deploy geopolymer blocks in residential masonry?"</span>
+                    </div>
+                    <div class="p-2.5 bg-green-500/10 rounded-xl border border-green-500/20">
+                        <strong class="text-green-800 block mb-0.5"><i class="fa-solid fa-check mr-1"></i> Validated / Problem-Centric:</strong>
+                        <span class="text-fluid-meta font-sans">"How might we eliminate embodied carbon and thermal loss in affordable walling systems?"</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: SDG Grounding (2030 Agenda) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
+                        <i class="fa-solid fa-earth-americas text-2xl sm:text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">UN 2030 Agenda</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Direct structural anchoring into UN Sustainable Development Goals to govern technological viability:</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded bg-[#F26A2E] text-white flex items-center justify-center text-fluid-tag font-bold font-mono">09</span>
+                        <span>Industry, Innovation & Infrastructure</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded bg-[#F99D26] text-white flex items-center justify-center text-fluid-tag font-bold font-mono">11</span>
+                        <span>Sustainable Cities and Communities</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded bg-[#BF8B2E] text-white flex items-center justify-center text-fluid-tag font-bold font-mono">12</span>
+                        <span>Responsible Consumption & Production</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-center space-x-2">
+                        <span class="w-8 h-8 rounded bg-[#3F7E44] text-white flex items-center justify-center text-fluid-tag font-bold font-mono">13</span>
+                        <span>Climate Action & Direct Decarbonization</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Hypothesis Engine & Action Button -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">HYPOTHESIS FORMULATION (BRANCH Y=1)</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">CSD Matrix Modeling</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Decompose technological conjectures into empirical strata: Certainties, Suppositions, and Critical Doubts.</p>
+                    <div class="mt-3 p-3.5 bg-white/10 rounded-2xl border border-white/10 text-fluid-meta">
+                        <i class="fa-solid fa-triangle-exclamation text-[#D1A705] mr-2"></i>
+                        <span>Epistemic Trap: Treating technical assumptions as validated market facts without rigorous secondary and ethnographic vetting.</span>
+                    </div>
+                </div>
+                <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                    <span>Open Interactive CSD Matrix (Press ↓)</span>
+                    <i class="fa-solid fa-table-columns text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Strategic Challenge & UN 2030 SDGs</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Cover | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for CSD Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 02</span>
+    </footer>
+</div>
+
+<!-- SLIDE (1,1): DYNAMIC CSD MATRIX CANVAS COM POST-ITS EXPANSÍVEIS (BRANCH Y=1) -->
+<div id="slide-1-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 min-h-screen overflow-y-auto select-none" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-clay1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center gap-4 flex-shrink-0 mb-4">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Dynamic CSD Hypothesis Canvas</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3.5 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[50px] flex items-center space-x-2 flex-shrink-0 cursor-pointer">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 01</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Flexível e Expansível -->
+    <div class="w-full flex-1 flex flex-col justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 w-full items-start">
+            <!-- Painel Esquerdo: Entrada e Configuração de Post-its CSD -->
+            <div class="lg:col-span-4 p-6 sm:p-7 rounded-3xl card-glass space-y-4 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div class="space-y-3.5">
+                    <div class="border-b border-black/10 pb-2">
+                        <span class="text-fluid-tag font-bold text-[#901812] uppercase block">Epistemic Entry</span>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Log New Post-it</h3>
+                    </div>
+
+                    <!-- Texto do Post-it -->
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold text-[#333333] block">Hypothesis / Assumption Statement:</label>
+                        <textarea id="csd-card-text-1-1" rows="2" placeholder="e.g., Structural engineers will pay a premium for certified low-carbon clinker." class="w-full p-2.5 rounded-xl bg-white/95 border border-black/15 text-fluid-meta text-[#333333] focus:outline-[#901812] resize-none" maxlength="120"></textarea>
+                    </div>
+
+                    <!-- Categoria CSD -->
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold text-[#333333] block">Epistemic Dimension:</label>
+                        <select id="csd-category-1-1" class="w-full p-3 rounded-xl bg-white border border-black/15 text-fluid-meta font-semibold text-[#333333] focus:outline-[#901812] cursor-pointer">
+                            <option value="certainty">Certainty (Empirically Proven Data)</option>
+                            <option value="supposition" selected>Supposition (Working Assumption)</option>
+                            <option value="doubt">Doubt (Critical Knowledge Gap)</option>
+                        </select>
+                    </div>
+
+                    <!-- Nível de Impacto Estratégico -->
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold text-[#333333] block">Strategic Impact Level:</label>
+                        <select id="csd-impact-1-1" class="w-full p-3 rounded-xl bg-white border border-black/15 text-fluid-meta font-semibold text-[#333333] focus:outline-[#901812] cursor-pointer">
+                            <option value="high">Critical Impact (Kill-Switch Risk)</option>
+                            <option value="medium" selected>Moderate Impact (Process Variance)</option>
+                            <option value="low">Marginal Impact (Secondary Refinement)</option>
+                        </select>
+                    </div>
+
+                    <!-- Seletor de Tom do Post-it -->
+                    <div class="space-y-1">
+                        <label class="text-fluid-meta font-bold text-[#333333] block">Post-it Note Hue:</label>
+                        <div class="grid grid-cols-4 gap-2 pt-1">
+                            <label class="flex items-center justify-center p-2 rounded-xl bg-[#FEF08A] border-2 border-amber-400 cursor-pointer text-xs font-bold text-[#713F12]">
+                                <input type="radio" name="postit-color-1-1" value="yellow" class="sr-only" checked>
+                                <span>Yellow</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 rounded-xl bg-[#BBF7D0] border-2 border-emerald-400 cursor-pointer text-xs font-bold text-[#14532D]">
+                                <input type="radio" name="postit-color-1-1" value="green" class="sr-only">
+                                <span>Green</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 rounded-xl bg-[#BAE6FD] border-2 border-sky-400 cursor-pointer text-xs font-bold text-[#0C4A6E]">
+                                <input type="radio" name="postit-color-1-1" value="blue" class="sr-only">
+                                <span>Blue</span>
+                            </label>
+                            <label class="flex items-center justify-center p-2 rounded-xl bg-[#FECDD3] border-2 border-rose-400 cursor-pointer text-xs font-bold text-[#881337]">
+                                <input type="radio" name="postit-color-1-1" value="pink" class="sr-only">
+                                <span>Pink</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="adicionarPostitCSD_1_1()" class="w-full py-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md flex items-center justify-center space-x-2 cursor-pointer">
+                        <i class="fa-solid fa-note-sticky"></i>
+                        <span>Attach Post-it to Canvas</span>
+                    </button>
+                </div>
+
+                <div class="p-3 bg-white/80 rounded-2xl border border-black/5 text-fluid-meta text-[#555555] mt-2">
+                    <i class="fa-solid fa-circle-info text-[#901812] mr-1.5"></i>
+                    <span><strong>Epistemic Protocol:</strong> Suppositions and Doubts with <em>Critical Impact</em> require immediate experimental validation or field discovery.</span>
+                </div>
+            </div>
+
+            <!-- Painel Direito: Canvas CSD Autoexpansível com 3 Colunas de Post-its -->
+            <div class="lg:col-span-8 p-6 sm:p-7 rounded-3xl card-glass-dark text-white flex flex-col justify-between space-y-4 min-h-[580px] transition-all duration-300">
+                <div class="flex justify-between items-center border-b border-white/15 pb-2.5 flex-shrink-0">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] font-bold uppercase block">EPISTEMIC DISCOVERY BOARD</span>
+                        <h3 class="text-fluid-h3 text-white font-bold">Certainties, Suppositions & Doubts (CSD)</h3>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="limparCanvasCSD_1_1()" class="px-3.5 py-1.5 bg-white/10 hover:bg-red-700 text-white rounded-xl text-fluid-tag transition-colors cursor-pointer flex items-center space-x-1.5">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Clear Board</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Colunas CSD: Expansão vertical sem scroll interno cortado -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 w-full flex-1 items-stretch">
+                    <!-- Coluna C: Certainties -->
+                    <div id="col-box-certainties" class="bg-emerald-950/25 border-2 border-emerald-500/30 rounded-2xl p-3 flex flex-col justify-between min-h-[220px] backdrop-blur-sm transition-all duration-200">
+                        <div class="flex justify-between items-start mb-2.5 flex-shrink-0 border-b border-emerald-500/20 pb-2">
+                            <div>
+                                <span class="text-fluid-tag font-bold text-emerald-400 uppercase tracking-wide block">
+                                    <i class="fa-solid fa-circle-check text-xs mr-1"></i> Certainties
+                                </span>
+                                <span class="text-[0.72rem] text-emerald-200/80 font-mono">Empirical Facts</span>
+                            </div>
+                            <span id="badge-count-certainties" class="text-[0.72rem] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">0</span>
+                        </div>
+                        <div id="cards-container-certainties" class="space-y-2.5 py-1 flex-1"></div>
+                        <span class="text-[0.72rem] text-[#A0AEC0] italic text-right block mt-2 flex-shrink-0">Direct Baseline Data</span>
+                    </div>
+
+                    <!-- Coluna S: Suppositions -->
+                    <div id="col-box-suppositions" class="bg-amber-950/25 border-2 border-amber-500/30 rounded-2xl p-3 flex flex-col justify-between min-h-[220px] backdrop-blur-sm transition-all duration-200">
+                        <div class="flex justify-between items-start mb-2.5 flex-shrink-0 border-b border-amber-500/20 pb-2">
+                            <div>
+                                <span class="text-fluid-tag font-bold text-amber-400 uppercase tracking-wide block">
+                                    <i class="fa-solid fa-triangle-exclamation text-xs mr-1"></i> Suppositions
+                                </span>
+                                <span class="text-[0.72rem] text-amber-200/80 font-mono">Working Hypotheses</span>
+                            </div>
+                            <span id="badge-count-suppositions" class="text-[0.72rem] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full font-bold">0</span>
+                        </div>
+                        <div id="cards-container-suppositions" class="space-y-2.5 py-1 flex-1"></div>
+                        <span class="text-[0.72rem] text-[#A0AEC0] italic text-right block mt-2 flex-shrink-0">Requires Verification</span>
+                    </div>
+
+                    <!-- Coluna D: Doubts -->
+                    <div id="col-box-doubts" class="bg-rose-950/25 border-2 border-rose-500/30 rounded-2xl p-3 flex flex-col justify-between min-h-[220px] backdrop-blur-sm transition-all duration-200">
+                        <div class="flex justify-between items-start mb-2.5 flex-shrink-0 border-b border-rose-500/20 pb-2">
+                            <div>
+                                <span class="text-fluid-tag font-bold text-rose-400 uppercase tracking-wide block">
+                                    <i class="fa-solid fa-circle-question text-xs mr-1"></i> Doubts
+                                </span>
+                                <span class="text-[0.72rem] text-rose-200/80 font-mono">Critical Unknowns</span>
+                            </div>
+                            <span id="badge-count-doubts" class="text-[0.72rem] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full font-bold">0</span>
+                        </div>
+                        <div id="cards-container-doubts" class="space-y-2.5 py-1 flex-1"></div>
+                        <span class="text-[0.72rem] text-[#A0AEC0] italic text-right block mt-2 flex-shrink-0">Exploration Pipeline</span>
+                    </div>
+                </div>
+
+                <!-- Painel de Feedback e Indicadores Síncronos -->
+                <div class="bg-white/10 p-3.5 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-fluid-meta backdrop-blur-md flex-shrink-0">
+                    <span id="csd-status-msg" class="text-[#DEDEDE]">
+                        <i class="fa-solid fa-lightbulb text-[#D1A705] mr-2"></i><strong>Audit State:</strong> Log hypotheses to assess epistemic fragility.
+                    </span>
+                    <span id="csd-total-counter" class="text-[#D1A705] font-bold font-mono text-fluid-body flex-shrink-0">Post-its: 0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-3 flex-shrink-0 mt-4">
+        <span class="font-bold">CIV 670: Class 070 — Dynamic CSD Hypothesis Canvas Lab</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> to Return | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Next Module</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (1,1) -->
+    <script>
+        // Cores autênticas inspiradas em papéis post-it
+        const postitThemes_1_1 = {
+            'yellow': {
+                bg: 'bg-[#FEF08A]',
+                border: 'border-[#EAB308]',
+                text: 'text-[#422006]',
+                sub: 'text-[#713F12]',
+                badge: 'bg-[#CA8A04]/20 text-[#713F12]'
+            },
+            'green': {
+                bg: 'bg-[#BBF7D0]',
+                border: 'border-[#22C55E]',
+                text: 'text-[#052E16]',
+                sub: 'text-[#14532D]',
+                badge: 'bg-[#16A34A]/20 text-[#14532D]'
+            },
+            'blue': {
+                bg: 'bg-[#BAE6FD]',
+                border: 'border-[#0EA5E9]',
+                text: 'text-[#082F49]',
+                sub: 'text-[#0C4A6E]',
+                badge: 'bg-[#0284C7]/20 text-[#0C4A6E]'
+            },
+            'pink': {
+                bg: 'bg-[#FECDD3]',
+                border: 'border-[#F43F5E]',
+                text: 'text-[#4C0519]',
+                sub: 'text-[#881337]',
+                badge: 'bg-[#E11D48]/20 text-[#881337]'
+            }
+        };
+
+        let activePostits_1_1 = [];
+
+        function adicionarPostitCSD_1_1() {
+            const input = document.getElementById('csd-card-text-1-1');
+            const text = input.value.trim();
+            if (!text) {
+                alert('Please enter a hypothesis or assumption statement.');
+                return;
+            }
+
+            const category = document.getElementById('csd-category-1-1').value;
+            const impact = document.getElementById('csd-impact-1-1').value;
+            
+            const selectedColorRadio = document.querySelector('input[name="postit-color-1-1"]:checked');
+            const colorKey = selectedColorRadio ? selectedColorRadio.value : 'yellow';
+
+            activePostits_1_1.push({
+                id: Date.now(),
+                text: text,
+                category: category,
+                impact: impact,
+                color: colorKey
+            });
+
+            input.value = '';
+            renderizarCanvasCSD_1_1();
+        }
+
+        function moverPostitCSD_1_1(id, targetCategory) {
+            const item = activePostits_1_1.find(p => p.id === id);
+            if (item) {
+                item.category = targetCategory;
+                renderizarCanvasCSD_1_1();
+            }
+        }
+
+        function removerPostitCSD_1_1(id) {
+            activePostits_1_1 = activePostits_1_1.filter(p => p.id !== id);
+            renderizarCanvasCSD_1_1();
+        }
+
+        function limparCanvasCSD_1_1() {
+            activePostits_1_1 = [];
+            renderizarCanvasCSD_1_1();
+        }
+
+        function renderizarCanvasCSD_1_1() {
+            const containers = {
+                'certainty': document.getElementById('cards-container-certainties'),
+                'supposition': document.getElementById('cards-container-suppositions'),
+                'doubt': document.getElementById('cards-container-doubts')
+            };
+
+            containers.certainty.innerHTML = '';
+            containers.supposition.innerHTML = '';
+            containers.doubt.innerHTML = '';
+
+            let counts = { certainty: 0, supposition: 0, doubt: 0, criticalSuppositions: 0, criticalDoubts: 0 };
+
+            activePostits_1_1.forEach(item => {
+                counts[item.category]++;
+                if (item.impact === 'high' && item.category === 'supposition') counts.criticalSuppositions++;
+                if (item.impact === 'high' && item.category === 'doubt') counts.criticalDoubts++;
+
+                const theme = postitThemes_1_1[item.color] || postitThemes_1_1.yellow;
+                const container = containers[item.category];
+
+                const card = document.createElement('div');
+                card.className = `${theme.bg} ${theme.border} ${theme.text} border-2 rounded-xl p-2.5 shadow-md hover:shadow-lg transition-all duration-150 relative flex flex-col justify-between space-y-1.5 select-text`;
+                card.style.transform = `rotate(${(item.id % 5) - 2}deg)`;
+
+                // Marcador de impacto
+                const impactLabel = item.impact === 'high' ? 'Critical' : item.impact === 'medium' ? 'Moderate' : 'Marginal';
+                const impactTag = item.impact === 'high' ? 'bg-red-600 text-white' : item.impact === 'medium' ? theme.badge : 'bg-black/10 text-current';
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-1">
+                        <span class="text-[0.62rem] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${impactTag}">${impactLabel}</span>
+                        <button onclick="removerPostitCSD_1_1(${item.id})" class="text-black/50 hover:text-red-700 transition-colors cursor-pointer p-0.5 leading-none" title="Remove Post-it">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                    </div>
+                    <p class="text-[0.82rem] leading-snug font-medium break-words font-sans">${item.text}</p>
+                    <div class="pt-1.5 border-t border-black/10 flex items-center justify-between text-[0.62rem] ${theme.sub}">
+                        <span class="font-mono">#${String(item.id).slice(-4)}</span>
+                        <div class="flex items-center space-x-1">
+                            ${item.category !== 'certainty' ? `<button onclick="moverPostitCSD_1_1(${item.id}, 'certainty')" class="px-1 py-0.5 rounded bg-black/10 hover:bg-emerald-700 hover:text-white transition-colors cursor-pointer font-bold" title="Promote to Certainty">→ C</button>` : ''}
+                            ${item.category !== 'supposition' ? `<button onclick="moverPostitCSD_1_1(${item.id}, 'supposition')" class="px-1 py-0.5 rounded bg-black/10 hover:bg-amber-600 hover:text-white transition-colors cursor-pointer font-bold" title="Move to Supposition">→ S</button>` : ''}
+                            ${item.category !== 'doubt' ? `<button onclick="moverPostitCSD_1_1(${item.id}, 'doubt')" class="px-1 py-0.5 rounded bg-black/10 hover:bg-rose-700 hover:text-white transition-colors cursor-pointer font-bold" title="Flag as Doubt">→ D</button>` : ''}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            // Atualização dos marcadores numéricos dos cabeçalhos
+            document.getElementById('badge-count-certainties').innerText = counts.certainty;
+            document.getElementById('badge-count-suppositions').innerText = counts.supposition;
+            document.getElementById('badge-count-doubts').innerText = counts.doubt;
+
+            const total = activePostits_1_1.length;
+            document.getElementById('csd-total-counter').innerText = `Post-its: ${total}`;
+
+            // Diagnóstico epistemológico em tempo real
+            const statusEl = document.getElementById('csd-status-msg');
+            if (total === 0) {
+                statusEl.innerHTML = `<i class="fa-solid fa-lightbulb text-[#D1A705] mr-2"></i><strong>Audit State:</strong> Log hypotheses to assess epistemic fragility.`;
+            } else if (counts.criticalSuppositions > 0 || counts.criticalDoubts > 0) {
+                statusEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400 mr-2"></i><strong>Critical Risk:</strong> ${counts.criticalSuppositions} critical supposition(s) and ${counts.criticalDoubts} critical doubt(s) pending empirical testing!`;
+            } else if (counts.certainty > (counts.supposition + counts.doubt)) {
+                statusEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i><strong>High Data Maturity:</strong> Majority of assumptions backed by validated empirical evidence.`;
+            } else {
+                statusEl.innerHTML = `<i class="fa-solid fa-compass text-sky-400 mr-2"></i><strong>Discovery Phase:</strong> Portfolio distributed across working assumptions. Prioritize interviews and lab benchmarks.`;
+            }
+        }
+
+        // Pré-carregamento de casos de estudo padrão ao inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            if (activePostits_1_1.length === 0) {
+                activePostits_1_1.push(
+                    { id: 101, text: 'CO₂ taxation will directly increase standard Portland clinker operational expenditures by Q4.', category: 'certainty', impact: 'medium', color: 'green' },
+                    { id: 102, text: 'Tier-1 infrastructure contractors will accept up to 10% higher upfront cost for certified low-carbon EPDs.', category: 'supposition', impact: 'high', color: 'yellow' },
+                    { id: 103, text: 'Which regional normative testing protocol governs early-age compressive strength of alkali-activated slag?', category: 'doubt', impact: 'high', color: 'pink' }
+                );
+                renderizarCanvasCSD_1_1();
+            }
+        });
+    </script>
+</div>
+
+
+
+<!-- SLIDE (2,0): DESK RESEARCH & ETHNOGRAPHIC FIELD INQUIRY -->
+<div id="slide-2-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-geometric2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 02 — EMPIRICAL FOUNDATIONS</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Desk Research & Ethnographic Immersion</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Card 1: Secondary Desk Research -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                        <i class="fa-solid fa-magnifying-glass-chart text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Desk Research Protocol</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Comprehensive literature, regulatory, and patent indexing to eliminate redundant assumptions before field entry.</p>
+                </div>
+                <ul class="space-y-2 text-fluid-meta text-[#444444] border-t border-black/10 pt-3 font-semibold">
+                    <li class="flex items-start"><i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2 flex-shrink-0"></i>Peer-reviewed technical literature and benchmark reports.</li>
+                    <li class="flex items-start"><i class="fa-solid fa-scale-balanced text-[#901812] mt-1 mr-2 flex-shrink-0"></i>Mandatory norms (ABNT, ASTM, ISO) and environmental codes.</li>
+                    <li class="flex items-start"><i class="fa-solid fa-database text-[#901812] mt-1 mr-2 flex-shrink-0"></i>Public repositories, trade journals, and market data sources.</li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Ethnographic Triad (SEE, FEEL, LISTEN) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
+                        <i class="fa-solid fa-users-viewfinder text-2xl sm:text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Ethnographic Triad</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">In-situ context absorption to map discrepancies between what industrial actors claim and what actually occurs.</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5"><i class="fa-solid fa-eye mr-1.5"></i> Observation (SEE):</strong>
+                        <span class="text-fluid-meta font-normal">Contextual site tracking without interfering; documenting friction points immediately.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#D1A705] block mb-0.5"><i class="fa-solid fa-hands-holding-child mr-1.5"></i> Immersion (FEEL):</strong>
+                        <span class="text-fluid-meta font-normal">Experiencing user friction directly to capture tacit, unstated constraints.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#333333] block mb-0.5"><i class="fa-solid fa-ear-listen mr-1.5"></i> Interview (LISTEN):</strong>
+                        <span class="text-fluid-meta font-normal">Pair interviewing, open-ended inquiry, and active listening without bias.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Market Sizing Engine & Action Button -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">QUANTITATIVE SIZING (BRANCH Y=1)</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">TAM / SAM / SOM Filter</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Bottom-up mathematical decomposition of aggregate market volume into actionable commercial beachheads.</p>
+                    <div class="mt-3 p-3.5 bg-white/10 rounded-2xl border border-white/10 text-fluid-meta">
+                        <i class="fa-solid fa-calculator text-[#D1A705] mr-2"></i>
+                        <span>Methodological Rule: Avoid top-down percentage heuristics; calculate strictly via target customer count $\times$ average annual contract value.</span>
+                    </div>
+                </div>
+                <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                    <span>Open Market Sizing Lab (Press ↓)</span>
+                    <i class="fa-solid fa-chart-pie text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Desk Research & Ethnographic Inquiry</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 01 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Sizing Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 03</span>
+    </footer>
+</div>
+
+<!-- SLIDE (2,1): BOTTOM-UP TAM / SAM / SOM MARKET SIZER (BRANCH Y=1) -->
+<div id="slide-2-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-polymer1.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#333333] leading-tight">Bottom-Up TAM / SAM / SOM Simulator</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[46px] flex items-center space-x-2 flex-shrink-0">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 02</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 w-full items-center">
+            <!-- Painel Esquerdo: Parametrização Bottom-Up -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3">
+                <div class="flex justify-between items-center border-b border-black/10 pb-2">
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Bottom-Up Market Variables</h3>
+                    <span class="text-fluid-tag bg-[#901812]/10 text-[#901812] px-2.5 py-0.5 rounded-full font-bold">MIT Disciplined Model</span>
+                </div>
+
+                <!-- Slider 1: Universo Total de Entidades (TAM Base) -->
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between text-[#333333]">
+                        <span>Total Potential Accounts ($N_{\text{total}}$):</span>
+                        <span id="lbl-accounts-2-1" class="text-[#901812] font-mono font-bold">12,000 units</span>
+                    </label>
+                    <input type="range" id="input-accounts-2-1" min="1000" max="50000" step="500" value="12000" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularMercado_2_1()">
+                </div>
+
+                <!-- Slider 2: Preço Médio Anual / ACV (Annual Contract Value) -->
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between text-[#333333]">
+                        <span>Annual Value per Account ($\text{ACV}$):</span>
+                        <span id="lbl-acv-2-1" class="text-[#901812] font-mono font-bold">$25,000 /yr</span>
+                    </label>
+                    <input type="range" id="input-acv-2-1" min="2000" max="100000" step="1000" value="25000" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularMercado_2_1()">
+                </div>
+
+                <!-- Slider 3: Proporção Acessível Servida (SAM %) -->
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between text-[#333333]">
+                        <span>Serviceable Geography & Tech Fit ($\text{SAM Ratio}$):</span>
+                        <span id="lbl-sam-ratio-2-1" class="text-[#901812] font-mono font-bold">25.0%</span>
+                    </label>
+                    <input type="range" id="input-sam-ratio-2-1" min="5" max="70" step="2.5" value="25" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularMercado_2_1()">
+                </div>
+
+                <!-- Slider 4: Penetração do Beachhead no Ano 1-2 (SOM %) -->
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block flex justify-between text-[#333333]">
+                        <span>Beachhead Target Market Share ($\text{SOM Ratio}$):</span>
+                        <span id="lbl-som-ratio-2-1" class="text-[#901812] font-mono font-bold">8.0%</span>
+                    </label>
+                    <input type="range" id="input-som-ratio-2-1" min="1" max="25" step="0.5" value="8" class="w-full accent-[#901812] h-3.5 cursor-pointer" oninput="calcularMercado_2_1()">
+                </div>
+
+                <div class="p-3 bg-white/60 rounded-xl border border-black/5 text-fluid-tag text-[#555555]">
+                    <i class="fa-solid fa-triangle-exclamation text-[#901812] mr-1"></i>
+                    <span>Sizing rigor: Investors immediately reject top-down assertions like <em>"capturing 1% of China or Brazil"</em> without localized bottom-up proof.</span>
+                </div>
+            </div>
+
+            <!-- Painel Direito: Métricas Financeiras e Gráfico Concêntrico -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center border-b border-white/15 pb-2 mb-3">
+                        <span class="text-fluid-tag text-[#D1A705] font-bold">PARAMETRIC MARKET LEDGER</span>
+                        <span class="text-fluid-meta text-white/70 font-mono">USD ($) Annualized</span>
+                    </div>
+
+                    <div class="space-y-3 font-mono">
+                        <!-- TAM -->
+                        <div class="p-3.5 bg-white/10 rounded-2xl border border-white/10 flex justify-between items-center">
+                            <div>
+                                <span class="text-fluid-tag text-[#DEDEDE] block font-sans font-bold">TAM (Total Addressable Market)</span>
+                                <span class="text-fluid-meta text-white/70 font-sans">Theoretical maximum if 100% market captured</span>
+                            </div>
+                            <span id="res-tam-val-2-1" class="text-fluid-h3 text-white font-bold">$300,000,000</span>
+                        </div>
+
+                        <!-- SAM -->
+                        <div class="p-3.5 bg-white/10 rounded-2xl border-l-4 border-[#D1A705] flex justify-between items-center">
+                            <div>
+                                <span class="text-fluid-tag text-[#D1A705] block font-sans font-bold">SAM (Serviceable Addressable Market)</span>
+                                <span id="res-sam-sub-2-1" class="text-fluid-meta text-white/70 font-sans">3,000 accounts matching regional scope</span>
+                            </div>
+                            <span id="res-sam-val-2-1" class="text-fluid-h3 text-[#D1A705] font-bold">$75,000,000</span>
+                        </div>
+
+                        <!-- SOM -->
+                        <div class="p-3.5 bg-white/10 rounded-2xl border-l-4 border-green-400 flex justify-between items-center">
+                            <div>
+                                <span class="text-fluid-tag text-green-400 block font-sans font-bold">SOM (Serviceable Obtainable Market)</span>
+                                <span id="res-som-sub-2-1" class="text-fluid-meta text-white/70 font-sans">240 accounts in immediate beachhead</span>
+                            </div>
+                            <span id="res-som-val-2-1" class="text-fluid-h2 text-green-400 font-bold">$6,000,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3.5 bg-white/5 rounded-2xl border border-white/10 text-fluid-meta flex items-center justify-between">
+                    <div class="space-y-0.5">
+                        <span class="text-fluid-tag text-[#D1A705] block font-bold">Beachhead Feasibility Index:</span>
+                        <span id="res-feasibility-text-2-1" class="text-fluid-meta text-[#DEDEDE] font-sans">Target volume generates solid early cash runway for deep-tech scale.</span>
+                    </div>
+                    <i class="fa-solid fa-bullseye text-2xl text-green-400 flex-shrink-0 ml-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Bottom-Up Market Sizing Simulator</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> for Module 02 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 03</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (2,1) -->
+    <script>
+        function calcularMercado_2_1() {
+            const accounts = parseFloat(document.getElementById('input-accounts-2-1').value);
+            const acv = parseFloat(document.getElementById('input-acv-2-1').value);
+            const samRatio = parseFloat(document.getElementById('input-sam-ratio-2-1').value) / 100;
+            const somRatio = parseFloat(document.getElementById('input-som-ratio-2-1').value) / 100;
+
+            document.getElementById('lbl-accounts-2-1').innerText = `${accounts.toLocaleString()} units`;
+            document.getElementById('lbl-acv-2-1').innerText = `$${acv.toLocaleString()} /yr`;
+            document.getElementById('lbl-sam-ratio-2-1').innerText = `${(samRatio * 100).toFixed(1)}%`;
+            document.getElementById('lbl-som-ratio-2-1').innerText = `${(somRatio * 100).toFixed(1)}%`;
+
+            const tam = accounts * acv;
+            const samAccounts = Math.round(accounts * samRatio);
+            const sam = samAccounts * acv;
+            const somAccounts = Math.round(samAccounts * somRatio);
+            const som = somAccounts * acv;
+
+            document.getElementById('res-tam-val-2-1').innerText = `$${Math.round(tam).toLocaleString()}`;
+            document.getElementById('res-sam-val-2-1').innerText = `$${Math.round(sam).toLocaleString()}`;
+            document.getElementById('res-sam-sub-2-1').innerText = `${samAccounts.toLocaleString()} accounts matching regional scope`;
+            document.getElementById('res-som-val-2-1').innerText = `$${Math.round(som).toLocaleString()}`;
+            document.getElementById('res-som-sub-2-1').innerText = `${somAccounts.toLocaleString()} accounts in immediate beachhead`;
+
+            const feasText = document.getElementById('res-feasibility-text-2-1');
+            if (som < 1000000) {
+                feasText.innerText = "Warning: SOM sub-$1M creates operational runway vulnerability for hard-tech CAPEX.";
+            } else if (som > 15000000) {
+                feasText.innerText = "Notice: Unusually high early SOM. Check whether beachhead segment is too broad.";
+            } else {
+                feasText.innerText = "Target volume generates solid early cash runway for deep-tech scale.";
+            }
+        }
+
+        if (document.getElementById('input-accounts-2-1')) calcularMercado_2_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (3,0): CUSTOMER DISCOVERY & ROOT PAIN IDENTIFICATION -->
+<div id="slide-3-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-clay3.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 03 — QUALITATIVE VALIDATION</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Customer Discovery & Root Pain Audit</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Card 1: 7 Steps of Pain Discovery -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                        <i class="fa-solid fa-stairs text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">7-Step Pain Discovery</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Structured progression from unverified internal beliefs to quantified operational market demand:</p>
+                </div>
+                <div class="space-y-1.5 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-1.5 bg-white/70 rounded-xl border border-black/5 text-fluid-meta"><strong>1–2.</strong> Assumptions $\rightarrow$ Testable Hypotheses</div>
+                    <div class="p-1.5 bg-white/70 rounded-xl border border-black/5 text-fluid-meta"><strong>3–4.</strong> Exploratory Interviews $\rightarrow$ Pattern Identification</div>
+                    <div class="p-1.5 bg-white/70 rounded-xl border border-black/5 text-fluid-meta"><strong>5–6.</strong> In-Depth Interviews $\rightarrow$ Root Pain Isolation</div>
+                    <div class="p-1.5 bg-white/70 rounded-xl border border-black/5 text-fluid-meta text-[#901812]"><strong>7.</strong> Match Critical Pain with Sized TAM/SAM Opportunity</div>
+                </div>
+            </div>
+
+            <!-- Card 2: Discovery Interview Rules (The Mom Test Protocol) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
+                        <i class="fa-solid fa-microphone-lines text-2xl sm:text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Inquiry Governance</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">De-biasing user conversations to prevent false positives and flattering speculative answers:</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta text-[#444444] border-t border-black/10 pt-3 font-semibold">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5"><i class="fa-solid fa-clock-rotate-left mr-1"></i> Past & Present Facts:</strong>
+                        <span class="text-fluid-meta font-normal">Investigate past expenditures and current habits; never query hypothetical future intentions.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5"><i class="fa-solid fa-ban mr-1"></i> Zero Solution Pitching:</strong>
+                        <span class="text-fluid-meta font-normal">Keep the engineering artifact hidden; measure existing alternative workarounds and friction costs.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#D1A705] block mb-0.5"><i class="fa-solid fa-users mr-1"></i> Pair Interviewing:</strong>
+                        <span class="text-fluid-meta font-normal">Conduct in pairs: one investigator drives dialogue while the second logs verbatim quotes.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Interactive Auditor Engine -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">INTERACTIVE SCRIPT AUDIT (BRANCH Y=1)</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Interview Bias Auditor</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Stress-test exploratory interview questions against confirmation bias, leading inquiries, and hypothetical distortions.</p>
+                    <div class="mt-3 p-3.5 bg-white/10 rounded-2xl border border-white/10 text-fluid-meta">
+                        <i class="fa-solid fa-triangle-exclamation text-[#D1A705] mr-2"></i>
+                        <span>Methodological Rule: Asking <em>"Would you buy our sustainable cement?"</em> produces useless courtesy bias. Ask <em>"When was the last time you rejected a clinker supplier and why?"</em> instead.</span>
+                    </div>
+                </div>
+                <button onclick="moveInGrid(0, 1)" class="w-full py-4 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[56px] flex items-center justify-center space-x-2">
+                    <span>Audit Interview Script (Press ↓)</span>
+                    <i class="fa-solid fa-stethoscope text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Customer Discovery & Root Pain Audit</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 02 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↓</kbd> for Script Lab | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 04</span>
+    </footer>
+</div>
+
+<!-- SLIDE (3,1): DISCOVERY INTERVIEW BIAS & SCRIPT AUDITOR (BRANCH Y=1) -->
+<div id="slide-3-1" class="slide-screen slide-hidden-down flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-clay4.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#D1A705] font-bold uppercase tracking-wider">VIRTUAL LAB (BRANCH Y=1)</span>
+            <h2 class="text-fluid-h2 text-[#333333] leading-tight">Customer Interview Script & Bias Auditor</h2>
+        </div>
+        <button onclick="moveInGrid(0, -1)" class="px-6 py-3 bg-white/80 backdrop-blur-md text-[#901812] font-bold rounded-2xl shadow-sm hover:bg-[#901812] hover:text-white transition-colors text-fluid-tag border border-[#901812]/20 min-h-[46px] flex items-center space-x-2 flex-shrink-0">
+            <i class="fa-solid fa-arrow-up"></i>
+            <span>Return to Module 03</span>
+        </button>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 w-full items-center">
+            <!-- Painel Esquerdo: Diagnóstico e Seleção de Questões -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3">
+                <div class="flex justify-between items-center border-b border-black/10 pb-2">
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold">Question Diagnostic Console</h3>
+                    <span class="text-fluid-tag bg-[#901812]/10 text-[#901812] px-2.5 py-0.5 rounded-full font-bold">Mom Test Rules</span>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-fluid-meta font-bold block text-[#333333]">Select Inquiry Archetype for Audit:</label>
+                    <select id="sel-question-archetype-3-1" class="w-full px-4 py-3 rounded-2xl bg-white/90 border border-black/10 text-fluid-meta text-[#333333] font-semibold focus:outline-none focus:ring-2 focus:ring-[#901812]" onchange="auditarQuestao_3_1()">
+                        <option value="future_hypothetical">"Would you buy an eco-friendly additive if it saved 15% in cured concrete cost?"</option>
+                        <option value="solution_pitch">"Don't you think our automated digital twin system solves your inspection backlog?"</option>
+                        <option value="past_behavior" selected>"Tell me about the last time concrete curing failed to reach 28-day target strength. How did you resolve it?"</option>
+                        <option value="current_budget">"How much did your structural team spend last year specifically mitigating moisture degradation?"</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-fluid-meta font-bold block text-[#333333]">Or Input Custom Team Question:</label>
+                    <div class="flex space-x-2">
+                        <input type="text" id="custom-question-input-3-1" placeholder="Type a field question to audit..." class="flex-1 px-4 py-2.5 rounded-xl bg-white/90 border border-black/10 text-fluid-meta text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#901812]">
+                        <button onclick="auditarCustomQuestao_3_1()" class="px-5 py-2.5 bg-[#901812] text-white font-bold rounded-xl hover:bg-[#D1A705] hover:text-[#333333] transition-all text-fluid-meta flex-shrink-0">
+                            Audit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white/60 rounded-xl border border-black/5 text-fluid-tag text-[#555555]">
+                    <i class="fa-solid fa-circle-info text-[#901812] mr-1"></i>
+                    <span>Inquiry Guideline: Discard questions querying future intentions, avoid gerunds, and probe exclusively for documented behavior and economic friction.</span>
+                </div>
+            </div>
+
+            <!-- Painel Direito: Relatório de Rigor Metodológico -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center border-b border-white/15 pb-2 mb-3">
+                        <span class="text-fluid-tag text-[#D1A705] font-bold">METHODOLOGICAL AUDIT REPORT</span>
+                        <span id="audit-score-badge-3-1" class="text-fluid-tag px-3 py-0.5 rounded-full font-bold bg-green-500/20 text-green-300">SCIENTIFIC GRADE: 95/100</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3.5 bg-white/10 rounded-2xl border border-white/10">
+                            <span class="text-fluid-tag text-[#DEDEDE] block font-bold mb-1">Inquiry Flaw & Epistemic Risk:</span>
+                            <p id="audit-flaw-text-3-1" class="text-fluid-meta text-white font-sans">None. Probing anchored past episodes forces the respondent to reveal empirical workflow realities rather than polite opinions.</p>
+                        </div>
+
+                        <div class="p-3.5 bg-white/10 rounded-2xl border-l-4 border-[#D1A705]">
+                            <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">5-Whys Escalation Protocol:</span>
+                            <p id="audit-fivewhys-text-3-1" class="text-fluid-meta text-[#DEDEDE] font-sans">"Why did that failure occur?" $\rightarrow$ "Why wasn't it detected during pre-batching?" $\rightarrow$ Follow root operational chain.</p>
+                        </div>
+
+                        <div class="p-3.5 bg-white/10 rounded-2xl border-l-4 border-green-400">
+                            <span class="text-fluid-tag text-green-400 block font-bold mb-1">Recommended Reformulation:</span>
+                            <p id="audit-fix-text-3-1" class="text-fluid-meta text-white font-sans">Question complies with empirical customer discovery benchmarks. No alteration required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-white/5 rounded-2xl border border-white/10 text-fluid-meta flex items-center justify-between">
+                    <span class="text-fluid-tag text-white/80 font-sans">Verification Target: Real customer pain, actual budgets spent, current workarounds.</span>
+                    <i class="fa-solid fa-circle-check text-2xl text-green-400 flex-shrink-0 ml-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Discovery Interview Bias & Script Auditor</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">↑</kbd> for Module 03 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 04</span>
+    </footer>
+
+    <!-- SCRIPT LOCAL AUTOCONTIDO DO SLIDE (3,1) -->
+    <script>
+        const AUDIT_KNOWLEDGE_BASE_3_1 = {
+            "future_hypothetical": {
+                score: "POOR GRADE: 20/100",
+                badgeClass: "bg-red-500/20 text-red-400",
+                flaw: "Catastrophic hypothetical bias. Asking prospects if they 'would buy' produces cheap optimism and zero commercial validation.",
+                fiveWhys: "Not applicable. The user is speculating about an imaginary future rather than recalling concrete decisions.",
+                fix: "Reformulate to past expenditure: 'How much did your firm spend on concrete additives over the past 12 months, and which exact brands did you approve?'"
+            },
+            "solution_pitch": {
+                score: "POOR GRADE: 35/100",
+                badgeClass: "bg-red-500/20 text-red-400",
+                flaw: "Leading question with premature solution pitch. Seeks emotional validation for your idea instead of listening to the client's actual workflow friction.",
+                fiveWhys: "Pivot immediately: 'What is the specific bottleneck in your current inspection process that delays sign-off?'",
+                fix: "Reformulate to open inquiry: 'Walk me through your current structural inspection workflow from data capture to final client delivery.'"
+            },
+            "past_behavior": {
+                score: "SCIENTIFIC GRADE: 95/100",
+                badgeClass: "bg-green-500/20 text-green-300",
+                flaw: "None. Probing anchored past episodes forces the respondent to reveal empirical workflow realities rather than polite opinions.",
+                fiveWhys: "'Why did that failure occur?' -> 'Why wasn't it detected during pre-batching?' -> Follow root operational chain.",
+                fix: "Question complies with empirical customer discovery benchmarks. Proceed to active listening and verbatim transcription."
+            },
+            "current_budget": {
+                score: "SCIENTIFIC GRADE: 90/100",
+                badgeClass: "bg-green-500/20 text-green-300",
+                flaw: "None. Probing hard financial resource commitments validates whether the problem is painful enough to warrant capital allocation.",
+                fiveWhys: "'Why is that maintenance item allocated to OPEX rather than warranty?' -> Pinpoint financial decision-maker.",
+                fix: "High analytical validity. Complement with: 'Who internally signed off on that expenditure and what alternative solutions were rejected?'"
+            }
+        };
+
+        function auditarQuestao_3_1() {
+            const key = document.getElementById('sel-question-archetype-3-1').value;
+            const data = AUDIT_KNOWLEDGE_BASE_3_1[key];
+            if (!data) return;
+
+            const badge = document.getElementById('audit-score-badge-3-1');
+            badge.innerText = data.score;
+            badge.className = `text-fluid-tag px-3 py-0.5 rounded-full font-bold ${data.badgeClass}`;
+
+            document.getElementById('audit-flaw-text-3-1').innerText = data.flaw;
+            document.getElementById('audit-fivewhys-text-3-1').innerText = data.fiveWhys;
+            document.getElementById('audit-fix-text-3-1').innerText = data.fix;
+        }
+
+        function auditarCustomQuestao_3_1() {
+            const txt = document.getElementById('custom-question-input-3-1').value.toLowerCase();
+            if (!txt.trim()) return;
+
+            const badge = document.getElementById('audit-score-badge-3-1');
+
+            if (txt.includes('would you') || txt.includes('will you') || txt.includes('você compraria') || txt.includes('se houvesse')) {
+                badge.innerText = "POOR GRADE: 15/100";
+                badge.className = "text-fluid-tag px-3 py-0.5 rounded-full font-bold bg-red-500/20 text-red-400";
+                document.getElementById('audit-flaw-text-3-1').innerText = "Hypothetical future promise detected. People agree to buy in theoretical futures but refuse when contracts arrive.";
+                document.getElementById('audit-fivewhys-text-3-1').innerText = "Pivot from 'would you' to 'when was the last time you bought a comparable tool?'";
+                document.getElementById('audit-fix-text-3-1').innerText = "Rephrase entirely into past behavior: 'Tell me about the last time you faced this problem...'";
+            } else if (txt.includes('don\'t you think') || txt.includes('você não acha') || txt.includes('concorda')) {
+                badge.innerText = "POOR GRADE: 25/100";
+                badge.className = "text-fluid-tag px-3 py-0.5 rounded-full font-bold bg-red-500/20 text-red-400";
+                document.getElementById('audit-flaw-text-3-1').innerText = "Confirmation bias trap. You are guiding the interviewee toward validating your personal conviction.";
+                document.getElementById('audit-fivewhys-text-3-1').innerText = "Ask open 'How' and 'Why' questions to uncover unassisted user perspectives.";
+                document.getElementById('audit-fix-text-3-1').innerText = "Neutralize language: 'How do you currently handle this operational stage?'";
+            } else {
+                badge.innerText = "ACCEPTABLE GRADE: 85/100";
+                badge.className = "text-fluid-tag px-3 py-0.5 rounded-full font-bold bg-green-500/20 text-green-300";
+                document.getElementById('audit-flaw-text-3-1').innerText = "No blatant hypothetical traps detected. Ensure open inquiry without interrupting the respondent.";
+                document.getElementById('audit-fivewhys-text-3-1').innerText = "Apply the 5 Whys technique whenever an operational friction or surprise is voiced.";
+                document.getElementById('audit-fix-text-3-1').innerText = "Ensure question is documented verbatim alongside observed non-verbal cues.";
+            }
+        }
+
+        if (document.getElementById('sel-question-archetype-3-1')) auditarQuestao_3_1();
+    </script>
+</div>
+
+
+
+<!-- SLIDE (4,0): QUALITATIVE SYNTHESIS & EMPATHY ARCHITECTURE -->
+<div id="slide-4-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks2.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 04 — QUALITATIVE CONVERGENCE</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Synthesis, Affinity Clustering & Empathy Maps</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Card 1: Synthesis Model (Design Council / Kolko, 2010) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                        <i class="fa-solid fa-bezier-curve text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Divergence-Convergence</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Translating field notes and observation transcripts into structured design opportunities (Design Council, 2005):</p>
+                </div>
+                <div class="space-y-1.5 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 text-fluid-meta">
+                        <strong class="text-[#901812] block">1. Story Logging:</strong> Extract verbatim statements, observed facts, and emotional reactions.
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 text-fluid-meta">
+                        <strong class="text-[#901812] block">2. Affinity Clustering:</strong> Pivot away from rigid formats; cluster quotes by underlying patterns.
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 text-fluid-meta">
+                        <strong class="text-[#901812] block">3. Visual Representation:</strong> Graph complex stakeholder relations via causal maps.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Field Evidence Clustering Framework -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
+                        <i class="fa-solid fa-layer-group text-2xl sm:text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Evidence Stratification</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Isolating subjective interpretations from objective empirical reality across 4 distinct field bins:</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5">
+                        <span class="text-[#901812] font-bold block text-fluid-tag uppercase"><i class="fa-solid fa-comment-dots mr-1"></i> Statements</span>
+                        <span class="text-fluid-meta font-normal">Explicit verbal claims made during interviews.</span>
+                    </div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5">
+                        <span class="text-[#901812] font-bold block text-fluid-tag uppercase"><i class="fa-solid fa-clipboard-check mr-1"></i> Facts</span>
+                        <span class="text-fluid-meta font-normal">Observable behaviors, recorded telemetry, expenditures.</span>
+                    </div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5">
+                        <span class="text-[#D1A705] font-bold block text-fluid-tag uppercase"><i class="fa-solid fa-heart-pulse mr-1"></i> Feelings</span>
+                        <span class="text-fluid-meta font-normal">Tacit frustrations, anxieties, pride, resistance.</span>
+                    </div>
+                    <div class="p-2.5 bg-white/70 rounded-xl border border-black/5">
+                        <span class="text-green-700 font-bold block text-fluid-tag uppercase"><i class="fa-solid fa-wrench mr-1"></i> Needs</span>
+                        <span class="text-fluid-meta font-normal">Root functional requirements and latent outcomes.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Persona Empathy Modeling & Redefinition -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">PERSONA MAPPING (X-RAY VIEW)</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Empathy Map Modeling</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Consolidate qualitative observations into an empirical stakeholder persona to redefine the core strategic inquiry.</p>
+                    <div class="mt-3 p-3 bg-white/10 rounded-2xl border border-white/10 text-fluid-meta">
+                        <div class="text-fluid-meta space-y-1 font-sans">
+                            <div><strong class="text-[#D1A705]">Says & Does:</strong> Public operational behavior on the construction site.</div>
+                            <div><strong class="text-[#D1A705]">Thinks & Feels:</strong> Unvoiced economic risk, liability anxiety, aspirations.</div>
+                            <div><strong class="text-red-400">Pains:</strong> Bottlenecks, delivery delays, compliance fines.</div>
+                            <div><strong class="text-green-400">Gains:</strong> Productivity boosts, certified safety, margin expansion.</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('modal-empathy-spec-4-0').showModal()" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-id-card-clip"></i>
+                    <span>Inspect Empathy Protocol</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Qualitative Synthesis & Empathy Architecture</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 03 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Module 05</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: ESPECIFICAÇÃO DO MAPA DE EMPATIA (NATIVO <DIALOG>) -->
+    <dialog id="modal-empathy-spec-4-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">SYNTHESIS FRAMEWORK</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Persona & Empathy Specification</h3>
+            </div>
+            <button onclick="document.getElementById('modal-empathy-spec-4-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>The empathy map aggregates direct field evidence into a synthesized operational actor, preventing development based on internal team assumptions:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block mb-0.5">What They Hear:</strong>
+                    <span>Influences from general contractors, environmental regulators, suppliers, and competitors.</span>
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block mb-0.5">What They See:</strong>
+                    <span>Market trends, on-site physical bottlenecks, material waste accumulation, and alternative solutions.</span>
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block mb-0.5">Redefining the Strategic Challenge:</strong>
+                    <span>Use the synthesized persona profile to reformulate the initial question into a high-leverage value proposition.</span>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (5,0): BEACHHEAD MARKET VALIDATION & PROBLEM-SOLUTION FIT -->
+<div id="slide-5-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks4.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">MODULE 05 — COMMERCIAL STRATEGY</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">Beachhead Validation & Problem-Solution Fit</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Card 1: Beachhead Market Selection Matrix (Aulet, 2013) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#901812] mb-2">
+                        <i class="fa-solid fa-flag text-2xl sm:text-3xl"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Beachhead Criteria</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">Selecting a narrow, dominant market segment to concentrate scarce technical and financial resources:</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta font-semibold text-[#444444] border-t border-black/10 pt-3">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5">1. Target Well-Funded:</strong>
+                        <span class="text-fluid-meta font-normal">Clients have dedicated capital budget to eliminate the specific operational bottleneck.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5">2. Compelling Value Reason:</strong>
+                        <span class="text-fluid-meta font-normal">Failure to solve induces critical operational downtime, severe fines, or structural liability.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5">
+                        <strong class="text-[#901812] block mb-0.5">3. Strong Word-of-Mouth:</strong>
+                        <span class="text-fluid-meta font-normal">Homogeneous references; industry players reference peers directly for standard adoption.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Problem-Solution Fit Gate -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#D1A705]">
+                <div>
+                    <div class="flex items-center space-x-3 text-[#D1A705] mb-2">
+                        <i class="fa-solid fa-square-check text-2xl sm:text-3xl text-[#901812]"></i>
+                        <h3 class="text-fluid-h3 text-[#333333] font-bold">Validation Gates</h3>
+                    </div>
+                    <p class="text-fluid-body text-[#444444]">De-risking technological commercialization through objective empirical proof gates:</p>
+                </div>
+                <div class="space-y-2 text-fluid-meta text-[#444444] border-t border-black/10 pt-3 font-semibold">
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-start space-x-2">
+                        <i class="fa-solid fa-circle-check text-green-600 mt-1 flex-shrink-0"></i>
+                        <span class="text-fluid-meta"><strong>Root Pain Evidence:</strong> At least 80% of exploratory interviewees actively spend money on inefficient workarounds.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-start space-x-2">
+                        <i class="fa-solid fa-circle-check text-green-600 mt-1 flex-shrink-0"></i>
+                        <span class="text-fluid-meta"><strong>Economic Value Delta:</strong> Documented cost, speed, or compliance superiority exceeding incumbent methods by $> 3\times$.</span>
+                    </div>
+                    <div class="p-2 bg-white/70 rounded-xl border border-black/5 flex items-start space-x-2">
+                        <i class="fa-solid fa-circle-check text-green-600 mt-1 flex-shrink-0"></i>
+                        <span class="text-fluid-meta"><strong>Regulatory Viability:</strong> Technology complies with existing industrial codes without requiring complete normative re-write.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Commitment Signals (Skin in the Game) -->
+            <div class="p-6 sm:p-8 rounded-3xl card-glass-dark text-white space-y-4 flex flex-col justify-between">
+                <div>
+                    <span class="text-fluid-tag text-[#D1A705] block font-bold mb-1">EVIDENCE AUDIT</span>
+                    <h3 class="text-fluid-h3 text-white font-bold mb-2">Skin-in-the-Game Ladder</h3>
+                    <p class="text-fluid-body text-[#DEDEDE]">Separate cheap conversational praise from verifiable commercial traction using progressive customer commitment tests:</p>
+                    <div class="mt-3 p-3 bg-white/10 rounded-2xl border border-white/10 text-fluid-meta">
+                        <div class="text-fluid-meta space-y-1.5 font-sans">
+                            <div class="flex items-center space-x-2 text-gray-300">
+                                <span class="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-fluid-tag font-bold">1</span>
+                                <span><strong>Time Commitment:</strong> Client grants access to confidential telemetry data.</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-[#D1A705]">
+                                <span class="w-10 h-10 rounded-full bg-[#D1A705] text-[#333333] flex items-center justify-center text-fluid-tag font-bold">2</span>
+                                <span><strong>Reputation Commitment:</strong> Client introduces project to decision-making executive.</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-green-400 font-bold">
+                                <span class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-fluid-tag font-bold">3</span>
+                                <span><strong>Financial Commitment:</strong> Signed Letter of Intent (LOI) or paid field pilot contract.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('modal-beachhead-spec-5-0').showModal()" class="w-full py-3.5 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-2xl transition-all text-fluid-body shadow-md min-h-[52px] flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>Examine Beachhead Protocol</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Beachhead Validation & Problem-Solution Fit</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 04 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">→</kbd> for Closing Module</span>
+    </footer>
+
+    <!-- MODAL AUTOCONTIDO: CRITÉRIOS DETALHADOS DE BEACHHEAD (NATIVO <DIALOG>) -->
+    <dialog id="modal-beachhead-spec-5-0" class="backdrop:bg-black/60 rounded-3xl p-6 sm:p-10 card-glass-dark text-white max-w-2xl w-full shadow-2xl border border-white/15">
+        <div class="flex justify-between items-start border-b border-white/20 pb-4 mb-4">
+            <div>
+                <span class="text-fluid-tag text-[#D1A705] font-bold block">STRATEGIC FOCUS</span>
+                <h3 class="text-fluid-h2 text-white font-bold">Beachhead Selection Rules</h3>
+            </div>
+            <button onclick="document.getElementById('modal-beachhead-spec-5-0').close()" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#901812] text-white flex items-center justify-center text-xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="space-y-4 text-fluid-body text-[#DEDEDE]">
+            <p>A successful beachhead enables an engineering startup to conquer a defensible niche, achieve positive unit economics, and leverage references to conquer adjacent markets:</p>
+            <div class="space-y-2 text-fluid-meta font-semibold">
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block mb-0.5">Disciplined Entrepreneurship Rule:</strong>
+                    <span>Never pursue multiple market segments simultaneously before dominating the beachhead. Chasing fragmented customers drains technical resources and stalls product refinement.</span>
+                </div>
+                <div class="p-3 bg-white/10 rounded-xl border border-white/10">
+                    <strong class="text-[#D1A705] block mb-0.5">Whole Product Delivery:</strong>
+                    <span>Ensure your engineering solution includes everything required to realize the full value proposition (e.g., training, compliance certification, and warranty integration).</span>
+                </div>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+
+
+<!-- SLIDE (6,0): REFERENCES & EVALUATION DELIVERABLES -->
+<div id="slide-6-0" class="slide-screen slide-hidden-right flex flex-col justify-between p-6 sm:p-8 md:p-10 h-screen overflow-hidden" style="background: linear-gradient(90deg, var(--bg-shade-left) 25%, var(--bg-shade-mid) 60%, var(--bg-shade-right) 100%), url('bg-blocks3.png') center right / cover fixed no-repeat;">
+    <!-- Camada 1: Cabeçalho Estático Sempre Visível -->
+    <header class="w-full flex justify-between items-center flex-shrink-0 mb-2">
+        <div>
+            <span class="text-fluid-tag text-[#901812] font-bold tracking-wider uppercase">CLOSING MODULE</span>
+            <h2 class="text-fluid-h2 text-[#901812] leading-tight">References & Evaluation Deliverables</h2>
+        </div>
+        <a href="https://pms.ufv.br" target="_blank" class="block bg-[#333333]/75 backdrop-blur-md p-3 rounded-2xl shadow-sm hover:scale-105 transition-transform">
+            <img src="pms.png" alt="PMS Logo" class="h-10 sm:h-12 w-auto" onerror="this.src='https://raw.githubusercontent.com/jmfcarvalho/civ670/main/assets/pms_logo/pms.png'">
+        </a>
+    </header>
+
+    <!-- Camada 2: Núcleo Centralizado Verticalmente -->
+    <div class="w-full flex-1 flex items-center justify-center my-auto py-2">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 w-full items-stretch">
+            <!-- Coluna Esquerda: Base Bibliográfica Fundamental -->
+            <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl card-glass space-y-3 flex flex-col justify-between border-l-[12px] border-[#901812]">
+                <div>
+                    <h3 class="text-fluid-h3 text-[#333333] font-bold border-b border-black/10 pb-2 mb-2">Academic & Methodological References</h3>
+                    
+                    <ul class="space-y-2 text-fluid-meta text-[#444444] font-semibold">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-book text-[#901812] mt-1 mr-2 flex-shrink-0"></i>
+                            <span><strong>Aulet, B.</strong> (2013). <em>Disciplined Entrepreneurship: 24 Steps to a Successful Startup</em>. John Wiley & Sons.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2 flex-shrink-0"></i>
+                            <span><strong>Blank, S., & Dorf, B.</strong> (2020). <em>The Startup Owner's Manual: The Step-by-Step Guide for Building a Great Company</em>. K&S Ranch.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-file-lines text-[#901812] mt-1 mr-2 flex-shrink-0"></i>
+                            <span><strong>Fitzpatrick, R.</strong> (2013). <em>The Mom Test: How to talk to customers & learn if your business is a good idea when everyone is lying to you</em>. Founder Centric.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="p-3 bg-white/70 rounded-2xl border border-black/5 text-fluid-tag text-[#555555]">
+                    <i class="fa-solid fa-certificate text-[#901812] mr-1.5"></i>
+                    <span>SICon / DEC / UFV • Research Group for Sustainable and Innovative Construction.</span>
+                </div>
+            </div>
+
+            <!-- Coluna Direita: Painéis de Avaliação com QR Codes -->
+            <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Painel 1: In-Class Evaluation Form -->
+                <div class="p-5 sm:p-6 rounded-3xl card-glass-dark text-white text-center flex flex-col justify-between space-y-3">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">IN-CLASS ASSESSMENT</span>
+                        <div class="bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl max-w-[220px] sm:max-w-[260px] mx-auto shadow-lg">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLScD3zpjIUkQCQC175yzjawz-ptjW_vbJNeHRDUeu7RDWPYFGA%2Fviewform%3Fusp%3Dheader&color=901812" alt="In-Class Form QR Code" class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Immediate interactive class feedback and synchronous verification.</span>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScD3zpjIUkQCQC175yzjawz-ptjW_vbJNeHRDUeu7RDWPYFGA/viewform?usp=header" target="_blank" class="w-full py-2.5 px-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl transition-all text-fluid-meta shadow-md inline-flex items-center justify-center space-x-1.5 p-4 sm:p-5 rounded-2xl max-w-[220px] sm:max-w-[260px] mx-auto shadow-lg">
+                            <span>Launch In-Class Form</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Painel 2: Weekly Report Form -->
+                <div class="p-5 sm:p-6 rounded-3xl card-glass-dark text-white text-center flex flex-col justify-between space-y-3">
+                    <div>
+                        <span class="text-fluid-tag text-[#D1A705] block font-bold uppercase tracking-wider mb-1">WEEKLY REPORT</span>
+                        <div class="bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-2xl max-w-[220px] sm:max-w-[260px] mx-auto shadow-lg">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fdocs.google.com%2Fforms%2Fd%2Fe%2F1FAIpQLSeXL5bBXYhdEAws1NKih75NG8vf3FWmAU_8n6W1BM0f2ddAjA%2Fviewform%3Fusp%3Dheader&color=901812" alt="Weekly Report QR Code" class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <span class="text-fluid-meta text-[#DEDEDE] block">Structured delivery: CSD matrix, interview log, and beachhead TAM/SAM/SOM.</span>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXL5bBXYhdEAws1NKih75NG8vf3FWmAU_8n6W1BM0f2ddAjA/viewform?usp=header" target="_blank" class="w-full py-2.5 px-3 bg-[#901812] hover:bg-[#D1A705] hover:text-[#333333] text-white font-bold rounded-xl transition-all text-fluid-meta shadow-md inline-flex items-center justify-center space-x-1.5 p-4 sm:p-5 rounded-2xl max-w-[220px] sm:max-w-[260px] mx-auto shadow-lg">
+                            <span>Submit Weekly Report</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-sm ml-1.5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camada 3: Rodapé Técnico -->
+    <footer class="w-full flex justify-between items-center text-fluid-tag text-[#777777] border-t border-black/10 pt-2 flex-shrink-0">
+        <span class="font-bold">CIV 670: Class 070 — Market Assessment & Customer Development</span>
+        <span class="font-semibold">Press <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">←</kbd> for Module 05 | <kbd class="px-2 py-0.5 bg-black/10 rounded font-mono text-black">Home</kbd> for Cover</span>
+    </footer>
+</div>
+
+
+
+
+
+
+
+</main>
+
+    <!-- MOTOR DE NAVEGAÇÃO MATRICIAL 2D -->
+    <script>
+        let currentX = 0, currentY = 0;
+        let slideGrid = {};
+
+        function updateSlideGrid() {
+            slideGrid = {};
+            document.querySelectorAll('[id^="slide-"]').forEach(slide => {
+                const parts = slide.id.replace('slide-', '').split('-');
+                if (parts.length === 2) slideGrid[`${parts[0]},${parts[1]}`] = slide.id;
+            });
+        }
+
+        function hasSlide(x, y) { return !!slideGrid[`${x},${y}`]; }
+
+        function updateUI() {
+            updateSlideGrid();
+            const keysH = Object.keys(slideGrid).filter(k => k.endsWith(',0'));
+            const maxH = Math.max(...keysH.map(k => parseInt(k.split(',')[0])), 0);
+            const totalMainSlides = keysH.length;
+            
+            document.getElementById('progressBar').style.width = `${maxH === 0 ? 100 : (currentX / maxH) * 100}%`;
+            document.getElementById('slideIndicator').innerText = `Slide (${currentX},${currentY}) | ${currentX + 1} of ${totalMainSlides}`;
+
+            const dirs = { 'up': [0,-1], 'down': [0,1], 'left': [-1,0], 'right': [1,0] };
+            for (let d in dirs) {
+                const btn = document.getElementById(`btn-nav-${d}`);
+                if (btn) btn.classList.toggle('nav-enabled', hasSlide(currentX + dirs[d][0], currentY + dirs[d][1]));
+            }
+        }
+
+        function moveInGrid(dx, dy) {
+            updateSlideGrid();
+            const nx = currentX + dx, ny = currentY + dy;
+            if (hasSlide(nx, ny)) {
+                const cur = document.getElementById(slideGrid[`${currentX},${currentY}`]);
+                const nxt = document.getElementById(slideGrid[`${nx},${ny}`]);
+                
+                cur.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+                nxt.classList.remove('slide-active', 'slide-hidden-left', 'slide-hidden-right', 'slide-hidden-up', 'slide-hidden-down');
+
+                if (dx > 0) cur.classList.add('slide-hidden-left');
+                else if (dx < 0) cur.classList.add('slide-hidden-right');
+                else if (dy > 0) cur.classList.add('slide-hidden-down');
+                else if (dy < 0) cur.classList.add('slide-hidden-up');
+
+                nxt.classList.add('slide-active');
+
+                currentX = nx; currentY = ny;
+                updateUI();
+                if (window.renderMathInElement) renderMathInElement(nxt);
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT','TEXTAREA','DIALOG'].includes(document.activeElement.tagName)) return;
+            if (e.key === 'ArrowRight' || e.key === ' ') moveInGrid(1, 0);
+            else if (e.key === 'ArrowLeft') moveInGrid(-1, 0);
+            else if (e.key === 'ArrowUp') moveInGrid(0, -1);
+            else if (e.key === 'ArrowDown') moveInGrid(0, 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            updateUI(); 
+        });
+    </script>
+</body>
+</html>
